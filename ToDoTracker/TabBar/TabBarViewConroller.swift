@@ -9,18 +9,25 @@ import UIKit
 
 final class TabBarViewController: UITabBarController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        createTabViewController()
+        
+    }
+    
+    //MARK: -Private Methods
+    private func createTabViewController() {
         tabBar.isTranslucent = false
-        tabBar.barTintColor = .YPBlack
+        tabBar.barTintColor = .YPBlue
         tabBar.tintColor = .white
         
         let trackerViewController = TrackerViewController()
+        let trackerNavigationController = UINavigationController(rootViewController: trackerViewController)
         trackerViewController.tabBarItem = UITabBarItem(
             title: "Трекеры",
             image: UIImage(named: "Record_circle_fill"),
             selectedImage: nil)
+        
         
         let statisticViewController = StatisticViewController()
         statisticViewController.tabBarItem = UITabBarItem(
@@ -28,9 +35,6 @@ final class TabBarViewController: UITabBarController {
             image: UIImage(named: "Hare_fill"),
             selectedImage: nil)
         
-        self.viewControllers = [trackerViewController, statisticViewController]
-        
+        self.viewControllers = [trackerNavigationController, statisticViewController]
     }
-    
-    
 }

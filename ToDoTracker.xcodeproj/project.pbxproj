@@ -17,6 +17,7 @@
 		923F99892A42F62000CFCE9E /* TabBarViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99882A42F62000CFCE9E /* TabBarViewConroller.swift */; };
 		923F998E2A42F76100CFCE9E /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F998D2A42F76100CFCE9E /* TrackerViewController.swift */; };
 		923F99902A42F78C00CFCE9E /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F998F2A42F78C00CFCE9E /* StatisticViewController.swift */; };
+		923F99922A43A12F00CFCE9E /* TrackerCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99912A43A12F00CFCE9E /* TrackerCardViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		923F99882A42F62000CFCE9E /* TabBarViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewConroller.swift; sourceTree = "<group>"; };
 		923F998D2A42F76100CFCE9E /* TrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		923F998F2A42F78C00CFCE9E /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
+		923F99912A43A12F00CFCE9E /* TrackerCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCardViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				923F998D2A42F76100CFCE9E /* TrackerViewController.swift */,
+				923F99912A43A12F00CFCE9E /* TrackerCardViewCell.swift */,
 			);
 			path = TrackerViewFolder;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				923F99892A42F62000CFCE9E /* TabBarViewConroller.swift in Sources */,
 				923F992A2A3C859B00CFCE9E /* AppDelegate.swift in Sources */,
 				923F998E2A42F76100CFCE9E /* TrackerViewController.swift in Sources */,
+				923F99922A43A12F00CFCE9E /* TrackerCardViewCell.swift in Sources */,
 				923F992C2A3C859B00CFCE9E /* SceneDelegate.swift in Sources */,
 				923F993F2A3CF8F000CFCE9E /* UIColors+Extension.swift in Sources */,
 			);
