@@ -6,3 +6,10 @@
 //
 
 import UIKit
+
+final class TrackerCardViewCell: UICollectionViewCell {
+    
+    //MARK: -Private Properties
+    
+    
+}
