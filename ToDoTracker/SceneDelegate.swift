@@ -17,9 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         let tabBarViewController = TabBarViewController()
-//
-//        let trackerViewController = TrackerViewController()
-//        trackerViewController.view.backgroundColor = .YPBlack
         window?.rootViewController = tabBarViewController
         window?.makeKeyAndVisible()
         
