@@ -19,7 +19,9 @@
 		923F99952A48D4D000CFCE9E /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99942A48D4D000CFCE9E /* Tracker.swift */; };
 		923F99972A48D4E700CFCE9E /* TrackerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99962A48D4E700CFCE9E /* TrackerCategory.swift */; };
 		923F99992A48E09100CFCE9E /* TrackerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99982A48E09100CFCE9E /* TrackerRecord.swift */; };
-		923F999B2A49F9F000CFCE9E /* TrackerHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F999A2A49F9F000CFCE9E /* TrackerHeaderCollectionReusableView.swift */; };
+		923F999B2A49F9F000CFCE9E /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F999A2A49F9F000CFCE9E /* HeaderCollectionReusableView.swift */; };
+		923F999D2A4A324000CFCE9E /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F999C2A4A324000CFCE9E /* CellViewModel.swift */; };
+		923F99A02A4AFFDC00CFCE9E /* TrackerTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F999F2A4AFFDC00CFCE9E /* TrackerTypeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +39,9 @@
 		923F99942A48D4D000CFCE9E /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		923F99962A48D4E700CFCE9E /* TrackerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategory.swift; sourceTree = "<group>"; };
 		923F99982A48E09100CFCE9E /* TrackerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecord.swift; sourceTree = "<group>"; };
-		923F999A2A49F9F000CFCE9E /* TrackerHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		923F999A2A49F9F000CFCE9E /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		923F999C2A4A324000CFCE9E /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		923F999F2A4AFFDC00CFCE9E /* TrackerTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTypeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 			children = (
 				923F99932A48D4B200CFCE9E /* Models */,
 				923F998A2A42F71C00CFCE9E /* StatisticViewFolder */,
+				923F999E2A4AFF9C00CFCE9E /* TrackerCreationViewFolder */,
 				923F99872A42F5EB00CFCE9E /* TrackerViewFolder */,
 				923F99862A42F47F00CFCE9E /* TabBar */,
 				923F99292A3C859B00CFCE9E /* AppDelegate.swift */,
@@ -105,7 +110,8 @@
 			children = (
 				923F998D2A42F76100CFCE9E /* TrackerViewController.swift */,
 				923F99912A43A12F00CFCE9E /* TrackerCardViewCell.swift */,
-				923F999A2A49F9F000CFCE9E /* TrackerHeaderCollectionReusableView.swift */,
+				923F999A2A49F9F000CFCE9E /* HeaderCollectionReusableView.swift */,
+				923F999C2A4A324000CFCE9E /* CellViewModel.swift */,
 			);
 			path = TrackerViewFolder;
 			sourceTree = "<group>";
@@ -126,6 +132,14 @@
 				923F99982A48E09100CFCE9E /* TrackerRecord.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		923F999E2A4AFF9C00CFCE9E /* TrackerCreationViewFolder */ = {
+			isa = PBXGroup;
+			children = (
+				923F999F2A4AFFDC00CFCE9E /* TrackerTypeViewController.swift */,
+			);
+			path = TrackerCreationViewFolder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +217,10 @@
 				923F99952A48D4D000CFCE9E /* Tracker.swift in Sources */,
 				923F99972A48D4E700CFCE9E /* TrackerCategory.swift in Sources */,
 				923F99992A48E09100CFCE9E /* TrackerRecord.swift in Sources */,
+				923F99A02A4AFFDC00CFCE9E /* TrackerTypeViewController.swift in Sources */,
 				923F992A2A3C859B00CFCE9E /* AppDelegate.swift in Sources */,
-				923F999B2A49F9F000CFCE9E /* TrackerHeaderCollectionReusableView.swift in Sources */,
+				923F999D2A4A324000CFCE9E /* CellViewModel.swift in Sources */,
+				923F999B2A49F9F000CFCE9E /* HeaderCollectionReusableView.swift in Sources */,
 				923F998E2A42F76100CFCE9E /* TrackerViewController.swift in Sources */,
 				923F99922A43A12F00CFCE9E /* TrackerCardViewCell.swift in Sources */,
 				923F992C2A3C859B00CFCE9E /* SceneDelegate.swift in Sources */,

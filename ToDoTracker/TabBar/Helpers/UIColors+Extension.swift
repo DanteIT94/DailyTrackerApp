@@ -38,4 +38,3 @@ extension UIColor {
     static let colorSection17 = UIColor(named: "Colorselection17")
     static let colorSection18 = UIColor(named: "Colorselection18")
 }
-//ПОЗЖЕ СЮДА ДОБАВИТЬ КУЧУ ЦВетов

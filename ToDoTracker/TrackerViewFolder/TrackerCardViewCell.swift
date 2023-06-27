@@ -26,7 +26,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         emojiLabel.font = UIFont.systemFont(ofSize: 16)
         emojiLabel.textAlignment = .center
         emojiLabel.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
-        emojiLabel.layer.cornerRadius = 68
+        emojiLabel.layer.cornerRadius = 12
         emojiLabel.layer.masksToBounds = true
         return emojiLabel
     }()
@@ -44,7 +44,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         let dayLabel = UILabel()
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         dayLabel.font = UIFont.systemFont(ofSize: 12)
-        dayLabel.textColor = .YPWhite
+        dayLabel.textColor = .YPBlack
         return dayLabel
     }()
     //✅🚫
@@ -56,23 +56,13 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayCheckButton.tintColor = .colorSection5
         dayCheckButton.imageView?.contentMode = .scaleAspectFill
         dayCheckButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
         dayCheckButton.addTarget(nil, action: #selector(dayCheckButtonTapped), for: .touchUpInside)
         return dayCheckButton
     }()
+    
     //Bool-ключ для отметки (возможно временно)
     private var isChecked: Bool = false
     
-    //MARK: - Initilizers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        createCustomCell()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     //MARK: -Public Methods
     func configCell() {
@@ -87,12 +77,11 @@ final class TrackerCardViewCell: UICollectionViewCell {
     //MARK: - Private Methods
     //✅🚫
     private func createCustomCell() {
-        contentView.addSubview(cardBackgroundView)
-        [emojiLabel, taskLabel].forEach {
-            contentView.addSubview($0)
-        }
-        contentView.addSubview(dayCheckButton)
-        contentView.addSubview(dayLabel)
+        addSubview(cardBackgroundView)
+        cardBackgroundView.addSubview(emojiLabel)
+        cardBackgroundView.addSubview(taskLabel)
+        addSubview(dayLabel)
+        addSubview(dayCheckButton)
         
         NSLayoutConstraint.activate([
             //Цветная подложка
