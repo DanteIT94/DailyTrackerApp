@@ -1,5 +1,5 @@
 //
-//  TrackerViewController.swift
+//  TrackersViewController.swift
 //  ToDoTracker
 //
 //  Created by Денис on 21.06.2023.
@@ -7,7 +7,8 @@
 
 import UIKit
 
-final class TrackerViewController: UIViewController {
+final class TrackersViewController: UIViewController {
+    
     //MARK: - Private Properties
     
     private let datePicker: UIDatePicker = {
@@ -55,6 +56,7 @@ final class TrackerViewController: UIViewController {
     private var currentDate: Date = Date()
     
     
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +64,7 @@ final class TrackerViewController: UIViewController {
         configNavigationBar()
         configCollectionView()
         createLayout()
-//        hidePlaceholders()
+        //        hidePlaceholders()
         
     }
     
@@ -80,16 +82,10 @@ final class TrackerViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    @objc func addTrackerButtonTapped() {
-        let TrackerTypeViewController = TrackerTypeViewController()
-        let modalNavigationController = UINavigationController(rootViewController: TrackerTypeViewController)
-        navigationController?.present(modalNavigationController, animated: true)
-    }
-    
     private func configCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-
+        
         collectionView.register(TrackerCardViewCell.self, forCellWithReuseIdentifier: "cell")
         
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
@@ -126,15 +122,24 @@ final class TrackerViewController: UIViewController {
         textPlaceholder.isHidden = true
     }
     
+    //MARK: - @OBJC Methods
+    @objc func addTrackerButtonTapped() {
+        let newHabitViewController = NewHabitViewController()
+        newHabitViewController.delegate = self
+        let NewTrackerTypeViewController = NewTrackerTypeViewController(newHabitViewController: newHabitViewController)
+        let modalNavigationController = UINavigationController(rootViewController: NewTrackerTypeViewController)
+        navigationController?.present(modalNavigationController, animated: true)
+    }
+    
 }
 
 //MARK: -UICollectionViewDelegate
-extension TrackerViewController: UICollectionViewDelegate {
+extension TrackersViewController: UICollectionViewDelegate {
     
 }
 
 //MARK: -UICollectionViewDelegateFlowLayout
-extension TrackerViewController: UICollectionViewDelegateFlowLayout {
+extension TrackersViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 167, height: 148)
     }
@@ -157,9 +162,9 @@ extension TrackerViewController: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: -UICollectionViewDataSource
-extension TrackerViewController: UICollectionViewDataSource {
+extension TrackersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -171,10 +176,10 @@ extension TrackerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionHeader {
-                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-                headerView.configHeader(text: "Название категории")
-                // Настройка заголовочной ячейки, если необходимо
-                return headerView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
+            headerView.configHeader(text: "Название категории")
+            // Настройка заголовочной ячейки, если необходимо
+            return headerView
         }
         
         return UICollectionReusableView()
@@ -184,9 +189,17 @@ extension TrackerViewController: UICollectionViewDataSource {
 }
 
 //MARK: -UITextFieldDelegate
-extension TrackerViewController: UITextFieldDelegate {
+extension TrackersViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         return true
     }
+}
+
+//MARK: - NewHabitDelegate
+extension TrackersViewController: NewHabitViewControllerDelegate {
+    func addNewTracker(trackerCategory: TrackerCategory) {
+        
+    }
+    
 }

@@ -1,0 +1,183 @@
+//
+//  NewHabitViewController.swift
+//  ToDoTracker
+//
+//  Created by Денис on 27.06.2023.
+//
+
+import UIKit
+
+protocol NewHabitViewControllerDelegate: AnyObject {
+    func addNewTracker(trackerCategory: TrackerCategory)
+}
+
+final class NewHabitViewController: UIViewController {
+    
+    weak var delegate: NewHabitViewControllerDelegate?
+    
+    //MARK: -Private Properties
+    private let habitTextField: UITextField = {
+        let habitTextField = UITextField()
+        habitTextField.translatesAutoresizingMaskIntoConstraints = false
+        habitTextField.backgroundColor = .YPBackground
+        habitTextField.clearButtonMode = .whileEditing
+        habitTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: habitTextField.frame.height))
+        habitTextField.leftViewMode = .always
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
+        habitTextField.attributedPlaceholder = NSAttributedString(string: "Введите название трекера", attributes: attributes)
+        habitTextField.layer.masksToBounds = true
+        habitTextField.layer.cornerRadius = 16
+        return habitTextField
+    }()
+    
+    private let habitTableView: UITableView = {
+        let habitTableView = UITableView()
+        habitTableView.translatesAutoresizingMaskIntoConstraints = false
+        habitTableView.backgroundColor = .YPBlack
+        return habitTableView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .YPBlack
+        
+        habitTableView.dataSource = self
+        habitTableView.delegate = self
+        habitTableView.register(NewHabitCell.self, forCellReuseIdentifier: NewHabitCell.reuseIdentifier)
+        
+        createHabitLayout()
+    
+    }
+    
+    //MARK: - Private Methods
+    
+    private func createHabitLayout() {
+        navigationItem.title = "Новая привычка"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
+        navigationItem.hidesBackButton = true
+
+        [habitTextField, habitTableView].forEach {
+            view.addSubview($0)
+        }
+        
+        NSLayoutConstraint.activate([
+            //Поле название привычки
+            habitTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+            habitTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            habitTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            habitTextField.heightAnchor.constraint(equalToConstant: 75),
+            //TableView
+            habitTableView.topAnchor.constraint(equalTo: habitTextField.bottomAnchor, constant: 24),
+            habitTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            habitTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            habitTableView.heightAnchor.constraint(equalToConstant: 2 * 75)
+        ])
+    }
+}
+
+//MARK: -UITableViewDelegate
+extension NewHabitViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let categoryVC = CategoryViewController()
+            navigationController?.pushViewController(categoryVC, animated: true)
+        } else if indexPath.row == 1 {
+            
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+//MARK: -UITableViewDataSource
+extension NewHabitViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewHabitCell.reuseIdentifier, for: indexPath) as! NewHabitCell
+        
+        cell.backgroundColor = .YPBackground
+        
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "Категории"
+        } else if indexPath.row == 1 {
+            cell.textLabel?.text = "Расписание"
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        _ = tableView.numberOfRows(inSection: 0)
+    
+        if indexPath.row == 0 {
+            cell.layer.cornerRadius = 16
+            cell.clipsToBounds = true
+            cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        } else if indexPath.row == 1 {
+            cell.layer.cornerRadius = 16
+            cell.clipsToBounds = true
+            cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+        
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
+}
+
+
+
+
+
+//    private let categoryButton: UIButton = {
+//        let categoryButton = UIButton()
+//        categoryButton.translatesAutoresizingMaskIntoConstraints = false
+//        categoryButton.setTitle("Категории", for: .normal)
+//        categoryButton.setTitleColor(.YPBlack, for: .normal)
+//        categoryButton.backgroundColor = .YPWhite
+//        categoryButton.layer.cornerRadius = 16
+//        categoryButton.layer.masksToBounds = true
+//        categoryButton.imageView?.contentMode = .scaleAspectFill
+//        categoryButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        categoryButton.addTarget(nil, action: #selector(categoryButtonTapped), for: .touchUpInside)
+//        return categoryButton
+//    }()
+//
+//
+//    private let scheduleButton: UIButton = {
+//        let scheduleButton = UIButton()
+//        scheduleButton.translatesAutoresizingMaskIntoConstraints = false
+//        scheduleButton.setTitle("Расписание", for: .normal)
+//        scheduleButton.setTitleColor(.YPBlack, for: .normal)
+//        scheduleButton.backgroundColor = .YPWhite
+//        scheduleButton.layer.cornerRadius = 16
+//        scheduleButton.layer.masksToBounds = true
+//        scheduleButton.imageView?.contentMode = .scaleAspectFill
+//        scheduleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        scheduleButton.addTarget(nil, action: #selector(scheduleButtonTapped), for: .touchUpInside)
+//        return scheduleButton
+//    }()
+//
+//    private let buttonSeparator: UIView = {
+//        let buttonSeparator = UIView()
+//        buttonSeparator.translatesAutoresizingMaskIntoConstraints = false
+//        return buttonSeparator
+//    }()
+
+//    //MARK: -Доделать чуть позже
+//    private let emojiCollection: UICollectionView = {
+//        let emojiCollection = UICollectionView()
+//
+//        return emojiCollection
+//    }()
+//
+//    private let colorsCollection: UICollectionView = {
+//        let colorsCollection = UICollectionView()
+//
+//        return colorsCollection
+//    }()

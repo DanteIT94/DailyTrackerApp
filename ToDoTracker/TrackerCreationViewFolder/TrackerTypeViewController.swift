@@ -7,52 +7,56 @@
 
 import UIKit
 
-protocol TrackerTypeViewControllerDelegate: AnyObject {
+protocol NewTrackerTypeViewControllerDelegate: AnyObject {
     
 }
 
-final class TrackerTypeViewController: UIViewController {
+final class NewTrackerTypeViewController: UIViewController {
     
     //MARK: - Private Propeties
     
-    private let titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = .systemFont(ofSize: 16)
-        titleLabel.textColor = .YPWhite
-        titleLabel.text = "Создание трекера"
-        return titleLabel
+    private let habitButton: UIButton = {
+        let habitButton = UIButton()
+        habitButton.translatesAutoresizingMaskIntoConstraints = false
+        habitButton.setTitle("Привычки", for: .normal)
+        habitButton.setTitleColor(.YPBlack, for: .normal)
+        habitButton.backgroundColor = .YPWhite
+        habitButton.layer.cornerRadius = 16
+        habitButton.layer.masksToBounds = true
+        habitButton.imageView?.contentMode = .scaleAspectFill
+        habitButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        habitButton.addTarget(nil, action: #selector(habitButtonTapped), for: .touchUpInside)
+        return habitButton
     }()
     
-    private let habbitButton: UIButton = {
-        let habbitButton = UIButton()
-        habbitButton.translatesAutoresizingMaskIntoConstraints = false
-        habbitButton.setTitle("Привычки", for: .normal)
-        habbitButton.setTitleColor(.YPBlack, for: .normal)
-        habbitButton.backgroundColor = .YPWhite
-        habbitButton.layer.cornerRadius = 16
-        habbitButton.layer.masksToBounds = true
-        habbitButton.imageView?.contentMode = .scaleAspectFill
-        habbitButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        habbitButton.addTarget(nil, action: #selector(dayCheckButtonTapped), for: .touchUpInside)
-        return habbitButton
+    private let eventButton: UIButton = {
+        let eventButton = UIButton()
+        eventButton.translatesAutoresizingMaskIntoConstraints = false
+        eventButton.setTitle("Нерегулярные события", for: .normal)
+        eventButton.setTitleColor(.YPBlack, for: .normal)
+        eventButton.backgroundColor = .YPWhite
+        eventButton.layer.cornerRadius = 16
+        eventButton.layer.masksToBounds = true
+        eventButton.imageView?.contentMode = .scaleAspectFill
+        eventButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        //        nonRegularEventButton.addTarget(nil, action: #selector(nonRegularEventButtonTapped), for: .touchUpInside)
+        return eventButton
     }()
     
-    private let nonRegularEventButton: UIButton = {
-        let nonRegularEventButton = UIButton()
-        nonRegularEventButton.translatesAutoresizingMaskIntoConstraints = false
-        nonRegularEventButton.setTitle("Нерегулярные события", for: .normal)
-        nonRegularEventButton.setTitleColor(.YPBlack, for: .normal)
-        nonRegularEventButton.backgroundColor = .YPWhite
-        nonRegularEventButton.layer.cornerRadius = 16
-        nonRegularEventButton.layer.masksToBounds = true
-        nonRegularEventButton.imageView?.contentMode = .scaleAspectFill
-        nonRegularEventButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        nonRegularEventButton.addTarget(nil, action: #selector(dayCheckButtonTapped), for: .touchUpInside)
-        return nonRegularEventButton
-    }()
+    private var newHabitViewController: UIViewController?
+    
+    //MARK: -Initizlizer
+    init(newHabitViewController: UIViewController?) {
+        super.init(nibName: nil, bundle: nil)
+        self.newHabitViewController = newHabitViewController
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
@@ -63,24 +67,37 @@ final class TrackerTypeViewController: UIViewController {
     //MARK: - Private Methods
     
     private func createLayout() {
-        [titleLabel, habbitButton, nonRegularEventButton].forEach {
+        
+        navigationItem.title = "Создание Трекера"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
+        
+        [habitButton, eventButton].forEach {
             view.addSubview($0)
         }
+        
+        NSLayoutConstraint.activate([
+            ///Кнопка "Привычки"
+            habitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 281),
+            habitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            habitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            habitButton.heightAnchor.constraint(equalToConstant: 60),
             
-            NSLayoutConstraint.activate([
-                ///Настройка надписи
-                titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 13),
-                titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                ///Кнопка "Привычки"
-                habbitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 281),
-                habbitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-                habbitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-                habbitButton.heightAnchor.constraint(equalToConstant: 60),
-
-                nonRegularEventButton.topAnchor.constraint(equalTo: habbitButton.bottomAnchor, constant: 16),
-                nonRegularEventButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-                nonRegularEventButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-                nonRegularEventButton.heightAnchor.constraint(equalToConstant: 60)
-            ])
-        }
+            eventButton.topAnchor.constraint(equalTo: habitButton.bottomAnchor, constant: 16),
+            eventButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            eventButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            eventButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
     }
+    
+    //MARK: -@OBJC Methods
+    @objc private func habitButtonTapped() {
+        let newHabitViewController = NewHabitViewController()
+        navigationController?.pushViewController(newHabitViewController, animated: true)
+        
+    }
+    
+    @objc private func eventButtonTapped() {
+        
+    }
+    
+}

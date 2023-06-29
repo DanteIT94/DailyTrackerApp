@@ -21,9 +21,9 @@ final class TabBarViewController: UITabBarController {
         tabBar.barTintColor = .YPBlue
         tabBar.tintColor = .white
         
-        let trackerViewController = TrackerViewController()
-        let trackerNavigationController = UINavigationController(rootViewController: trackerViewController)
-        trackerViewController.tabBarItem = UITabBarItem(
+        let trackersViewController = TrackersViewController()
+        let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
+        trackersViewController.tabBarItem = UITabBarItem(
             title: "Трекеры",
             image: UIImage(named: "Record_circle_fill"),
             selectedImage: nil)
@@ -35,6 +35,6 @@ final class TabBarViewController: UITabBarController {
             image: UIImage(named: "Hare_fill"),
             selectedImage: nil)
         
-        self.viewControllers = [trackerNavigationController, statisticViewController]
+        self.viewControllers = [trackersNavigationController, statisticViewController]
     }
 }
