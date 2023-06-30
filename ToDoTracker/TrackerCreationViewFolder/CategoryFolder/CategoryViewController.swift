@@ -11,7 +11,7 @@ final class CategoryViewController: UIViewController {
     //MARK: - Private Properties
     
     private var categoryTableView: UITableView = {
-       let categoryTableView = UITableView()
+        let categoryTableView = UITableView()
         
         return categoryTableView
     }()
@@ -101,5 +101,5 @@ final class CategoryViewController: UIViewController {
         let newCategoryVC = NewCategoryViewController()
         navigationController?.pushViewController(newCategoryVC, animated: true)
     }
-
+    
 }

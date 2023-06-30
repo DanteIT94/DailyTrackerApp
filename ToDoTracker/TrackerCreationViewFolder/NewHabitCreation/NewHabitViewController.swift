@@ -36,17 +36,39 @@ final class NewHabitViewController: UIViewController {
         habitTableView.backgroundColor = .YPBlack
         return habitTableView
     }()
-
+    
+    private let cancelButton: UIButton = {
+        let cancelButton = UIButton()
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.setTitle("Отменить", for: .normal)
+        cancelButton.setTitleColor(.YPRed, for: .normal)
+        cancelButton.layer.borderColor = UIColor.YPRed?.cgColor
+        cancelButton.layer.borderWidth = 2.0
+        cancelButton.backgroundColor = .clear
+        cancelButton.layer.cornerRadius = 16
+        cancelButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        cancelButton.addTarget(nil, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        return cancelButton
+    }()
+    
+    private let createHabitButton: UIButton = {
+        let createHabitButton = UIButton()
+        createHabitButton.translatesAutoresizingMaskIntoConstraints = false
+        createHabitButton.setTitle("Создать", for: .normal)
+        createHabitButton.setTitleColor(.YPWhite, for: .normal)
+        createHabitButton.backgroundColor = .YPGrey
+        createHabitButton.layer.cornerRadius = 16
+        createHabitButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        createHabitButton.addTarget(nil, action: #selector(createHabitButtonTapped), for: .touchUpInside)
+        return createHabitButton
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
-        
-        habitTableView.dataSource = self
-        habitTableView.delegate = self
-        habitTableView.register(NewHabitCell.self, forCellReuseIdentifier: NewHabitCell.reuseIdentifier)
-        
         createHabitLayout()
-    
+        
     }
     
     //MARK: - Private Methods
@@ -55,8 +77,16 @@ final class NewHabitViewController: UIViewController {
         navigationItem.title = "Новая привычка"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
         navigationItem.hidesBackButton = true
-
-        [habitTextField, habitTableView].forEach {
+        
+        
+        habitTableView.dataSource = self
+        habitTableView.delegate = self
+        habitTableView.register(NewHabitCell.self, forCellReuseIdentifier: NewHabitCell.reuseIdentifier)
+        habitTableView.separatorStyle = .singleLine
+        habitTableView.separatorColor = .YPWhite
+        
+        
+        [habitTextField, habitTableView, cancelButton, createHabitButton].forEach {
             view.addSubview($0)
         }
         
@@ -70,10 +100,44 @@ final class NewHabitViewController: UIViewController {
             habitTableView.topAnchor.constraint(equalTo: habitTextField.bottomAnchor, constant: 24),
             habitTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             habitTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            habitTableView.heightAnchor.constraint(equalToConstant: 2 * 75)
+            habitTableView.heightAnchor.constraint(equalToConstant: 2 * 75),
+            //Кнопка отменить
+            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cancelButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            cancelButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -4),
+            cancelButton.heightAnchor.constraint(equalToConstant: 60),
+            //Кнопка создать
+            createHabitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            createHabitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            createHabitButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 4),
+            createHabitButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
+    
+    //MARK: -OBJC Methods
+    @objc func cancelButtonTapped() {
+        
+    }
+    
+    @objc func createHabitButtonTapped() {
+        
+    }
+    
 }
+
+////MARK: - UITextFieldDelegate
+//extension NewHabitViewController: UITextFieldDelegate {
+//    func textFieldDidChangeSelection(_ textField: UITextField) {
+//        if let text = textField.text,
+//           text.count >= 3 {
+//            createHabitButton.isEnabled = true
+//            createHabitButton.backgroundColor = .YPWhite
+//        } else {
+//            createHabitButton.isEnabled = false
+//            createHabitButton.backgroundColor = .YPGrey
+//        }
+//    }
+//}
 
 //MARK: -UITableViewDelegate
 extension NewHabitViewController: UITableViewDelegate {
@@ -86,7 +150,8 @@ extension NewHabitViewController: UITableViewDelegate {
             let categoryVC = CategoryViewController()
             navigationController?.pushViewController(categoryVC, animated: true)
         } else if indexPath.row == 1 {
-            
+            let scheduleVC = ScheduleViewController()
+            navigationController?.pushViewController(scheduleVC, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -114,61 +179,30 @@ extension NewHabitViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        _ = tableView.numberOfRows(inSection: 0)
-    
+        let numberOfRows = tableView.numberOfRows(inSection: 0)
+        
         if indexPath.row == 0 {
             cell.layer.cornerRadius = 16
             cell.clipsToBounds = true
             cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        } else if indexPath.row == 1 {
+        } else if indexPath.row == numberOfRows - 1 {
             cell.layer.cornerRadius = 16
             cell.clipsToBounds = true
             cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         }
         
+        //MARK: - Отрисовка разграничителя
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
+        
+        let lastRowIndex = tableView.numberOfRows(inSection: indexPath.section) - 1
+        if indexPath.row == lastRowIndex {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
+        }
     }
+    
 }
-
-
-
-
-
-//    private let categoryButton: UIButton = {
-//        let categoryButton = UIButton()
-//        categoryButton.translatesAutoresizingMaskIntoConstraints = false
-//        categoryButton.setTitle("Категории", for: .normal)
-//        categoryButton.setTitleColor(.YPBlack, for: .normal)
-//        categoryButton.backgroundColor = .YPWhite
-//        categoryButton.layer.cornerRadius = 16
-//        categoryButton.layer.masksToBounds = true
-//        categoryButton.imageView?.contentMode = .scaleAspectFill
-//        categoryButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        categoryButton.addTarget(nil, action: #selector(categoryButtonTapped), for: .touchUpInside)
-//        return categoryButton
-//    }()
-//
-//
-//    private let scheduleButton: UIButton = {
-//        let scheduleButton = UIButton()
-//        scheduleButton.translatesAutoresizingMaskIntoConstraints = false
-//        scheduleButton.setTitle("Расписание", for: .normal)
-//        scheduleButton.setTitleColor(.YPBlack, for: .normal)
-//        scheduleButton.backgroundColor = .YPWhite
-//        scheduleButton.layer.cornerRadius = 16
-//        scheduleButton.layer.masksToBounds = true
-//        scheduleButton.imageView?.contentMode = .scaleAspectFill
-//        scheduleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        scheduleButton.addTarget(nil, action: #selector(scheduleButtonTapped), for: .touchUpInside)
-//        return scheduleButton
-//    }()
-//
-//    private let buttonSeparator: UIView = {
-//        let buttonSeparator = UIView()
-//        buttonSeparator.translatesAutoresizingMaskIntoConstraints = false
-//        return buttonSeparator
-//    }()
-
 //    //MARK: -Доделать чуть позже
 //    private let emojiCollection: UICollectionView = {
 //        let emojiCollection = UICollectionView()

@@ -75,7 +75,7 @@ final class NewCategoryViewController: UIViewController {
     @objc func readyButtonTapped() {
         dismiss(animated: true)
     }
-
+    
 }
 
 extension NewCategoryViewController: UITextFieldDelegate {
