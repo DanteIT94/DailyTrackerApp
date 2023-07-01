@@ -7,15 +7,18 @@
 
 import UIKit
 
+protocol CategoryViewControllerDelegate: AnyObject {
+    func didSelectCategory(withCategory category: String)
+}
+
 final class CategoryViewController: UIViewController {
-    //MARK: - Private Properties
-    
+    //MARK: - UILayout - Properties
     private var categoryTableView: UITableView = {
         let categoryTableView = UITableView()
-        
+        categoryTableView.translatesAutoresizingMaskIntoConstraints = false
+        categoryTableView.backgroundColor = .YPBlack
         return categoryTableView
     }()
-    
     
     private let imagePlaceholder: UIImageView = {
         let imagePlaceholder = UIImageView()
@@ -52,29 +55,41 @@ final class CategoryViewController: UIViewController {
         return addCategoryButton
     }()
     
-    
+    //MARK: - Business - Logic Properties
+    weak var delegate: CategoryViewControllerDelegate?
+    private var categoryArray: [String] = ["Важные"]
+    private var categoryTableViewHeightConstraint: NSLayoutConstraint?
     
     //MARK: -LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
         createCategoryLayout()
+        hidePlaceholders()
     }
-    
-    
+
     //MARK: -Private Methods
     private func createCategoryLayout() {
         navigationItem.title = "Категории"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
         navigationItem.hidesBackButton = true
-        
-        
+        //---------------------------------------
+        categoryTableView.dataSource = self
+        categoryTableView.delegate = self
+        categoryTableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.reuseIdentifier)
+        categoryTableView.separatorStyle = .singleLine
+        categoryTableView.separatorColor = .YPWhite
+        //---------------------------------------
+        categoryTableViewHeightConstraint = categoryTableView.heightAnchor.constraint(equalToConstant: CGFloat(categoryArray.count * 75))
+        categoryTableViewHeightConstraint?.isActive = true
+        //---------------------------------------
         [categoryTableView, imagePlaceholder, textPlaceholder, addCategoryButton].forEach{
             view.addSubview($0)}
         
-        ///Отступ
         NSLayoutConstraint.activate([
+            categoryTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+            categoryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            categoryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             //Картинка-заглушка
             imagePlaceholder.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             imagePlaceholder.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -91,15 +106,94 @@ final class CategoryViewController: UIViewController {
     }
     
     private func hidePlaceholders() {
-        textPlaceholder.isHidden = true
-        imagePlaceholder.isHidden = true
+        if categoryArray.count != 0 {
+            textPlaceholder.isHidden = true
+            imagePlaceholder.isHidden = true
+        }
     }
     
     //MARK: -@OBJC Methods
     
     @objc func addCategoryButtonTapped() {
         let newCategoryVC = NewCategoryViewController()
+        newCategoryVC.delegate = self
         navigationController?.pushViewController(newCategoryVC, animated: true)
     }
     
+}
+
+//MARK: -UITableViewDelegate
+extension CategoryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedTitle = categoryArray[indexPath.row]
+        delegate?.didSelectCategory(withCategory: selectedTitle)
+        navigationController?.popViewController(animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+//MARK: -UITableViewDataSource
+extension CategoryViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
+        cell.backgroundColor = .YPBackground
+        cell.textLabel?.text =  categoryArray[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let numberOfRows = tableView.numberOfRows(inSection: 0)
+        
+        //MARK: -Отрисовка разграничителя
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
+        
+        let lastRowIndex = tableView.numberOfRows(inSection: indexPath.section) - 1
+        if indexPath.row == lastRowIndex {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
+        }
+        //MARK: -Настройка углов TableView
+        if let categoryCell = cell as? CategoryCell {
+            if categoryArray.count == 1 {
+                categoryCell.layer.cornerRadius = 16
+                categoryCell.clipsToBounds = true
+                categoryCell.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+            } else if indexPath.row == 0 {
+                categoryCell.layer.cornerRadius = 16
+                categoryCell.clipsToBounds = true
+                categoryCell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            } else if indexPath.row == numberOfRows - 1 {
+                categoryCell.layer.cornerRadius = 16
+                categoryCell.clipsToBounds = true
+                categoryCell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            } else {
+                categoryCell.layer.cornerRadius = 0
+            }
+        }
+    }
+}
+
+extension CategoryViewController {
+    private func updateCategoryTableViewHeight() {
+        categoryTableViewHeightConstraint?.constant = CGFloat(categoryArray.count * 75)
+    }
+}
+
+extension CategoryViewController: NewCategoryViewControllerDelegate {
+    func didAddCategory(category: String) {
+        categoryArray.append(category)
+        updateCategoryTableViewHeight()
+        categoryTableView.reloadData()
+        hidePlaceholders()
+    }
 }

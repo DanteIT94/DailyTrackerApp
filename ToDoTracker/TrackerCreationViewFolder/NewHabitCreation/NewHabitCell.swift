@@ -20,7 +20,7 @@ final class NewHabitCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setupCell()
     }
     
@@ -32,6 +32,7 @@ final class NewHabitCell: UITableViewCell {
     func setupCell() {
         textLabel?.font = UIFont.systemFont(ofSize: 17)
         textLabel?.textColor = UIColor.YPWhite
+        detailTextLabel?.textColor = UIColor.YPGrey
         
         layoutMargins = .zero
         separatorInset = .zero

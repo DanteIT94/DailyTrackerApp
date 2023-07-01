@@ -63,7 +63,10 @@ final class NewHabitViewController: UIViewController {
         return createHabitButton
     }()
     
+    private var selectedCategories: Set<String> = []
+    private var selectedDays: [String] = []
     
+    //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
@@ -125,19 +128,6 @@ final class NewHabitViewController: UIViewController {
     
 }
 
-////MARK: - UITextFieldDelegate
-//extension NewHabitViewController: UITextFieldDelegate {
-//    func textFieldDidChangeSelection(_ textField: UITextField) {
-//        if let text = textField.text,
-//           text.count >= 3 {
-//            createHabitButton.isEnabled = true
-//            createHabitButton.backgroundColor = .YPWhite
-//        } else {
-//            createHabitButton.isEnabled = false
-//            createHabitButton.backgroundColor = .YPGrey
-//        }
-//    }
-//}
 
 //MARK: -UITableViewDelegate
 extension NewHabitViewController: UITableViewDelegate {
@@ -148,12 +138,13 @@ extension NewHabitViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let categoryVC = CategoryViewController()
+            categoryVC.delegate = self
             navigationController?.pushViewController(categoryVC, animated: true)
         } else if indexPath.row == 1 {
             let scheduleVC = ScheduleViewController()
+            scheduleVC.delegate = self
             navigationController?.pushViewController(scheduleVC, animated: true)
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -171,8 +162,12 @@ extension NewHabitViewController: UITableViewDataSource {
         
         if indexPath.row == 0 {
             cell.textLabel?.text = "Категории"
+            let selectedCategoriesString = selectedCategories.joined(separator: ", ")
+            cell.detailTextLabel?.text = selectedCategoriesString
         } else if indexPath.row == 1 {
             cell.textLabel?.text = "Расписание"
+            let selectedDaysString = selectedDays.joined(separator: ", ")
+            cell.detailTextLabel?.text = selectedDaysString
         }
         
         return cell
@@ -201,8 +196,23 @@ extension NewHabitViewController: UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
         }
     }
-    
 }
+
+extension NewHabitViewController: CategoryViewControllerDelegate {
+    func didSelectCategory(withCategory category: String) {
+        selectedCategories.insert(category)
+        let indexPath = IndexPath(row: 0, section: 0)
+        habitTableView.reloadRows(at: [indexPath], with: .none)
+    }
+}
+
+extension NewHabitViewController: ScheduleViewControllerDelegate {
+    func didSelectedSchedules(_ viewController: ScheduleViewController, selectedDays: [String]) {
+        self.selectedDays = selectedDays
+        habitTableView.reloadData()
+    }
+}
+
 //    //MARK: -Доделать чуть позже
 //    private let emojiCollection: UICollectionView = {
 //        let emojiCollection = UICollectionView()
@@ -215,3 +225,19 @@ extension NewHabitViewController: UITableViewDataSource {
 //
 //        return colorsCollection
 //    }()
+
+
+
+////MARK: - UITextFieldDelegate
+//extension NewHabitViewController: UITextFieldDelegate {
+//    func textFieldDidChangeSelection(_ textField: UITextField) {
+//        if let text = textField.text,
+//           text.count >= 3 {
+//            createHabitButton.isEnabled = true
+//            createHabitButton.backgroundColor = .YPWhite
+//        } else {
+//            createHabitButton.isEnabled = false
+//            createHabitButton.backgroundColor = .YPGrey
+//        }
+//    }
+//}

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NewCategoryViewControllerDelegate: AnyObject {
+    func didAddCategory(category: String)
+}
+
 final class NewCategoryViewController: UIViewController {
     
     //MARK: -Private Properties
@@ -18,7 +22,7 @@ final class NewCategoryViewController: UIViewController {
         newCategoryTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: newCategoryTextField.frame.height))
         newCategoryTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
-        newCategoryTextField.attributedPlaceholder = NSAttributedString(string: "Введите название категории", attributes: attributes)
+        newCategoryTextField.attributedPlaceholder = NSAttributedString(string: "Введите название категории (не менее 3 символов)", attributes: attributes)
         newCategoryTextField.layer.masksToBounds = true
         newCategoryTextField.layer.cornerRadius = 16
         return newCategoryTextField
@@ -35,6 +39,10 @@ final class NewCategoryViewController: UIViewController {
         return readyButton
     }()
     
+    weak var delegate: NewCategoryViewControllerDelegate?
+    
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
@@ -47,7 +55,6 @@ final class NewCategoryViewController: UIViewController {
     }
     
     //MARK: -Private Methods
-    
     private func createNewCategoryLayout() {
         navigationItem.title = "Новая категория"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
@@ -73,7 +80,10 @@ final class NewCategoryViewController: UIViewController {
     }
     
     @objc func readyButtonTapped() {
-        dismiss(animated: true)
+        guard let category = newCategoryTextField.text else { return }
+        
+        delegate?.didAddCategory(category: category)
+        navigationController?.popViewController(animated: true)
     }
     
 }

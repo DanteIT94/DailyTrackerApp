@@ -7,9 +7,8 @@
 
 import UIKit
 
-enum SwitchState {
-    case off
-    case on
+protocol ScheduleViewControllerDelegate: AnyObject {
+    func didSelectedSchedules(_ viewController: ScheduleViewController, selectedDays: [String])
 }
 
 final class ScheduleViewController: UIViewController {
@@ -19,6 +18,7 @@ final class ScheduleViewController: UIViewController {
         let weekdayTableView =  UITableView()
         weekdayTableView.translatesAutoresizingMaskIntoConstraints = false
         weekdayTableView.backgroundColor = .YPBlack
+        weekdayTableView.isScrollEnabled = false
         return weekdayTableView
     }()
     
@@ -34,8 +34,12 @@ final class ScheduleViewController: UIViewController {
         return okButton
     }()
     
-    private let daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    private let daysOfWeek = ["Понедельник","Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+//    private let weekdaySymbols = Calendar.current.shortWeekdaySymbols
+    private var selectedDays: [String] = []
+    weak var delegate: ScheduleViewControllerDelegate?
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
@@ -69,14 +73,21 @@ final class ScheduleViewController: UIViewController {
             okButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
             okButton.heightAnchor.constraint(equalToConstant: 60)
         ])
-        
     }
     
     @objc func okButtonTapped() {
+//        let calendar = Calendar.current
+//        let weekdaySymbols = calendar.shortWeekdaySymbols
+//
+//        let shortSelectedDays = selectedDays.compactMap { day in
+//            return weekdaySymbols.firstIndex(of: day)
+//        }.compactMap { index in
+//            return weekdaySymbols[index]
+//        }
         
+        delegate?.didSelectedSchedules(self, selectedDays: selectedDays)
+        navigationController?.popViewController(animated: true)
     }
-    
-    
 }
 
 //MARK: -UITableViewDelegate
@@ -84,8 +95,10 @@ extension ScheduleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
-
 
 //MARK: -UITableViewDataSource
 extension ScheduleViewController: UITableViewDataSource {
@@ -95,10 +108,9 @@ extension ScheduleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.reuseIdentifier, for: indexPath) as! SwitchCell
+        cell.delegate = self
         cell.backgroundColor = .YPBackground
         cell.textLabel?.text = daysOfWeek[indexPath.row]
-        
-        
         return cell
     }
     
@@ -124,6 +136,22 @@ extension ScheduleViewController: UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
         }
     }
-    
-    
+}
+
+extension ScheduleViewController: SwitchCellDelegate {
+    func switchCellDidToggle(_ cell: SwitchCell, isOn: Bool) {
+        guard let indexPath = weekdayTableView.indexPath(for: cell) else { return }
+        let selectedOption = daysOfWeek[indexPath.row]
+        
+        if isOn {
+            //переключатель включен - добавляем название ячейки
+            if !selectedDays.contains(selectedOption) {
+                selectedDays.append(selectedOption)
+            } else {
+                if let index = selectedDays.firstIndex(of: selectedOption) {
+                    selectedDays.remove(at: index)
+                }
+            }
+        }
+    }
 }

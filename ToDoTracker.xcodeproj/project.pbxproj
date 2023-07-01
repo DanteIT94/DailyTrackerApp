@@ -28,6 +28,7 @@
 		923F99AA2A4DE49B00CFCE9E /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99A92A4DE49B00CFCE9E /* NewCategoryViewController.swift */; };
 		923F99AD2A4E1DD100CFCE9E /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99AC2A4E1DD100CFCE9E /* ScheduleViewController.swift */; };
 		923F99AF2A4E21C200CFCE9E /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99AE2A4E21C200CFCE9E /* SwitchCell.swift */; };
+		923F99B12A4EFEC400CFCE9E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99B02A4EFEC400CFCE9E /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		923F99A92A4DE49B00CFCE9E /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		923F99AC2A4E1DD100CFCE9E /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		923F99AE2A4E21C200CFCE9E /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		923F99B02A4EFEC400CFCE9E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				923F99A72A4DC0FA00CFCE9E /* CategoryViewController.swift */,
+				923F99B02A4EFEC400CFCE9E /* CategoryCell.swift */,
 				923F99A92A4DE49B00CFCE9E /* NewCategoryViewController.swift */,
 			);
 			path = CategoryFolder;
@@ -273,6 +276,7 @@
 				923F99922A43A12F00CFCE9E /* TrackerCardViewCell.swift in Sources */,
 				923F992C2A3C859B00CFCE9E /* SceneDelegate.swift in Sources */,
 				923F993F2A3CF8F000CFCE9E /* UIColors+Extension.swift in Sources */,
+				923F99B12A4EFEC400CFCE9E /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
