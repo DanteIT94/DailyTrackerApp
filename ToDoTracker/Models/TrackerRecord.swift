@@ -11,7 +11,7 @@ import UIKit
 struct TrackerRecord {
     let id: UUID
     ///Требуется sпроверка!!
-    let date: Date
+    let date: String
 }
 
 extension TrackerRecord: Hashable {

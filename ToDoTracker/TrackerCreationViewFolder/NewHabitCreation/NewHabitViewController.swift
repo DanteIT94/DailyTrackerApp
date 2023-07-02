@@ -63,8 +63,14 @@ final class NewHabitViewController: UIViewController {
         return createHabitButton
     }()
     
-    private var selectedCategories: Set<String> = []
+//    private var selectedCategories: Set<String> = []
     private var selectedDays: [String] = []
+    
+    private var category: String?
+    private var choosedDays: [Int] = []
+    private var choosedCategoryIndex: Int?
+    private var buttonIsEnabled = false
+    
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
@@ -119,11 +125,16 @@ final class NewHabitViewController: UIViewController {
     
     //MARK: -OBJC Methods
     @objc func cancelButtonTapped() {
-        
+        dismiss(animated: true)
     }
     
     @objc func createHabitButtonTapped() {
+//        guard buttonIsEnabled else { return }
+        let text: String = habitTextField.text ?? "Tracker"
+        let category: String = category ?? "Category"
+        delegate?.addNewTracker(trackerCategory: TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
         
+        dismiss(animated: true)
     }
     
 }
@@ -162,8 +173,8 @@ extension NewHabitViewController: UITableViewDataSource {
         
         if indexPath.row == 0 {
             cell.textLabel?.text = "Категории"
-            let selectedCategoriesString = selectedCategories.joined(separator: ", ")
-            cell.detailTextLabel?.text = selectedCategoriesString
+//            let selectedCategoriesString = selectedCategories.joined(separator: ", ")
+            cell.detailTextLabel?.text = category
         } else if indexPath.row == 1 {
             cell.textLabel?.text = "Расписание"
             let selectedDaysString = selectedDays.joined(separator: ", ")
@@ -200,14 +211,19 @@ extension NewHabitViewController: UITableViewDataSource {
 
 extension NewHabitViewController: CategoryViewControllerDelegate {
     func didSelectCategory(withCategory category: String) {
-        selectedCategories.insert(category)
-        let indexPath = IndexPath(row: 0, section: 0)
-        habitTableView.reloadRows(at: [indexPath], with: .none)
+        self.category = category
+//        selectedCategories.insert(category)
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        habitTableView.reloadRows(at: [indexPath], with: .none)
+        habitTableView.reloadData()
     }
 }
 
 extension NewHabitViewController: ScheduleViewControllerDelegate {
     func didSelectedSchedules(_ viewController: ScheduleViewController, selectedDays: [String]) {
+        if selectedDays.count == 7 {
+            self.selectedDays = ["Каждый день"]
+        }
         self.selectedDays = selectedDays
         habitTableView.reloadData()
     }
@@ -228,16 +244,16 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
 
 
 
-////MARK: - UITextFieldDelegate
-//extension NewHabitViewController: UITextFieldDelegate {
-//    func textFieldDidChangeSelection(_ textField: UITextField) {
-//        if let text = textField.text,
-//           text.count >= 3 {
-//            createHabitButton.isEnabled = true
-//            createHabitButton.backgroundColor = .YPWhite
-//        } else {
-//            createHabitButton.isEnabled = false
-//            createHabitButton.backgroundColor = .YPGrey
-//        }
-//    }
-//}
+//MARK: - UITextFieldDelegate
+extension NewHabitViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if let text = textField.text,
+           text.count >= 3 {
+            createHabitButton.isEnabled = true
+            createHabitButton.backgroundColor = .YPWhite
+        } else {
+            createHabitButton.isEnabled = false
+            createHabitButton.backgroundColor = .YPGrey
+        }
+    }
+}

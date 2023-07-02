@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol TrackerCardViewCellDelegate: AnyObject {
+    func dayCheckButtonTapped(viewModel: CellViewModel)
+}
+
 final class TrackerCardViewCell: UICollectionViewCell {
+    
+    weak var delegate: TrackerCardViewCellDelegate?
     
     //MARK: -Private Properties
     //✅
@@ -63,13 +69,15 @@ final class TrackerCardViewCell: UICollectionViewCell {
     //Bool-ключ для отметки (возможно временно)
     private var isChecked: Bool = false
     
+    private var viewModel: CellViewModel?
     
     //MARK: -Public Methods
-    func configCell() {
-        taskLabel.text = "Полить цветы"
-        emojiLabel.text = "😪"
-        dayLabel.text = "1 день"
-        cardBackgroundView.backgroundColor = .colorSection5
+    func configCell(viewModel: CellViewModel) {
+        taskLabel.text = viewModel.tracker.name
+        emojiLabel.text = viewModel.tracker.emoji
+        dayLabel.text = "\(viewModel.dayCounter) \(daysDeclension(for: viewModel.dayCounter))"
+        cardBackgroundView.backgroundColor = viewModel.tracker.color
+        self.viewModel = viewModel
         
         createCustomCell()
     }
@@ -107,6 +115,21 @@ final class TrackerCardViewCell: UICollectionViewCell {
             dayLabel.centerYAnchor.constraint(equalTo: dayCheckButton.centerYAnchor),
             dayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12)
         ])
+    }
+    
+    private func daysDeclension(for counter: Int) -> String{
+        let remainder = counter % 10
+        if counter == 11 || counter == 12 || counter == 13 || counter == 14 {
+            return "дней"
+        }
+        switch remainder {
+        case 1:
+            return "дней"
+        case 2, 3, 4:
+            return "дня"
+        default:
+            return "дней"
+        }
     }
     
     @objc

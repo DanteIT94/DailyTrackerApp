@@ -10,7 +10,7 @@ import UIKit
 //Сущн. для хранения информации про терекр
 struct Tracker {
     ///Можно ли заменить на UUID?
-    let id: String
+    let id: UUID
     let name: String
     ///Можно ли заменить на String?
     let color: UIColor

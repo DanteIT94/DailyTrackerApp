@@ -12,5 +12,5 @@ struct CellViewModel {
     let buttonIsChecked: Bool
     let buttonIsEnable: Bool
     let tracker: Tracker
-//    let indexPath: IndexPath
+    let indexPath: IndexPath
 }

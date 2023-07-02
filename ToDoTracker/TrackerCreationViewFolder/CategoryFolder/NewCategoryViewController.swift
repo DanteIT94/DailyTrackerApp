@@ -81,7 +81,6 @@ final class NewCategoryViewController: UIViewController {
     
     @objc func readyButtonTapped() {
         guard let category = newCategoryTextField.text else { return }
-        
         delegate?.didAddCategory(category: category)
         navigationController?.popViewController(animated: true)
     }

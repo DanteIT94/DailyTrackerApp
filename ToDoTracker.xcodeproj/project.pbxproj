@@ -88,13 +88,12 @@
 		923F99282A3C859B00CFCE9E /* ToDoTracker */ = {
 			isa = PBXGroup;
 			children = (
-				923F99932A48D4B200CFCE9E /* Models */,
-				923F998A2A42F71C00CFCE9E /* StatisticViewFolder */,
-				923F999E2A4AFF9C00CFCE9E /* TrackerCreationViewFolder */,
-				923F99872A42F5EB00CFCE9E /* TrackerViewFolder */,
+				923F99B22A514FA400CFCE9E /* LifeCycleControllers */,
 				923F99862A42F47F00CFCE9E /* TabBar */,
-				923F99292A3C859B00CFCE9E /* AppDelegate.swift */,
-				923F992B2A3C859B00CFCE9E /* SceneDelegate.swift */,
+				923F99872A42F5EB00CFCE9E /* TrackerViewFolder */,
+				923F999E2A4AFF9C00CFCE9E /* TrackerCreationViewFolder */,
+				923F998A2A42F71C00CFCE9E /* StatisticViewFolder */,
+				923F99932A48D4B200CFCE9E /* Models */,
 				923F99322A3C859D00CFCE9E /* Assets.xcassets */,
 				923F99342A3C859D00CFCE9E /* LaunchScreen.storyboard */,
 				923F99372A3C859D00CFCE9E /* Info.plist */,
@@ -185,6 +184,15 @@
 				923F99AE2A4E21C200CFCE9E /* SwitchCell.swift */,
 			);
 			path = ScheduleFolder;
+			sourceTree = "<group>";
+		};
+		923F99B22A514FA400CFCE9E /* LifeCycleControllers */ = {
+			isa = PBXGroup;
+			children = (
+				923F99292A3C859B00CFCE9E /* AppDelegate.swift */,
+				923F992B2A3C859B00CFCE9E /* SceneDelegate.swift */,
+			);
+			path = LifeCycleControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
