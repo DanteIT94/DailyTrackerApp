@@ -8,12 +8,15 @@
 import UIKit
 
 protocol ScheduleViewControllerDelegate: AnyObject {
-    func didSelectedSchedules(_ viewController: ScheduleViewController, selectedDays: [String])
+//    func didSelectedSchedules(_ viewController: ScheduleViewController, selectedDays: [String])
+    func addWeekDays(_ weekdays: [Int])
 }
 
 final class ScheduleViewController: UIViewController {
-    //MARK: -Private properties
+    //MARK: -Public Properties
+    weak var delegate: ScheduleViewControllerDelegate?
     
+    //MARK: -Private properties
     private let weekdayTableView: UITableView = {
         let weekdayTableView =  UITableView()
         weekdayTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,19 +36,35 @@ final class ScheduleViewController: UIViewController {
         okButton.addTarget(nil, action: #selector(okButtonTapped), for: .touchUpInside)
         return okButton
     }()
+    //---------------------------------------------
+    private var calendar = Calendar.current
+    private var days = [String]()
     
-    private let daysOfWeek = ["Понедельник","Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    private var finalList: [Int] = []
+//    private let daysOfWeek = ["Понедельник","Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
 //    private let weekdaySymbols = Calendar.current.shortWeekdaySymbols
-    private var selectedDays: [String] = []
-    weak var delegate: ScheduleViewControllerDelegate?
+    //---------------------------------------------
+    //MARK: - Initializer
+    init(choosedDays: [Int]) {
+        super.init(nibName: nil, bundle: nil)
+        
+        calendar.locale = Locale(identifier: "ru_RU")
+        days = calendar.weekdaySymbols
+        finalList = choosedDays
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    //---------------------------------------------
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
         createScheduleLayout()
+        configDaysArray()
     }
-    
+    //---------------------------------------------
     //MARK: -Private Methods
     private func createScheduleLayout() {
         navigationItem.title = "Расписание"
@@ -75,20 +94,45 @@ final class ScheduleViewController: UIViewController {
         ])
     }
     
-    @objc func okButtonTapped() {
-//        let calendar = Calendar.current
-//        let weekdaySymbols = calendar.shortWeekdaySymbols
-//
-//        let shortSelectedDays = selectedDays.compactMap { day in
-//            return weekdaySymbols.firstIndex(of: day)
-//        }.compactMap { index in
-//            return weekdaySymbols[index]
-//        }
+    //Формируем список для TableView со Switcher
+    private func configDaysArray() {
+        let weekdaySymbols = calendar.weekdaySymbols
+        var weekdays: [String] = []
         
-        delegate?.didSelectedSchedules(self, selectedDays: selectedDays)
+        for weekdaySymbol in weekdaySymbols {
+            weekdays.append(weekdaySymbol.capitalizeFirstLetter())
+        }
+        //Перекидываем Воскресенье в конец массива
+        guard let firstDay = weekdays.first else { return }
+        weekdays.append(firstDay)
+        weekdays.remove(at: 0)
+        days = weekdays
+    }
+    
+    @objc func okButtonTapped() {
+        finalList.removeAll()
+        
+        let tableView = weekdayTableView
+        for section in 0..<tableView.numberOfSections {
+            for row in 0..<tableView.numberOfRows(inSection: section) {
+                guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: section)) as? SwitchCell else { continue }
+                guard cell.switcher.isOn else { continue }
+                guard let text = cell.textLabel?.text else { continue }
+                guard let weekday = getIndexOfWeek(text) else { continue }
+                finalList.append(weekday)
+            }
+        }
+
+        delegate?.addWeekDays(finalList)
         navigationController?.popViewController(animated: true)
     }
+    
+    private func getIndexOfWeek(_ text: String) -> Int? {
+        return calendar.weekdaySymbols.firstIndex(of: text.lowercased())
+    }
 }
+
+
 
 //MARK: -UITableViewDelegate
 extension ScheduleViewController: UITableViewDelegate {
@@ -103,14 +147,14 @@ extension ScheduleViewController: UITableViewDelegate {
 //MARK: -UITableViewDataSource
 extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return daysOfWeek.count
+        return days.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.reuseIdentifier, for: indexPath) as! SwitchCell
-        cell.delegate = self
+//        cell.delegate = self
         cell.backgroundColor = .YPBackground
-        cell.textLabel?.text = daysOfWeek[indexPath.row]
+        cell.textLabel?.text = days[indexPath.row]
         return cell
     }
     
@@ -138,20 +182,20 @@ extension ScheduleViewController: UITableViewDataSource {
     }
 }
 
-extension ScheduleViewController: SwitchCellDelegate {
-    func switchCellDidToggle(_ cell: SwitchCell, isOn: Bool) {
-        guard let indexPath = weekdayTableView.indexPath(for: cell) else { return }
-        let selectedOption = daysOfWeek[indexPath.row]
-        
-        if isOn {
-            //переключатель включен - добавляем название ячейки
-            if !selectedDays.contains(selectedOption) {
-                selectedDays.append(selectedOption)
-            } else {
-                if let index = selectedDays.firstIndex(of: selectedOption) {
-                    selectedDays.remove(at: index)
-                }
-            }
-        }
-    }
-}
+//extension ScheduleViewController: SwitchCellDelegate {
+//    func switchCellDidToggle(_ cell: SwitchCell, isOn: Bool) {
+//        guard let indexPath = weekdayTableView.indexPath(for: cell) else { return }
+//        let selectedOption = daysOfWeek[indexPath.row]
+//
+//        if isOn {
+//            //переключатель включен - добавляем название ячейки
+//            if !selectedDays.contains(selectedOption) {
+//                selectedDays.append(selectedOption)
+//            } else {
+//                if let index = selectedDays.firstIndex(of: selectedOption) {
+//                    selectedDays.remove(at: index)
+//                }
+//            }
+//        }
+//    }
+//}

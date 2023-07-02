@@ -8,10 +8,13 @@
 import UIKit
 
 protocol CategoryViewControllerDelegate: AnyObject {
-    func didSelectCategory(withCategory category: String)
+    func addCategory(_ category: String, index: Int)
 }
 
 final class CategoryViewController: UIViewController {
+    
+    weak var delegate: CategoryViewControllerDelegate?
+    
     //MARK: - UILayout - Properties
     private var categoryTableView: UITableView = {
         let categoryTableView = UITableView()
@@ -55,10 +58,21 @@ final class CategoryViewController: UIViewController {
         return addCategoryButton
     }()
     
-    //MARK: - Business - Logic Properties
-    weak var delegate: CategoryViewControllerDelegate?
+    //MARK: -Business - Logic Properties
+
     private var categoryArray: [String] = ["Важные"]
+    private var choosedCategoryIndex: Int?
     private var categoryTableViewHeightConstraint: NSLayoutConstraint?
+    
+    //MARK: -Initializers:
+    init(choosedCategoryIndex: Int?) {
+        super.init(nibName: nil, bundle: nil)
+        self.choosedCategoryIndex = choosedCategoryIndex
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
@@ -130,7 +144,7 @@ extension CategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTitle = categoryArray[indexPath.row]
-        delegate?.didSelectCategory(withCategory: selectedTitle)
+        delegate?.addCategory(selectedTitle, index: choosedCategoryIndex ?? 1)
         navigationController?.popViewController(animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

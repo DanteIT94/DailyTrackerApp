@@ -63,9 +63,6 @@ final class NewHabitViewController: UIViewController {
         return createHabitButton
     }()
     
-//    private var selectedCategories: Set<String> = []
-    private var selectedDays: [String] = []
-    
     private var category: String?
     private var choosedDays: [Int] = []
     private var choosedCategoryIndex: Int?
@@ -129,14 +126,13 @@ final class NewHabitViewController: UIViewController {
     }
     
     @objc func createHabitButtonTapped() {
-//        guard buttonIsEnabled else { return }
+        //        guard buttonIsEnabled else { return }
         let text: String = habitTextField.text ?? "Tracker"
         let category: String = category ?? "Category"
         delegate?.addNewTracker(trackerCategory: TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
         
         dismiss(animated: true)
     }
-    
 }
 
 
@@ -148,11 +144,11 @@ extension NewHabitViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let categoryVC = CategoryViewController()
+            let categoryVC = CategoryViewController(choosedCategoryIndex: choosedCategoryIndex)
             categoryVC.delegate = self
             navigationController?.pushViewController(categoryVC, animated: true)
         } else if indexPath.row == 1 {
-            let scheduleVC = ScheduleViewController()
+            let scheduleVC = ScheduleViewController(choosedDays: choosedDays)
             scheduleVC.delegate = self
             navigationController?.pushViewController(scheduleVC, animated: true)
         }
@@ -168,19 +164,13 @@ extension NewHabitViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewHabitCell.reuseIdentifier, for: indexPath) as! NewHabitCell
-        
         cell.backgroundColor = .YPBackground
         
         if indexPath.row == 0 {
             cell.textLabel?.text = "Категории"
-//            let selectedCategoriesString = selectedCategories.joined(separator: ", ")
-            cell.detailTextLabel?.text = category
         } else if indexPath.row == 1 {
             cell.textLabel?.text = "Расписание"
-            let selectedDaysString = selectedDays.joined(separator: ", ")
-            cell.detailTextLabel?.text = selectedDaysString
         }
-        
         return cell
     }
     
@@ -210,22 +200,38 @@ extension NewHabitViewController: UITableViewDataSource {
 }
 
 extension NewHabitViewController: CategoryViewControllerDelegate {
-    func didSelectCategory(withCategory category: String) {
+    func addCategory(_ category: String, index: Int) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        if let cell = habitTableView.cellForRow(at: indexPath) as? NewHabitCell {
+            cell.detailTextLabel?.text = category
+        }
         self.category = category
-//        selectedCategories.insert(category)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        habitTableView.reloadRows(at: [indexPath], with: .none)
-        habitTableView.reloadData()
+        choosedCategoryIndex = index
+        //        habitTableView.reloadData()
     }
 }
-
+//Доп текст на ячейке "Расписание"
 extension NewHabitViewController: ScheduleViewControllerDelegate {
-    func didSelectedSchedules(_ viewController: ScheduleViewController, selectedDays: [String]) {
-        if selectedDays.count == 7 {
-            self.selectedDays = ["Каждый день"]
+    func addWeekDays(_ weekdays: [Int]) {
+        choosedDays = weekdays
+        var daysView = ""
+        if weekdays.count == 7 {
+            daysView = "Каждый день"
+        } else {
+            for index in choosedDays {
+                var calendar = Calendar.current
+                calendar.locale = Locale(identifier: "ru_RU")
+                let day = calendar.shortWeekdaySymbols[index]
+                daysView.append(day)
+                daysView.append(", ")
+            }
+            daysView = String(daysView.dropLast(2))
         }
-        self.selectedDays = selectedDays
-        habitTableView.reloadData()
+        let indexPath = IndexPath(row: 1, section: 0)
+        if let cell = habitTableView.cellForRow(at: indexPath) as? NewHabitCell {
+            cell.detailTextLabel?.text = daysView
+        }
+        //        habitTableView.reloadData()
     }
 }
 
