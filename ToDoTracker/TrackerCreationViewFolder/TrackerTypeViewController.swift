@@ -39,11 +39,13 @@ final class NewTrackerTypeViewController: UIViewController {
     }()
     
     private var newHabitViewController: UIViewController?
+//    private var newEventViewController: UIViewController?
     
     //MARK: -Initizlizer
     init(newHabitViewController: UIViewController?) {
         super.init(nibName: nil, bundle: nil)
         self.newHabitViewController = newHabitViewController
+//        self.newEventViewController = newEventViewController
     }
     
     required init?(coder: NSCoder) {
@@ -56,13 +58,10 @@ final class NewTrackerTypeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
         createLayout()
-        
     }
     
     //MARK: - Private Methods
-    
     private func createLayout() {
-        
         navigationItem.title = "Создание Трекера"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
         
@@ -87,6 +86,7 @@ final class NewTrackerTypeViewController: UIViewController {
     //MARK: -@OBJC Methods
     @objc private func habitButtonTapped() {
         let newHabitViewController = NewHabitViewController()
+//        newHabitViewController.delegate = self
         navigationController?.pushViewController(newHabitViewController, animated: true)
         
     }

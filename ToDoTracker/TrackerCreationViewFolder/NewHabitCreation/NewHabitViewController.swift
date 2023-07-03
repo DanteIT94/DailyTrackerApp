@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewHabitViewControllerDelegate: AnyObject {
-    func addNewTracker(trackerCategory: TrackerCategory)
+    func addNewTracker(_ trackerCategory: TrackerCategory)
 }
 
 final class NewHabitViewController: UIViewController {
@@ -74,7 +74,6 @@ final class NewHabitViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .YPBlack
         createHabitLayout()
-        
     }
     
     //MARK: - Private Methods
@@ -84,13 +83,11 @@ final class NewHabitViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
         navigationItem.hidesBackButton = true
         
-        
         habitTableView.dataSource = self
         habitTableView.delegate = self
         habitTableView.register(NewHabitCell.self, forCellReuseIdentifier: NewHabitCell.reuseIdentifier)
         habitTableView.separatorStyle = .singleLine
         habitTableView.separatorColor = .YPWhite
-        
         
         [habitTextField, habitTableView, cancelButton, createHabitButton].forEach {
             view.addSubview($0)
@@ -127,14 +124,16 @@ final class NewHabitViewController: UIViewController {
     
     @objc func createHabitButtonTapped() {
         //        guard buttonIsEnabled else { return }
-        let text: String = habitTextField.text ?? "Tracker"
-        let category: String = category ?? "Category"
-        delegate?.addNewTracker(trackerCategory: TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
-        
+        let text: String = habitTextField.text ?? ""
+        let category: String = category ?? ""
+        if let delegate = delegate {
+            delegate.addNewTracker(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
+            } else {
+                print("Delegate is not set")
+            }
         dismiss(animated: true)
     }
 }
-
 
 //MARK: -UITableViewDelegate
 extension NewHabitViewController: UITableViewDelegate {
@@ -235,21 +234,6 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
     }
 }
 
-//    //MARK: -Доделать чуть позже
-//    private let emojiCollection: UICollectionView = {
-//        let emojiCollection = UICollectionView()
-//
-//        return emojiCollection
-//    }()
-//
-//    private let colorsCollection: UICollectionView = {
-//        let colorsCollection = UICollectionView()
-//
-//        return colorsCollection
-//    }()
-
-
-
 //MARK: - UITextFieldDelegate
 extension NewHabitViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
@@ -263,3 +247,18 @@ extension NewHabitViewController: UITextFieldDelegate {
         }
     }
 }
+
+
+
+//    //MARK: -Доделать чуть позже
+//    private let emojiCollection: UICollectionView = {
+//        let emojiCollection = UICollectionView()
+//
+//        return emojiCollection
+//    }()
+//
+//    private let colorsCollection: UICollectionView = {
+//        let colorsCollection = UICollectionView()
+//
+//        return colorsCollection
+//    }()

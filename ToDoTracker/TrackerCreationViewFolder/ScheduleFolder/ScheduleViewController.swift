@@ -97,17 +97,6 @@ final class ScheduleViewController: UIViewController {
             
         ])
     }
-    
-//    private func setupInitialSelectedDays() {
-//        for (index, day) in days.enumerated() {
-//            let weekday = calendar.component(.weekday, from: Date())
-//            if weekday == getIndexOfWeek(day) {
-//                switchStates[index] = true
-//            } else {
-//                switchStates[index] = false
-//            }
-//        }
-//    }
     private func setupInitialSelectedDays() {
         for (index, day) in days.enumerated() {
             let weekdayIndex = calendar.weekdaySymbols.firstIndex(of: day.lowercased()) ?? 0

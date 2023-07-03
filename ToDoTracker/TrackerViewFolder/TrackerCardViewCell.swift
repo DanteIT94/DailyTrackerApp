@@ -7,13 +7,14 @@
 
 import UIKit
 
-protocol TrackerCardViewCellDelegate: AnyObject {
-    func dayCheckButtonTapped(viewModel: CellViewModel)
-}
+//protocol TrackerCardViewCellDelegate: AnyObject {
+//    func dayCheckButtonTapped(viewModel: CellViewModel)
+//}
 
 final class TrackerCardViewCell: UICollectionViewCell {
     
-    weak var delegate: TrackerCardViewCellDelegate?
+//    weak var delegate: TrackerCardViewCellDelegate?
+//    static let reuseIdentifier = "TrackerCardCell"
     
     //MARK: -Private Properties
     //✅
@@ -78,7 +79,6 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayLabel.text = "\(viewModel.dayCounter) \(daysDeclension(for: viewModel.dayCounter))"
         cardBackgroundView.backgroundColor = viewModel.tracker.color
         self.viewModel = viewModel
-        
         createCustomCell()
     }
     

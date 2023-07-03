@@ -74,7 +74,9 @@ final class TrackersViewController: UIViewController {
         configCollectionView()
         createLayout()
         //        hidePlaceholders()
-        
+        print(categories)
+        print(visibleCategories)
+        print(completedTrackers)
     }
     
     //MARK: - Private Methods
@@ -90,7 +92,7 @@ final class TrackersViewController: UIViewController {
         navigationItem.title = "Трекеры"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+//        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
     }
     
     private func configCollectionView() {
@@ -153,22 +155,6 @@ final class TrackersViewController: UIViewController {
         let modalNavigationController = UINavigationController(rootViewController: NewTrackerTypeViewController)
         navigationController?.present(modalNavigationController, animated: true)
     }
-    
-    @objc private func datePickerValueChanged() {
-        currentDate = datePicker.date
-        let weekday = Calendar.current.component(.weekday, from: currentDate)-1
-        var newCategories: [TrackerCategory] = []
-        for category in categories {
-            var trackers: [Tracker] = []
-            for tracker in category.trackerArray {
-                if tracker.schedule.contains(where: { $0 == weekday } ) {
-                    trackers.append(tracker)
-                }
-            }
-            newCategories.append(TrackerCategory(headerName: category.headerName, trackerArray: trackers))
-        }
-        visibleCategories = newCategories
-    }    
 }
 
 //MARK: -UICollectionViewDelegate
@@ -183,13 +169,10 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
         let indexPath = IndexPath(item: 0, section: section)
-        
         if visibleCategories[indexPath.section].trackerArray.count == 0 {
             return CGSizeZero
         }
-        
         let headerView = self.collectionView(
             collectionView,
             viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader,
@@ -215,6 +198,7 @@ extension TrackersViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? TrackerCardViewCell
+//        cell?.delegate = self
         let viewModel = configViewModel(for: indexPath)
         cell?.configCell(viewModel: viewModel)
         return cell ?? UICollectionViewCell()
@@ -224,7 +208,6 @@ extension TrackersViewController: UICollectionViewDataSource {
         
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? HeaderCollectionReusableView
         headerView?.configHeader(text: visibleCategories[indexPath.section].headerName)
-        
         return headerView ?? UICollectionReusableView()
     }
     
@@ -234,14 +217,13 @@ extension TrackersViewController: UICollectionViewDataSource {
 //MARK: -UITextFieldDelegate
 extension TrackersViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         return true
     }
 }
 
 //MARK: - NewHabitDelegate
 extension TrackersViewController: NewHabitViewControllerDelegate {
-    func addNewTracker(trackerCategory: TrackerCategory) {
+    func addNewTracker(_ trackerCategory: TrackerCategory) {
         var newCategories: [TrackerCategory] = []
         
         if let categoryIndex = categories.firstIndex(where: { $0.headerName == trackerCategory.headerName }) {
@@ -256,7 +238,6 @@ extension TrackersViewController: NewHabitViewControllerDelegate {
             newCategories = categories
             newCategories.append(trackerCategory)
         }
-        
         categories = newCategories
         //        datePickerValueChanged()
         //        checkNeedPlaceholder(for: .noTrackers)
@@ -264,15 +245,3 @@ extension TrackersViewController: NewHabitViewControllerDelegate {
     }
 }
 
-//MARK: - TrackerViewCellDelegate
-extension TrackersViewController: TrackerCardViewCellDelegate {
-    func dayCheckButtonTapped(viewModel: CellViewModel) {
-        if viewModel.buttonIsChecked {
-            completedTrackers.insert(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
-        } else {
-            completedTrackers.remove(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
-        }
-    }
-    
-    
-}
