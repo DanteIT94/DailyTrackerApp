@@ -7,14 +7,9 @@
 
 import UIKit
 
-protocol NewTrackerTypeViewControllerDelegate: AnyObject {
-    
-}
-
 final class NewTrackerTypeViewController: UIViewController {
     
     //MARK: - Private Propeties
-    
     private let habitButton: UIButton = {
         let habitButton = UIButton()
         habitButton.translatesAutoresizingMaskIntoConstraints = false

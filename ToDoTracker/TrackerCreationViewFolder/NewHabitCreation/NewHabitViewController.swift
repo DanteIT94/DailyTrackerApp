@@ -207,7 +207,7 @@ extension NewHabitViewController: CategoryViewControllerDelegate {
         }
         self.category = category
         choosedCategoryIndex = index
-        //        habitTableView.reloadData()
+        habitTableView.reloadData()
     }
 }
 //Доп текст на ячейке "Расписание"
@@ -231,7 +231,7 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
         if let cell = habitTableView.cellForRow(at: indexPath) as? NewHabitCell {
             cell.detailTextLabel?.text = daysView
         }
-        //        habitTableView.reloadData()
+        habitTableView.reloadData()
     }
 }
 

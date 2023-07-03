@@ -26,6 +26,7 @@ final class SwitchCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSwitcher()
+//        accessoryView = switcher
         selectionStyle = .none
         
         switcher.addTarget(self, action: #selector(switcherValueChanged), for: .valueChanged)
