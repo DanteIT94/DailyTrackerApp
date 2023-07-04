@@ -73,7 +73,7 @@ final class TrackersViewController: UIViewController {
         configNavigationBar()
         configCollectionView()
         createLayout()
-        //        hidePlaceholders()
+        hidePlaceholders()
         print(categories)
         print(visibleCategories)
         print(completedTrackers)
@@ -92,14 +92,14 @@ final class TrackersViewController: UIViewController {
         navigationItem.title = "Трекеры"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-//        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
     }
     
     private func configCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.register(TrackerCardViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(TrackerCardViewCell.self, forCellWithReuseIdentifier: "TrackerCardCell")
         
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
@@ -131,8 +131,10 @@ final class TrackersViewController: UIViewController {
     }
     
     private func hidePlaceholders() {
-        imagePlaceholder.isHidden = true
-        textPlaceholder.isHidden = true
+        if visibleCategories.count != 0 {
+            imagePlaceholder.isHidden = true
+            textPlaceholder.isHidden = true
+        }
     }
     
     private func configViewModel(for indexPath: IndexPath) -> CellViewModel {
@@ -154,6 +156,26 @@ final class TrackersViewController: UIViewController {
         let NewTrackerTypeViewController = NewTrackerTypeViewController(newHabitViewController: newHabitViewController)
         let modalNavigationController = UINavigationController(rootViewController: NewTrackerTypeViewController)
         navigationController?.present(modalNavigationController, animated: true)
+    }
+    
+    @objc private func datePickerValueChanged () {
+        currentDate = datePicker.date
+        //Значение дня недели уменьшается на 1,  для приведения его к правильному формату (0-понедельник, 1-вторник и т.д.).
+        let dayOfWeek = Calendar.current.component(.weekday, from: currentDate) - 1
+        var newCategories: [TrackerCategory] = []
+        
+        for category in categories {
+            var trackers: [Tracker] = []
+            for tracker in category.trackerArray {
+                if tracker.schedule.contains(where: {$0 == dayOfWeek}) {
+                    trackers.append(tracker)
+                }
+            }
+            newCategories.append(TrackerCategory(headerName: category.headerName, trackerArray: trackers))
+        }
+        
+        visibleCategories = newCategories
+        hidePlaceholders()
     }
 }
 
@@ -197,8 +219,8 @@ extension TrackersViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? TrackerCardViewCell
-//        cell?.delegate = self
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackerCardCell", for: indexPath) as? TrackerCardViewCell
+        cell?.delegate = self
         let viewModel = configViewModel(for: indexPath)
         cell?.configCell(viewModel: viewModel)
         return cell ?? UICollectionViewCell()
@@ -234,14 +256,24 @@ extension TrackersViewController: NewHabitViewControllerDelegate {
                 }
                 newCategories.append(TrackerCategory(headerName: category.headerName, trackerArray: trackers))
             }
+            print("AAAA")
         } else {
             newCategories = categories
             newCategories.append(trackerCategory)
+            print(newCategories)
         }
         categories = newCategories
-        //        datePickerValueChanged()
+        datePickerValueChanged()
         //        checkNeedPlaceholder(for: .noTrackers)
         collectionView.reloadData()
     }
+}
+
+extension TrackersViewController: TrackerCardViewCellDelegate {
+    func dayCheckButtonTapped(viewModel: CellViewModel) {
+        print("ok")
+    }
+    
+    
 }
 

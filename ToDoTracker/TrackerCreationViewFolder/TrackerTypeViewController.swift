@@ -85,8 +85,7 @@ final class NewTrackerTypeViewController: UIViewController {
     
     //MARK: -@OBJC Methods
     @objc private func habitButtonTapped() {
-        let newHabitViewController = NewHabitViewController()
-//        newHabitViewController.delegate = self
+        guard let newHabitViewController else { return }
         navigationController?.pushViewController(newHabitViewController, animated: true)
         
     }
