@@ -10,7 +10,6 @@ import UIKit
 final class TrackersViewController: UIViewController {
     
     //MARK: - Private Properties
-    
     private let dateFormmater: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -64,8 +63,6 @@ final class TrackersViewController: UIViewController {
     private var completedTrackers: Set<TrackerRecord> = []
     private var currentDate: Date = Date()
     
-    
-    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,15 +71,11 @@ final class TrackersViewController: UIViewController {
         configCollectionView()
         createLayout()
         hidePlaceholders()
-        print(categories)
-        print(visibleCategories)
-        print(completedTrackers)
     }
     
     //MARK: - Private Methods
     private func configNavigationBar() {
         let leftButton = UIBarButtonItem(image: UIImage(named: "Plus"), style: .done, target: self, action: #selector(addTrackerButtonTapped))
-        
         let rightButton = UIBarButtonItem(customView: datePicker)
         leftButton.tintColor = .YPBlack
         
@@ -100,7 +93,6 @@ final class TrackersViewController: UIViewController {
         collectionView.delegate = self
         
         collectionView.register(TrackerCardViewCell.self, forCellWithReuseIdentifier: "cell")
-        
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
     
@@ -173,7 +165,6 @@ final class TrackersViewController: UIViewController {
             }
             newCategories.append(TrackerCategory(headerName: category.headerName, trackerArray: trackers))
         }
-        
         visibleCategories = newCategories
         hidePlaceholders()
     }
@@ -205,7 +196,6 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
             withHorizontalFittingPriority: .required,
             verticalFittingPriority: .fittingSizeLevel)
     }
-    
 }
 
 //MARK: -UICollectionViewDataSource
@@ -223,7 +213,7 @@ extension TrackersViewController: UICollectionViewDataSource {
         cell.delegate = self
         let viewModel = configViewModel(for: indexPath)
         cell.configCell(viewModel: viewModel)
-        return cell 
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -232,8 +222,6 @@ extension TrackersViewController: UICollectionViewDataSource {
         headerView?.configHeader(text: visibleCategories[indexPath.section].headerName)
         return headerView ?? UICollectionReusableView()
     }
-    
-    
 }
 
 //MARK: -UITextFieldDelegate

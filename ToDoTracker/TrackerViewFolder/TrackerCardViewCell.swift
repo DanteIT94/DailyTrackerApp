@@ -26,7 +26,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         return cardBackgroundView
     }()
     
-    //✅🚫
+    //✅
     private let emojiLabel: UILabel = {
         let emojiLabel = UILabel()
         emojiLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayLabel.textColor = .YPBlack
         return dayLabel
     }()
-    //✅🚫
+    //✅
     private let dayCheckButton: UIButton = {
         let dayCheckButton = UIButton()
         dayCheckButton.translatesAutoresizingMaskIntoConstraints = false
@@ -66,13 +66,14 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayCheckButton.layer.masksToBounds = true
         dayCheckButton.imageView?.contentMode = .scaleAspectFill
         dayCheckButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        dayCheckButton.addTarget(nil, action: #selector(dayCheckButtonTapped), for: .touchUpInside)
+        dayCheckButton.addTarget(nil, action: #selector(dayCheckButtonTapped(_:)), for: .touchUpInside)
         return dayCheckButton
     }()
     
     private var viewModel: CellViewModel?
     
     //MARK: -Public Methods
+    //✅🚫
     func configCell(viewModel: CellViewModel) {
         taskLabel.text = viewModel.tracker.name
         emojiLabel.text = viewModel.tracker.emoji
@@ -80,7 +81,8 @@ final class TrackerCardViewCell: UICollectionViewCell {
         cardBackgroundView.backgroundColor = viewModel.tracker.color
         self.viewModel = viewModel
         dayCheckButtonState()
-        dayCheckButtonIsEnable()
+        dayCheckButtonIsEnabled()
+        
         createCustomCell()
     }
     
@@ -120,7 +122,8 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayCheckButtonState()
     }
     
-    
+    //✅
+    //для склонения дней в ячейке
     private func daysDeclension(for counter: Int) -> String{
         let remainder = counter % 10
         if counter == 11 || counter == 12 || counter == 13 || counter == 14 {
@@ -137,22 +140,24 @@ final class TrackerCardViewCell: UICollectionViewCell {
     }
     
     //MARK: -Обновления состояния кнопки dayCheckButton в зависимости от значения свойства buttonIsChecked
+    //✅
     func dayCheckButtonState() {
-        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 9, weight: .bold)
-        var image: UIImage?
+        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 10, weight: .bold)
+        var symbolImage: UIImage?
         guard let viewModel = viewModel else { return }
         if viewModel.buttonIsChecked {
-            image = UIImage(systemName: "checkmark", withConfiguration: symbolConfig)
+            symbolImage = UIImage(systemName: "checkmark", withConfiguration: symbolConfig)
             dayCheckButton.layer.opacity = 0.3
         } else {
-            image = UIImage(systemName: "plus", withConfiguration: symbolConfig)
+            symbolImage = UIImage(systemName: "plus", withConfiguration: symbolConfig)
             dayCheckButton.layer.opacity = 1.0
         }
-        dayCheckButton.setImage(image, for: .normal)
+        dayCheckButton.setImage(symbolImage, for: .normal)
     }
     
     //MARK: - Проверка и обновление состояния кнопки checkButton в зависимости от значения свойства buttonIsEnabled
-    func dayCheckButtonIsEnable() {
+    //✅
+    func dayCheckButtonIsEnabled() {
         guard let viewModel = viewModel else { return }
         if viewModel.buttonIsEnable {
             dayCheckButton.isEnabled = true
@@ -164,7 +169,8 @@ final class TrackerCardViewCell: UICollectionViewCell {
     }
     
     //MARK: -@OBJC Methods
-    @objc func dayCheckButtonTapped() {
+    //✅🚫
+    @objc func dayCheckButtonTapped(_ sender: UIButton) {
         viewModel?.buttonIsChecked.toggle()
         dayCheckButtonState()
         guard let viewModel = viewModel else { return }
