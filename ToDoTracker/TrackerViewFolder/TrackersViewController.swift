@@ -135,9 +135,9 @@ final class TrackersViewController: UIViewController {
         let trackerIsChecked = completedTrackers.contains(TrackerRecord(id: tracker.id, date: dateFormmater.string(from: currentDate)))
         let dateComparision = Calendar.current.compare(currentDate, to: Date(), toGranularity: .day)
         var checkButtonEnable = true
-        if dateComparision.rawValue == 1 {
-            checkButtonEnable = false
-        }
+//        if dateComparision.rawValue == 1 {
+//            checkButtonEnable = false
+//        }
         return CellViewModel(dayCounter: counter, buttonIsChecked: trackerIsChecked, buttonIsEnable: checkButtonEnable, tracker: tracker, indexPath: indexPath)
     }
     
@@ -167,6 +167,7 @@ final class TrackersViewController: UIViewController {
         }
         visibleCategories = newCategories
         hidePlaceholders()
+        collectionView.reloadData()
     }
 }
 

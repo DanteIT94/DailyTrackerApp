@@ -97,9 +97,9 @@ final class TrackerCardViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             //Цветная подложка
-            cardBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cardBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            cardBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cardBackgroundView.topAnchor.constraint(equalTo: topAnchor),
+            cardBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cardBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             cardBackgroundView.heightAnchor.constraint(equalToConstant: 90),
             //Эмодзи
             emojiLabel.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 12),
