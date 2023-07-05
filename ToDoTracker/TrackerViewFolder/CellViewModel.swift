@@ -9,7 +9,7 @@ import UIKit
 
 struct CellViewModel {
     let dayCounter: Int
-    let buttonIsChecked: Bool
+    var buttonIsChecked: Bool
     let buttonIsEnable: Bool
     let tracker: Tracker
     let indexPath: IndexPath

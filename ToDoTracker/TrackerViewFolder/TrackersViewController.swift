@@ -99,7 +99,7 @@ final class TrackersViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.register(TrackerCardViewCell.self, forCellWithReuseIdentifier: "TrackerCardCell")
+        collectionView.register(TrackerCardViewCell.self, forCellWithReuseIdentifier: "cell")
         
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
@@ -141,8 +141,8 @@ final class TrackersViewController: UIViewController {
         let tracker = visibleCategories[indexPath.section].trackerArray[indexPath.row]
         let counter = completedTrackers.filter({$0.id == tracker.id}).count
         let trackerIsChecked = completedTrackers.contains(TrackerRecord(id: tracker.id, date: dateFormmater.string(from: currentDate)))
-        var checkButtonEnable = true
         let dateComparision = Calendar.current.compare(currentDate, to: Date(), toGranularity: .day)
+        var checkButtonEnable = true
         if dateComparision.rawValue == 1 {
             checkButtonEnable = false
         }
@@ -181,7 +181,6 @@ final class TrackersViewController: UIViewController {
 
 //MARK: -UICollectionViewDelegate
 extension TrackersViewController: UICollectionViewDelegate {
-    
 }
 
 //MARK: -UICollectionViewDelegateFlowLayout
@@ -206,6 +205,7 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
             withHorizontalFittingPriority: .required,
             verticalFittingPriority: .fittingSizeLevel)
     }
+    
 }
 
 //MARK: -UICollectionViewDataSource
@@ -219,11 +219,11 @@ extension TrackersViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackerCardCell", for: indexPath) as? TrackerCardViewCell
-        cell?.delegate = self
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TrackerCardViewCell
+        cell.delegate = self
         let viewModel = configViewModel(for: indexPath)
-        cell?.configCell(viewModel: viewModel)
-        return cell ?? UICollectionViewCell()
+        cell.configCell(viewModel: viewModel)
+        return cell 
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -243,7 +243,7 @@ extension TrackersViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: - NewHabitDelegate
+//MARK: -NewHabitViewControllerDelegate
 extension TrackersViewController: NewHabitViewControllerDelegate {
     func addNewTracker(_ trackerCategory: TrackerCategory) {
         var newCategories: [TrackerCategory] = []
@@ -264,16 +264,20 @@ extension TrackersViewController: NewHabitViewControllerDelegate {
         }
         categories = newCategories
         datePickerValueChanged()
-        //        checkNeedPlaceholder(for: .noTrackers)
         collectionView.reloadData()
     }
 }
 
+//MARK: -TrackerCardViewCellDelegate
 extension TrackersViewController: TrackerCardViewCellDelegate {
     func dayCheckButtonTapped(viewModel: CellViewModel) {
-        print("ok")
+        if viewModel.buttonIsChecked {
+            completedTrackers.insert(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
+        } else {
+            completedTrackers.remove(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
+        }
+        collectionView.reloadItems(at: [viewModel.indexPath])
     }
-    
-    
 }
+
 

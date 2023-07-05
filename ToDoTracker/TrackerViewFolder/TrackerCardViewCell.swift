@@ -14,7 +14,7 @@ protocol TrackerCardViewCellDelegate: AnyObject {
 final class TrackerCardViewCell: UICollectionViewCell {
     
     weak var delegate: TrackerCardViewCellDelegate?
-    static let reuseIdentifier = "TrackerCardCell"
+//    static let reuseIdentifier = "TrackerCardCell"
     
     //MARK: -Private Properties
     //✅
@@ -59,16 +59,16 @@ final class TrackerCardViewCell: UICollectionViewCell {
         let dayCheckButton = UIButton()
         dayCheckButton.translatesAutoresizingMaskIntoConstraints = false
         dayCheckButton.setTitle("", for: .normal)
-        dayCheckButton.setImage(UIImage(named: "Plus"), for: .normal)
-        dayCheckButton.tintColor = .colorSection5
+//        dayCheckButton.setImage(UIImage(named: "Plus"), for: .normal)
+        dayCheckButton.tintColor = .YPWhite
+        dayCheckButton.backgroundColor = .colorSection5
+        dayCheckButton.layer.cornerRadius = 16
+        dayCheckButton.layer.masksToBounds = true
         dayCheckButton.imageView?.contentMode = .scaleAspectFill
         dayCheckButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         dayCheckButton.addTarget(nil, action: #selector(dayCheckButtonTapped), for: .touchUpInside)
         return dayCheckButton
     }()
-    
-    //Bool-ключ для отметки (возможно временно)
-    private var isChecked: Bool = false
     
     private var viewModel: CellViewModel?
     
@@ -79,7 +79,8 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayLabel.text = "\(viewModel.dayCounter) \(daysDeclension(for: viewModel.dayCounter))"
         cardBackgroundView.backgroundColor = viewModel.tracker.color
         self.viewModel = viewModel
-        
+        dayCheckButtonState()
+        dayCheckButtonIsEnable()
         createCustomCell()
     }
     
@@ -116,7 +117,9 @@ final class TrackerCardViewCell: UICollectionViewCell {
             dayLabel.centerYAnchor.constraint(equalTo: dayCheckButton.centerYAnchor),
             dayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12)
         ])
+        dayCheckButtonState()
     }
+    
     
     private func daysDeclension(for counter: Int) -> String{
         let remainder = counter % 10
@@ -133,16 +136,38 @@ final class TrackerCardViewCell: UICollectionViewCell {
         }
     }
     
-    @objc
-    private func dayCheckButtonTapped() {
-        if isChecked {
-            dayCheckButton.setImage(UIImage(named: "Plus"), for: .normal)
-            dayCheckButton.layer.opacity = 1.0
-            isChecked = false
-        } else {
-            dayCheckButton.setImage(UIImage(named: "checkmark.circle.fill"), for: .normal)
+    //MARK: -Обновления состояния кнопки dayCheckButton в зависимости от значения свойства buttonIsChecked
+    func dayCheckButtonState() {
+        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 9, weight: .bold)
+        var image: UIImage?
+        guard let viewModel = viewModel else { return }
+        if viewModel.buttonIsChecked {
+            image = UIImage(systemName: "checkmark", withConfiguration: symbolConfig)
             dayCheckButton.layer.opacity = 0.3
-            isChecked = true
+        } else {
+            image = UIImage(systemName: "plus", withConfiguration: symbolConfig)
+            dayCheckButton.layer.opacity = 1.0
         }
+        dayCheckButton.setImage(image, for: .normal)
+    }
+    
+    //MARK: - Проверка и обновление состояния кнопки checkButton в зависимости от значения свойства buttonIsEnabled
+    func dayCheckButtonIsEnable() {
+        guard let viewModel = viewModel else { return }
+        if viewModel.buttonIsEnable {
+            dayCheckButton.isEnabled = true
+            dayCheckButton.backgroundColor = viewModel.tracker.color.withAlphaComponent(1)
+        } else {
+            dayCheckButton.isEnabled = false
+            dayCheckButton.backgroundColor = viewModel.tracker.color.withAlphaComponent(0.3)
+        }
+    }
+    
+    //MARK: -@OBJC Methods
+    @objc func dayCheckButtonTapped() {
+        viewModel?.buttonIsChecked.toggle()
+        dayCheckButtonState()
+        guard let viewModel = viewModel else { return }
+        delegate?.dayCheckButtonTapped(viewModel: viewModel)
     }
 }
