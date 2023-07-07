@@ -23,7 +23,7 @@ final class NewCategoryViewController: UIViewController {
         newCategoryTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: newCategoryTextField.frame.height))
         newCategoryTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
-        newCategoryTextField.attributedPlaceholder = NSAttributedString(string: "Введите название категории (не менее 3 символов)", attributes: attributes)
+        newCategoryTextField.attributedPlaceholder = NSAttributedString(string: "Название категории (не менее 3 символов)", attributes: attributes)
         newCategoryTextField.layer.masksToBounds = true
         newCategoryTextField.layer.cornerRadius = 16
         return newCategoryTextField

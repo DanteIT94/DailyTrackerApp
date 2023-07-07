@@ -25,7 +25,7 @@ final class NewHabitViewController: UIViewController {
         habitTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: habitTextField.frame.height))
         habitTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
-        habitTextField.attributedPlaceholder = NSAttributedString(string: "Введите название трекера", attributes: attributes)
+        habitTextField.attributedPlaceholder = NSAttributedString(string: "Название трекера(не менее 3 символов)", attributes: attributes)
         habitTextField.layer.masksToBounds = true
         habitTextField.layer.cornerRadius = 16
         return habitTextField

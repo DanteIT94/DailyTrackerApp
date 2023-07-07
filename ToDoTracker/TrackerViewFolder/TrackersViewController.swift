@@ -192,6 +192,9 @@ final class TrackersViewController: UIViewController {
                 let dateCondition = tracker.schedule.contains(where: {$0 == filterDayOfWeek})
                 return textCondition && dateCondition
                 }
+            if trackers.isEmpty {
+                return nil
+            }
             return TrackerCategory(
                 headerName: category.headerName,
                 trackerArray: trackers
