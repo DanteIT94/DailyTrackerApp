@@ -18,6 +18,7 @@ final class NewCategoryViewController: UIViewController {
         let newCategoryTextField = UITextField()
         newCategoryTextField.translatesAutoresizingMaskIntoConstraints = false
         newCategoryTextField.backgroundColor = .YPBackground
+        newCategoryTextField.textColor = .YPWhite
         newCategoryTextField.clearButtonMode = .whileEditing
         newCategoryTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: newCategoryTextField.frame.height))
         newCategoryTextField.leftViewMode = .always

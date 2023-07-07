@@ -20,6 +20,7 @@ final class NewHabitViewController: UIViewController {
         let habitTextField = UITextField()
         habitTextField.translatesAutoresizingMaskIntoConstraints = false
         habitTextField.backgroundColor = .YPBackground
+        habitTextField.textColor = .YPWhite
         habitTextField.clearButtonMode = .whileEditing
         habitTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: habitTextField.frame.height))
         habitTextField.leftViewMode = .always
@@ -72,6 +73,7 @@ final class NewHabitViewController: UIViewController {
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        habitTextField.delegate = self
         view.backgroundColor = .YPBlack
         createHabitLayout()
     }
@@ -237,14 +239,30 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
 //MARK: - UITextFieldDelegate
 extension NewHabitViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if let text = textField.text,
-           text.count >= 3 {
-            createHabitButton.isEnabled = true
-            createHabitButton.backgroundColor = .YPWhite
-        } else {
+        guard let text = textField.text,
+              text.count >= 3,
+              category != nil,
+              !choosedDays.isEmpty else {
             createHabitButton.isEnabled = false
             createHabitButton.backgroundColor = .YPGrey
+            return
         }
+        createHabitButton.isEnabled = true
+        createHabitButton.backgroundColor = .YPWhite
+        createHabitButton.setTitleColor(.YPBlack, for: .normal)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if category == nil || choosedDays.isEmpty {
+            showReminderAlert()
+        }
+    }
+    
+    private func showReminderAlert() {
+        let alertController = UIAlertController(title: "Напоминание", message: "Сначала выберите Категорию и Расписание", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
