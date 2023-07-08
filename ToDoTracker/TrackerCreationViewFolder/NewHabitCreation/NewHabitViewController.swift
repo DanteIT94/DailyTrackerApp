@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewHabitViewControllerDelegate: AnyObject {
-    func addNewTracker(_ trackerCategory: TrackerCategory)
+    func addNewHabit(_ trackerCategory: TrackerCategory)
 }
 
 final class NewHabitViewController: UIViewController {
@@ -138,11 +138,10 @@ final class NewHabitViewController: UIViewController {
     }
     
     @objc func createHabitButtonTapped() {
-        //        guard buttonIsEnabled else { return }
         let text: String = habitTextField.text ?? ""
         let category: String = category ?? ""
         if let delegate = delegate {
-            delegate.addNewTracker(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
+            delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
         } else {
             print("Delegate is not set")
         }
@@ -250,21 +249,7 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
 }
 
 //MARK: - UITextFieldDelegate
-extension NewHabitViewController: UITextFieldDelegate {
-//    func textFieldDidChangeSelection(_ textField: UITextField) {
-//        guard let text = textField.text,
-//              text.count >= 3,
-//              category != nil,
-//              !choosedDays.isEmpty else {
-//            createHabitButton.isEnabled = false
-//            createHabitButton.backgroundColor = .YPGrey
-//            return
-//        }
-//        createHabitButton.isEnabled = true
-//        createHabitButton.backgroundColor = .YPWhite
-//        createHabitButton.setTitleColor(.YPBlack, for: .normal)
-//    }
-    
+extension NewHabitViewController: UITextFieldDelegate {    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if category == nil || choosedDays.isEmpty {
             showReminderAlert()

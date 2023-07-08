@@ -13,6 +13,8 @@ final class TrackersViewController: UIViewController {
         case notFoundTrackers
     }
     
+    static var selectedDate: Date?
+    
     //MARK: - Private Properties
     private let dateFormmater: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -20,7 +22,7 @@ final class TrackersViewController: UIViewController {
         return dateFormatter
     }()
     
-    private let datePicker: UIDatePicker = {
+    private var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date
@@ -31,6 +33,7 @@ final class TrackersViewController: UIViewController {
         return datePicker
     }()
     
+    //---------------------------------------------------------------
     //MARK: -Блок поисковой строки
     private let searchStackView: UIStackView = {
         let searchStackView = UIStackView()
@@ -57,8 +60,8 @@ final class TrackersViewController: UIViewController {
         cancelSearchButton.addTarget(nil, action: #selector(cancelSearchButtonTapped), for: .touchUpInside)
         return cancelSearchButton
     }()
-    
     //----------------------------------------------------------------------
+    
     private let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +99,7 @@ final class TrackersViewController: UIViewController {
         createLayout()
         searchTextField.delegate = self
         reloadPlaceholders(for: .noTrackers)
-        datePickerValueChanged()
+        datePickerValueChanged(datePicker)
     }
     
     //MARK: - Private Methods
@@ -111,7 +114,7 @@ final class TrackersViewController: UIViewController {
         navigationItem.title = "Трекеры"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
     }
     
     private func configCollectionView() {
@@ -208,19 +211,22 @@ final class TrackersViewController: UIViewController {
     @objc private func addTrackerButtonTapped() {
         let newHabitViewController = NewHabitViewController()
         newHabitViewController.delegate = self
-        let NewTrackerTypeViewController = NewTrackerTypeViewController(newHabitViewController: newHabitViewController)
+        let newEventViewController = NewEventViewController()
+        newEventViewController.delegate = self
+        let NewTrackerTypeViewController = NewTrackerTypeViewController(newHabitViewController: newHabitViewController, newEventViewController: newEventViewController)
         let modalNavigationController = UINavigationController(rootViewController: NewTrackerTypeViewController)
         navigationController?.present(modalNavigationController, animated: true)
     }
     
-    @objc private func datePickerValueChanged () {
+    @objc private func datePickerValueChanged (_ sender: UIDatePicker) {
+        TrackersViewController.selectedDate = sender.date
         reloadVisibleCategories()
     }
     
     @objc private func cancelSearchButtonTapped() {
         searchTextField.text = ""
         searchTextField.resignFirstResponder()
-        datePickerValueChanged()
+        datePickerValueChanged(datePicker)
         reloadPlaceholders(for: .noTrackers)
         cancelSearchButton.removeFromSuperview()
     }
@@ -321,7 +327,7 @@ extension TrackersViewController: UITextFieldDelegate {
 
 //MARK: -NewHabitViewControllerDelegate
 extension TrackersViewController: NewHabitViewControllerDelegate {
-    func addNewTracker(_ trackerCategory: TrackerCategory) {
+    func addNewHabit(_ trackerCategory: TrackerCategory) {
         var newCategories: [TrackerCategory] = []
         
         if let categoryIndex = categories.firstIndex(where: { $0.headerName == trackerCategory.headerName }) {
@@ -332,14 +338,37 @@ extension TrackersViewController: NewHabitViewControllerDelegate {
                 }
                 newCategories.append(TrackerCategory(headerName: category.headerName, trackerArray: trackers))
             }
-            print("AAAA")
         } else {
             newCategories = categories
             newCategories.append(trackerCategory)
             print(newCategories)
         }
         categories = newCategories
-        datePickerValueChanged()
+        datePickerValueChanged(datePicker)
+        collectionView.reloadData()
+    }
+}
+
+//MARK: -NewEventViewControllerDelegate
+extension TrackersViewController: NewEventViewControllerDelegate {
+    func addNewEvent(_ trackerCategory: TrackerCategory) {
+        var newCategories: [TrackerCategory] = []
+        
+        if let categoryIndex = categories.firstIndex(where: { $0.headerName == trackerCategory.headerName }) {
+            for (index, category) in categories.enumerated() {
+                var trackers = category.trackerArray
+                if index == categoryIndex {
+                    trackers.append(contentsOf: trackerCategory.trackerArray)
+                }
+                newCategories.append(TrackerCategory(headerName: category.headerName, trackerArray: trackers))
+            }
+        } else {
+            newCategories = categories
+            newCategories.append(trackerCategory)
+            print(newCategories)
+        }
+        categories = newCategories
+        datePickerValueChanged(datePicker)
         collectionView.reloadData()
     }
 }

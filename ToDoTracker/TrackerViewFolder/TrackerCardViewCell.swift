@@ -158,8 +158,13 @@ final class TrackerCardViewCell: UICollectionViewCell {
     //MARK: - Проверка и обновление состояния кнопки checkButton в зависимости от значения свойства buttonIsEnabled
     //✅
     func dayCheckButtonIsEnabled() {
-        guard let viewModel = viewModel else { return }
-        if viewModel.buttonIsEnable {
+        guard let viewModel = viewModel,
+            let selectedDate = TrackersViewController.selectedDate else { return }
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let isButtonEnabled = calendar.compare(currentDate, to: selectedDate, toGranularity: .day) != .orderedAscending
+        
+        if viewModel.buttonIsEnable && isButtonEnabled {
             dayCheckButton.isEnabled = true
             dayCheckButton.backgroundColor = viewModel.tracker.color.withAlphaComponent(1)
         } else {

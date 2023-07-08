@@ -34,18 +34,18 @@ final class NewTrackerTypeViewController: UIViewController {
         eventButton.layer.masksToBounds = true
         eventButton.imageView?.contentMode = .scaleAspectFill
         eventButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        //        nonRegularEventButton.addTarget(nil, action: #selector(nonRegularEventButtonTapped), for: .touchUpInside)
+        eventButton.addTarget(nil, action: #selector(eventButtonTapped), for: .touchUpInside)
         return eventButton
     }()
     
     private var newHabitViewController: UIViewController?
-    //    private var newEventViewController: UIViewController?
+    private var newEventViewController: UIViewController?
     
     //MARK: -Initizlizer
-    init(newHabitViewController: UIViewController?) {
+    init(newHabitViewController: UIViewController?, newEventViewController: UIViewController?) {
         super.init(nibName: nil, bundle: nil)
         self.newHabitViewController = newHabitViewController
-        //        self.newEventViewController = newEventViewController
+        self.newEventViewController = newEventViewController
     }
     
     required init?(coder: NSCoder) {
@@ -91,7 +91,8 @@ final class NewTrackerTypeViewController: UIViewController {
     }
     
     @objc private func eventButtonTapped() {
-        
+        guard let newEventViewController else { return }
+        navigationController?.pushViewController(newEventViewController, animated: true)
     }
     
 }

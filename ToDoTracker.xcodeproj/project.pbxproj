@@ -32,6 +32,7 @@
 		923F99B42A51AB8B00CFCE9E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99B32A51AB8B00CFCE9E /* String+Extension.swift */; };
 		923F99B72A53262C00CFCE9E /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F99B62A53262C00CFCE9E /* NewEventViewController.swift */; };
 		92E6D07A2A56F5070003809D /* MockHelpers .swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D0792A56F5070003809D /* MockHelpers .swift */; };
+		92E6D0B52A59B5180003809D /* NewEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D0B42A59B5180003809D /* NewEventCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		923F99B32A51AB8B00CFCE9E /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		923F99B62A53262C00CFCE9E /* NewEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		92E6D0792A56F5070003809D /* MockHelpers .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MockHelpers .swift"; sourceTree = "<group>"; };
+		92E6D0B42A59B5180003809D /* NewEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,6 @@
 				923F99862A42F47F00CFCE9E /* TabBar */,
 				923F99872A42F5EB00CFCE9E /* TrackerViewFolder */,
 				923F999E2A4AFF9C00CFCE9E /* TrackerCreationViewFolder */,
-				923F99B52A5325F900CFCE9E /* NewEventFolder */,
 				923F998A2A42F71C00CFCE9E /* StatisticViewFolder */,
 				923F99932A48D4B200CFCE9E /* Models */,
 				923F99322A3C859D00CFCE9E /* Assets.xcassets */,
@@ -161,8 +162,9 @@
 			children = (
 				923F999F2A4AFFDC00CFCE9E /* TrackerTypeViewController.swift */,
 				923F99A32A4CA2CB00CFCE9E /* NewHabitCreation */,
-				923F99A62A4DC00300CFCE9E /* CategoryFolder */,
+				923F99B52A5325F900CFCE9E /* NewEventFolder */,
 				923F99AB2A4E1DA500CFCE9E /* ScheduleFolder */,
+				923F99A62A4DC00300CFCE9E /* CategoryFolder */,
 			);
 			path = TrackerCreationViewFolder;
 			sourceTree = "<group>";
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				923F99B62A53262C00CFCE9E /* NewEventViewController.swift */,
+				92E6D0B42A59B5180003809D /* NewEventCell.swift */,
 			);
 			path = NewEventFolder;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				923F99952A48D4D000CFCE9E /* Tracker.swift in Sources */,
 				923F99A82A4DC0FA00CFCE9E /* CategoryViewController.swift in Sources */,
 				923F99AA2A4DE49B00CFCE9E /* NewCategoryViewController.swift in Sources */,
+				92E6D0B52A59B5180003809D /* NewEventCell.swift in Sources */,
 				923F99972A48D4E700CFCE9E /* TrackerCategory.swift in Sources */,
 				923F99992A48E09100CFCE9E /* TrackerRecord.swift in Sources */,
 				923F99AF2A4E21C200CFCE9E /* SwitchCell.swift in Sources */,
