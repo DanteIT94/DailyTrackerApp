@@ -49,7 +49,7 @@ final class TrackersViewController: UIViewController {
     }()
     
     private let cancelSearchButton: UIButton = {
-       let cancelSearchButton = UIButton()
+        let cancelSearchButton = UIButton()
         cancelSearchButton.translatesAutoresizingMaskIntoConstraints = false
         cancelSearchButton.setTitle("Отменить", for: .normal)
         cancelSearchButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
@@ -150,7 +150,7 @@ final class TrackersViewController: UIViewController {
             cancelSearchButton.widthAnchor.constraint(equalToConstant: 83)
         ])
     }
-
+    
     private func reloadPlaceholders(for type: PlaceholdersTypes) {
         if visibleCategories.isEmpty {
             imagePlaceholder.isHidden = false
@@ -191,7 +191,7 @@ final class TrackersViewController: UIViewController {
                 tracker.name.lowercased().contains(filterText)
                 let dateCondition = tracker.schedule.contains(where: {$0 == filterDayOfWeek})
                 return textCondition && dateCondition
-                }
+            }
             if trackers.isEmpty {
                 return nil
             }
@@ -199,11 +199,10 @@ final class TrackersViewController: UIViewController {
                 headerName: category.headerName,
                 trackerArray: trackers
             )
-            }
+        }
         collectionView.reloadData()
         reloadPlaceholders(for: .noTrackers)
-        }
-    
+    }
     
     //MARK: - @OBJC Methods
     @objc private func addTrackerButtonTapped() {
@@ -302,7 +301,7 @@ extension TrackersViewController: UITextFieldDelegate {
     
     private func searchText(in categories: [TrackerCategory], textForSearching: String, weekDay: Int) -> [TrackerCategory] {
         var searchedCategories: [TrackerCategory] = []
-
+        
         for category in categories {
             var trackers: [Tracker] = []
             for tracker in category.trackerArray {

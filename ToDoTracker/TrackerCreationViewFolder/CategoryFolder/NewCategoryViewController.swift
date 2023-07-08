@@ -17,8 +17,8 @@ final class NewCategoryViewController: UIViewController {
     private let newCategoryTextField: UITextField = {
         let newCategoryTextField = UITextField()
         newCategoryTextField.translatesAutoresizingMaskIntoConstraints = false
-        newCategoryTextField.backgroundColor = .YPBackground
-        newCategoryTextField.textColor = .YPWhite
+        newCategoryTextField.backgroundColor = .YPBackgroundDay
+        newCategoryTextField.textColor = .YPBlack
         newCategoryTextField.clearButtonMode = .whileEditing
         newCategoryTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: newCategoryTextField.frame.height))
         newCategoryTextField.leftViewMode = .always
@@ -46,7 +46,7 @@ final class NewCategoryViewController: UIViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .YPBlack
+        view.backgroundColor = .YPWhite
         
         newCategoryTextField.delegate = self
         readyButton.isEnabled = false
@@ -93,10 +93,20 @@ extension NewCategoryViewController: UITextFieldDelegate {
         if let text = textField.text,
            text.count >= 3 {
             readyButton.isEnabled = true
-            readyButton.backgroundColor = .YPWhite
+            readyButton.backgroundColor = .YPBlack
+            readyButton.setTitleColor(.YPWhite, for: .normal)
         } else {
             readyButton.isEnabled = false
             readyButton.backgroundColor = .YPGrey
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // Закрывает клавиатуру при нажатии кнопки "Ввод"
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder() // Закрывает клавиатуру при нажатии на свободную область
     }
 }

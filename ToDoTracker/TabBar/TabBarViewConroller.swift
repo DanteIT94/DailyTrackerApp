@@ -17,9 +17,16 @@ final class TabBarViewController: UITabBarController {
     
     //MARK: -Private Methods
     private func createTabViewController() {
-        tabBar.isTranslucent = false
+//        tabBar.isTranslucent = false
+//        tabBar.tintColor = .white
+        tabBar.backgroundColor = .YPWhite
         tabBar.barTintColor = .YPBlue
-        tabBar.tintColor = .white
+        // Создайте разделительную линию
+          let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
+          separatorLine.backgroundColor = UIColor.lightGray
+          
+          // Добавьте разделительную линию на TabBar
+          tabBar.addSubview(separatorLine)
         
         let trackersViewController = TrackersViewController()
         let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)

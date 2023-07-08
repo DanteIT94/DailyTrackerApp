@@ -26,7 +26,7 @@ final class SwitchCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSwitcher()
-//        accessoryView = switcher
+        //        accessoryView = switcher
         selectionStyle = .none
         
         switcher.addTarget(self, action: #selector(switcherValueChanged), for: .valueChanged)
@@ -39,7 +39,7 @@ final class SwitchCell: UITableViewCell {
     
     private func setupSwitcher() {
         textLabel?.font = UIFont.systemFont(ofSize: 17)
-        textLabel?.textColor = UIColor.YPWhite
+        textLabel?.textColor = UIColor.YPBlack
         contentView.addSubview(switcher)
         
         NSLayoutConstraint.activate([

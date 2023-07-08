@@ -19,8 +19,8 @@ final class NewHabitViewController: UIViewController {
     private let habitTextField: UITextField = {
         let habitTextField = UITextField()
         habitTextField.translatesAutoresizingMaskIntoConstraints = false
-        habitTextField.backgroundColor = .YPBackground
-        habitTextField.textColor = .YPWhite
+        habitTextField.backgroundColor = .YPBackgroundDay
+        habitTextField.textColor = .YPBlack
         habitTextField.clearButtonMode = .whileEditing
         habitTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: habitTextField.frame.height))
         habitTextField.leftViewMode = .always
@@ -34,7 +34,7 @@ final class NewHabitViewController: UIViewController {
     private let habitTableView: UITableView = {
         let habitTableView = UITableView()
         habitTableView.translatesAutoresizingMaskIntoConstraints = false
-        habitTableView.backgroundColor = .YPBlack
+        habitTableView.backgroundColor = .YPWhite
         return habitTableView
     }()
     
@@ -67,14 +67,13 @@ final class NewHabitViewController: UIViewController {
     private var category: String?
     private var choosedDays: [Int] = []
     private var choosedCategoryIndex: Int?
-    private var buttonIsEnabled = false
     
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         habitTextField.delegate = self
-        view.backgroundColor = .YPBlack
+        view.backgroundColor = .YPWhite
         createHabitLayout()
     }
     
@@ -82,14 +81,14 @@ final class NewHabitViewController: UIViewController {
     
     private func createHabitLayout() {
         navigationItem.title = "Новая привычка"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         
         habitTableView.dataSource = self
         habitTableView.delegate = self
         habitTableView.register(NewHabitCell.self, forCellReuseIdentifier: NewHabitCell.reuseIdentifier)
         habitTableView.separatorStyle = .singleLine
-        habitTableView.separatorColor = .YPWhite
+        habitTableView.separatorColor = .YPGrey
         
         [habitTextField, habitTableView, cancelButton, createHabitButton].forEach {
             view.addSubview($0)
@@ -119,6 +118,20 @@ final class NewHabitViewController: UIViewController {
         ])
     }
     
+    private func checkButtonAccessability() {
+        if habitTextField.text?.isEmpty == false,
+              category != nil,
+              choosedDays.isEmpty == false {
+            createHabitButton.isEnabled = true
+            createHabitButton.backgroundColor = .YPBlack
+            createHabitButton.setTitleColor(.YPWhite, for: .normal)
+
+        } else {
+            createHabitButton.isEnabled = false
+            createHabitButton.backgroundColor = .YPGrey
+        }
+    }
+    
     //MARK: -OBJC Methods
     @objc func cancelButtonTapped() {
         dismiss(animated: true)
@@ -130,9 +143,9 @@ final class NewHabitViewController: UIViewController {
         let category: String = category ?? ""
         if let delegate = delegate {
             delegate.addNewTracker(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
-            } else {
-                print("Delegate is not set")
-            }
+        } else {
+            print("Delegate is not set")
+        }
         dismiss(animated: true)
     }
 }
@@ -165,7 +178,7 @@ extension NewHabitViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewHabitCell.reuseIdentifier, for: indexPath) as! NewHabitCell
-        cell.backgroundColor = .YPBackground
+        cell.backgroundColor = .YPBackgroundDay
         
         if indexPath.row == 0 {
             cell.textLabel?.text = "Категории"
@@ -208,7 +221,7 @@ extension NewHabitViewController: CategoryViewControllerDelegate {
         }
         self.category = category
         choosedCategoryIndex = index
-        habitTableView.reloadData()
+        checkButtonAccessability()
     }
 }
 //Доп текст на ячейке "Расписание"
@@ -232,30 +245,41 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
         if let cell = habitTableView.cellForRow(at: indexPath) as? NewHabitCell {
             cell.detailTextLabel?.text = daysView
         }
-        habitTableView.reloadData()
+        checkButtonAccessability()
     }
 }
 
 //MARK: - UITextFieldDelegate
 extension NewHabitViewController: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let text = textField.text,
-              text.count >= 3,
-              category != nil,
-              !choosedDays.isEmpty else {
-            createHabitButton.isEnabled = false
-            createHabitButton.backgroundColor = .YPGrey
-            return
-        }
-        createHabitButton.isEnabled = true
-        createHabitButton.backgroundColor = .YPWhite
-        createHabitButton.setTitleColor(.YPBlack, for: .normal)
-    }
+//    func textFieldDidChangeSelection(_ textField: UITextField) {
+//        guard let text = textField.text,
+//              text.count >= 3,
+//              category != nil,
+//              !choosedDays.isEmpty else {
+//            createHabitButton.isEnabled = false
+//            createHabitButton.backgroundColor = .YPGrey
+//            return
+//        }
+//        createHabitButton.isEnabled = true
+//        createHabitButton.backgroundColor = .YPWhite
+//        createHabitButton.setTitleColor(.YPBlack, for: .normal)
+//    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if category == nil || choosedDays.isEmpty {
             showReminderAlert()
+            textField.resignFirstResponder()
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        checkButtonAccessability()
+        habitTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder() // Закрывает клавиатуру при нажатии на свободную область
     }
     
     private func showReminderAlert() {

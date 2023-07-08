@@ -15,6 +15,7 @@ extension UIColor {
     static let YPBlue = UIColor(named: "YPBlue")
     static let YPGrey = UIColor(named: "YPGrey")
     static let YPLightGrey = UIColor(named: "YPLightGrey")
+    static let YPBackgroundDay = UIColor(named: "YPBackgroundDay")
 }
 
 //Цвета для UICollectionView!

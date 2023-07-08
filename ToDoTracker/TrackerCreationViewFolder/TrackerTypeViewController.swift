@@ -13,9 +13,9 @@ final class NewTrackerTypeViewController: UIViewController {
     private let habitButton: UIButton = {
         let habitButton = UIButton()
         habitButton.translatesAutoresizingMaskIntoConstraints = false
-        habitButton.setTitle("Привычки", for: .normal)
-        habitButton.setTitleColor(.YPBlack, for: .normal)
-        habitButton.backgroundColor = .YPWhite
+        habitButton.setTitle("Привычка", for: .normal)
+        habitButton.setTitleColor(.YPWhite, for: .normal)
+        habitButton.backgroundColor = .YPBlack
         habitButton.layer.cornerRadius = 16
         habitButton.layer.masksToBounds = true
         habitButton.imageView?.contentMode = .scaleAspectFill
@@ -27,9 +27,9 @@ final class NewTrackerTypeViewController: UIViewController {
     private let eventButton: UIButton = {
         let eventButton = UIButton()
         eventButton.translatesAutoresizingMaskIntoConstraints = false
-        eventButton.setTitle("Нерегулярные события", for: .normal)
-        eventButton.setTitleColor(.YPBlack, for: .normal)
-        eventButton.backgroundColor = .YPWhite
+        eventButton.setTitle("Нерегулярное событие", for: .normal)
+        eventButton.setTitleColor(.YPWhite, for: .normal)
+        eventButton.backgroundColor = .YPBlack
         eventButton.layer.cornerRadius = 16
         eventButton.layer.masksToBounds = true
         eventButton.imageView?.contentMode = .scaleAspectFill
@@ -39,13 +39,13 @@ final class NewTrackerTypeViewController: UIViewController {
     }()
     
     private var newHabitViewController: UIViewController?
-//    private var newEventViewController: UIViewController?
+    //    private var newEventViewController: UIViewController?
     
     //MARK: -Initizlizer
     init(newHabitViewController: UIViewController?) {
         super.init(nibName: nil, bundle: nil)
         self.newHabitViewController = newHabitViewController
-//        self.newEventViewController = newEventViewController
+        //        self.newEventViewController = newEventViewController
     }
     
     required init?(coder: NSCoder) {
@@ -56,14 +56,14 @@ final class NewTrackerTypeViewController: UIViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .YPBlack
+        view.backgroundColor = .YPWhite
         createLayout()
     }
     
     //MARK: - Private Methods
     private func createLayout() {
         navigationItem.title = "Создание Трекера"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         
         [habitButton, eventButton].forEach {
             view.addSubview($0)

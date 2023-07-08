@@ -31,7 +31,7 @@ final class NewHabitCell: UITableViewCell {
     
     func setupCell() {
         textLabel?.font = UIFont.systemFont(ofSize: 17)
-        textLabel?.textColor = UIColor.YPWhite
+        textLabel?.textColor = UIColor.YPBlack
         detailTextLabel?.textColor = UIColor.YPGrey
         
         layoutMargins = .zero

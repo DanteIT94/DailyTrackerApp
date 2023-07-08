@@ -19,7 +19,7 @@ final class CategoryViewController: UIViewController {
     private var categoryTableView: UITableView = {
         let categoryTableView = UITableView()
         categoryTableView.translatesAutoresizingMaskIntoConstraints = false
-        categoryTableView.backgroundColor = .YPBlack
+        categoryTableView.backgroundColor = .YPWhite
         return categoryTableView
     }()
     
@@ -40,7 +40,7 @@ final class CategoryViewController: UIViewController {
                                 """
         textPlaceholder.textAlignment = .center
         textPlaceholder.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        textPlaceholder.textColor = .YPWhite
+        textPlaceholder.textColor = .YPBlack
         textPlaceholder.numberOfLines = 2
         textPlaceholder.isHidden = false
         return textPlaceholder
@@ -50,8 +50,8 @@ final class CategoryViewController: UIViewController {
         let addCategoryButton = UIButton()
         addCategoryButton.translatesAutoresizingMaskIntoConstraints = false
         addCategoryButton.setTitle("Добавить категорию", for: .normal)
-        addCategoryButton.setTitleColor(.YPBlack, for: .normal)
-        addCategoryButton.backgroundColor = .YPWhite
+        addCategoryButton.setTitleColor(.YPWhite, for: .normal)
+        addCategoryButton.backgroundColor = .YPBlack
         addCategoryButton.layer.cornerRadius = 16
         addCategoryButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         addCategoryButton.addTarget(nil, action: #selector(addCategoryButtonTapped), for: .touchUpInside)
@@ -59,7 +59,7 @@ final class CategoryViewController: UIViewController {
     }()
     
     //MARK: -Business - Logic Properties
-
+    
     private var categoryArray: [String] = ["Важные"]
     private var choosedCategoryIndex: Int?
     private var categoryTableViewHeightConstraint: NSLayoutConstraint?
@@ -77,11 +77,11 @@ final class CategoryViewController: UIViewController {
     //MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .YPBlack
+        view.backgroundColor = .YPWhite
         createCategoryLayout()
         hidePlaceholders()
     }
-
+    
     //MARK: -Private Methods
     private func createCategoryLayout() {
         navigationItem.title = "Категории"
@@ -92,7 +92,7 @@ final class CategoryViewController: UIViewController {
         categoryTableView.delegate = self
         categoryTableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.reuseIdentifier)
         categoryTableView.separatorStyle = .singleLine
-        categoryTableView.separatorColor = .YPWhite
+        categoryTableView.separatorColor = .YPGrey
         //---------------------------------------
         categoryTableViewHeightConstraint = categoryTableView.heightAnchor.constraint(equalToConstant: CGFloat(categoryArray.count * 75))
         categoryTableViewHeightConstraint?.isActive = true
@@ -124,6 +124,10 @@ final class CategoryViewController: UIViewController {
             textPlaceholder.isHidden = true
             imagePlaceholder.isHidden = true
         }
+    }
+    
+    private func updateCategoryTableViewHeight() {
+        categoryTableViewHeightConstraint?.constant = CGFloat(categoryArray.count * 75)
     }
     
     //MARK: -@OBJC Methods
@@ -158,7 +162,7 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
-        cell.backgroundColor = .YPBackground
+        cell.backgroundColor = .YPBackgroundDay
         cell.textLabel?.text =  categoryArray[indexPath.row]
         
         return cell
@@ -194,12 +198,6 @@ extension CategoryViewController: UITableViewDataSource {
                 categoryCell.layer.cornerRadius = 0
             }
         }
-    }
-}
-
-extension CategoryViewController {
-    private func updateCategoryTableViewHeight() {
-        categoryTableViewHeightConstraint?.constant = CGFloat(categoryArray.count * 75)
     }
 }
 
