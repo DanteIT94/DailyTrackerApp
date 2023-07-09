@@ -25,7 +25,7 @@ final class NewEventViewController: UIViewController {
         eventTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: eventTextField.frame.height))
         eventTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
-        eventTextField.attributedPlaceholder = NSAttributedString(string: "Название события(не менее 3 символов)", attributes: attributes)
+        eventTextField.attributedPlaceholder = NSAttributedString(string: "Введите название трекера", attributes: attributes)
         eventTextField.layer.masksToBounds = true
         eventTextField.layer.cornerRadius = 16
         return eventTextField
@@ -60,13 +60,14 @@ final class NewEventViewController: UIViewController {
         createEventButton.backgroundColor = .YPGrey
         createEventButton.layer.cornerRadius = 16
         createEventButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        createEventButton.isEnabled = false
         createEventButton.addTarget(nil, action: #selector(createEventButtonTapped), for: .touchUpInside)
         return createEventButton
     }()
     
     private var category: String?
     private var choosedCategoryIndex: Int?
-    private var choosedDays: [Int] = [0, 1, 2, 3, 4, 5, 6]
+    private var choosedDays: [Int] = Array(0...6)
     
     
     //MARK: -LifeCycle
@@ -119,8 +120,9 @@ final class NewEventViewController: UIViewController {
     }
     
     private func checkButtonAccessability() {
-        if eventTextField.text?.isEmpty == false,
-           category != nil {
+        if  let text = eventTextField.text,
+            !text.isEmpty,
+            category != nil {
             createEventButton.isEnabled = true
             createEventButton.backgroundColor = .YPBlack
             createEventButton.setTitleColor(.YPWhite, for: .normal)
@@ -132,11 +134,11 @@ final class NewEventViewController: UIViewController {
     }
     
     //MARK: -OBJC Methods
-    @objc func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         dismiss(animated: true)
     }
     
-    @objc func createEventButtonTapped() {
+    @objc private func createEventButtonTapped() {
         let text: String = eventTextField.text ?? ""
         let category: String = category ?? ""
         if let delegate = delegate {
@@ -243,18 +245,3 @@ extension NewEventViewController: UITextFieldDelegate {
         present(alertController, animated: true, completion: nil)
     }
 }
-
-
-
-//    //MARK: -Доделать чуть позже
-//    private let emojiCollection: UICollectionView = {
-//        let emojiCollection = UICollectionView()
-//
-//        return emojiCollection
-//    }()
-//
-//    private let colorsCollection: UICollectionView = {
-//        let colorsCollection = UICollectionView()
-//
-//        return colorsCollection
-//    }()

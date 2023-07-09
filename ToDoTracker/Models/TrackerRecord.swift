@@ -10,7 +10,6 @@ import UIKit
 ///Сущность для хранения записи о том, что некий трекер был выполнен на некот. дату
 struct TrackerRecord {
     let id: UUID
-    ///Требуется sпроверка!!
     let date: String
 }
 

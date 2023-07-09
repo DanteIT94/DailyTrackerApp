@@ -25,7 +25,7 @@ final class NewHabitViewController: UIViewController {
         habitTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: habitTextField.frame.height))
         habitTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
-        habitTextField.attributedPlaceholder = NSAttributedString(string: "Название трекера(не менее 3 символов)", attributes: attributes)
+        habitTextField.attributedPlaceholder = NSAttributedString(string: "Введите название трекера", attributes: attributes)
         habitTextField.layer.masksToBounds = true
         habitTextField.layer.cornerRadius = 16
         return habitTextField
@@ -60,6 +60,7 @@ final class NewHabitViewController: UIViewController {
         createHabitButton.backgroundColor = .YPGrey
         createHabitButton.layer.cornerRadius = 16
         createHabitButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        createHabitButton.isEnabled = false
         createHabitButton.addTarget(nil, action: #selector(createHabitButtonTapped), for: .touchUpInside)
         return createHabitButton
     }()
@@ -120,12 +121,12 @@ final class NewHabitViewController: UIViewController {
     
     private func checkButtonAccessability() {
         if habitTextField.text?.isEmpty == false,
-              category != nil,
-              choosedDays.isEmpty == false {
+           category != nil,
+           choosedDays.isEmpty == false {
             createHabitButton.isEnabled = true
             createHabitButton.backgroundColor = .YPBlack
             createHabitButton.setTitleColor(.YPWhite, for: .normal)
-
+            
         } else {
             createHabitButton.isEnabled = false
             createHabitButton.backgroundColor = .YPGrey
@@ -133,11 +134,11 @@ final class NewHabitViewController: UIViewController {
     }
     
     //MARK: -OBJC Methods
-    @objc func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         dismiss(animated: true)
     }
     
-    @objc func createHabitButtonTapped() {
+    @objc private func createHabitButtonTapped() {
         let text: String = habitTextField.text ?? ""
         let category: String = category ?? ""
         if let delegate = delegate {
@@ -275,17 +276,3 @@ extension NewHabitViewController: UITextFieldDelegate {
     }
 }
 
-
-
-//    //MARK: -Доделать чуть позже
-//    private let emojiCollection: UICollectionView = {
-//        let emojiCollection = UICollectionView()
-//
-//        return emojiCollection
-//    }()
-//
-//    private let colorsCollection: UICollectionView = {
-//        let colorsCollection = UICollectionView()
-//
-//        return colorsCollection
-//    }()

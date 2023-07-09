@@ -85,7 +85,7 @@ final class CategoryViewController: UIViewController {
     //MARK: -Private Methods
     private func createCategoryLayout() {
         navigationItem.title = "Категории"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         //---------------------------------------
         categoryTableView.dataSource = self
@@ -132,7 +132,7 @@ final class CategoryViewController: UIViewController {
     
     //MARK: -@OBJC Methods
     
-    @objc func addCategoryButtonTapped() {
+    @objc private func addCategoryButtonTapped() {
         let newCategoryVC = NewCategoryViewController()
         newCategoryVC.delegate = self
         navigationController?.pushViewController(newCategoryVC, animated: true)

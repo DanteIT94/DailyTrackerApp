@@ -70,7 +70,7 @@ final class ScheduleViewController: UIViewController {
     // MARK: - Private Methods
     private func createScheduleLayout() {
         navigationItem.title = "Расписание"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPWhite") ?? UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         
         weekdayTableView.dataSource = self
@@ -118,7 +118,7 @@ final class ScheduleViewController: UIViewController {
         days = weekdays.map { $0.capitalizeFirstLetter() }
     }
     
-    @objc func okButtonTapped() {
+    @objc private func okButtonTapped() {
         finalList.removeAll()
         
         let tableView = weekdayTableView

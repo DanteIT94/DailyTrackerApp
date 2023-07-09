@@ -17,8 +17,6 @@ final class TabBarViewController: UITabBarController {
     
     //MARK: -Private Methods
     private func createTabViewController() {
-//        tabBar.isTranslucent = false
-//        tabBar.tintColor = .white
         tabBar.backgroundColor = .YPWhite
         tabBar.barTintColor = .YPBlue
         // Создайте разделительную линию

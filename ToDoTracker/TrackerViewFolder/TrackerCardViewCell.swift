@@ -131,7 +131,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         }
         switch remainder {
         case 1:
-            return "дней"
+            return "день"
         case 2, 3, 4:
             return "дня"
         default:
@@ -159,7 +159,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
     //✅
     func dayCheckButtonIsEnabled() {
         guard let viewModel = viewModel,
-            let selectedDate = TrackersViewController.selectedDate else { return }
+              let selectedDate = TrackersViewController.selectedDate else { return }
         let currentDate = Date()
         let calendar = Calendar.current
         let isButtonEnabled = calendar.compare(currentDate, to: selectedDate, toGranularity: .day) != .orderedAscending
@@ -175,7 +175,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
     
     //MARK: -@OBJC Methods
     //✅🚫
-    @objc func dayCheckButtonTapped(_ sender: UIButton) {
+    @objc private func dayCheckButtonTapped(_ sender: UIButton) {
         viewModel?.buttonIsChecked.toggle()
         dayCheckButtonState()
         guard let viewModel = viewModel else { return }
