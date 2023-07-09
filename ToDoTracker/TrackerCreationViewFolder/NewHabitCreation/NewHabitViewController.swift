@@ -120,7 +120,8 @@ final class NewHabitViewController: UIViewController {
     }
     
     private func checkButtonAccessability() {
-        if habitTextField.text?.isEmpty == false,
+        if let text = habitTextField.text,
+           !text.isEmpty,
            category != nil,
            choosedDays.isEmpty == false {
             createHabitButton.isEnabled = true

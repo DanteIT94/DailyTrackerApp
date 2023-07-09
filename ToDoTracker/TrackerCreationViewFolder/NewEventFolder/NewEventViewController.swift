@@ -81,7 +81,7 @@ final class NewEventViewController: UIViewController {
     //MARK: - Private Methods
     
     private func createEventLayout() {
-        navigationItem.title = "Новая нерегулярное событие"
+        navigationItem.title = "Новое нерегулярное событие"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         
