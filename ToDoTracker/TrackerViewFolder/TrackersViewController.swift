@@ -84,7 +84,7 @@ final class TrackersViewController: UIViewController {
         return textPlaceholder
     }()
     
-    private var categories: [TrackerCategory] = MockData.MockCategories.categories
+    private var categories: [TrackerCategory] = []
     //MockData.MockCategories.categories
     private var visibleCategories: [TrackerCategory] = []
     private var completedTrackers: Set<TrackerRecord> = []
