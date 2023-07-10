@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7B3E2DC3-FEB5-4549-90F2-A441458F2564"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CA2BA13-322D-4555-919B-1D59A842E7E5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackerCardViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "configCell(viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F901ABF5-DF43-4CBC-9524-B2D045CB5C77"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09A1537A-B672-4C23-A52C-B93265EE4419"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD505518-BB14-4CCE-80D6-8BFC54462A4A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "configCollectionView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0BA76E98-CFF4-46C3-B6EF-03DA13DF2B84"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7CDDBE67-3F4B-4AE9-8418-394A6DF532A1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E89ED16A-CE21-493D-953F-3572A5359832"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "createHabitButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B4D3F50-4646-4BD0-B54A-E5B0091E9304"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "addNewHabit(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B4D3F50-4646-4BD0-B54A-E5B0091E9304 - ec473552e7aea738"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackersViewController.addNewTracker(trackerCategory: ToDoTracker.TrackerCategory) -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "245"
+                  endingLineNumber = "245"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "2B4D3F50-4646-4BD0-B54A-E5B0091E9304 - f4db1812dff3b43d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackersViewController.addNewTracker(ToDoTracker.TrackerCategory) -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "245"
+                  endingLineNumber = "245"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "2B4D3F50-4646-4BD0-B54A-E5B0091E9304 - f4db1812dff3aacb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackersViewController.addNewTracker(ToDoTracker.TrackerCategory) -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "2B4D3F50-4646-4BD0-B54A-E5B0091E9304 - f4db1812dff3aacb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackersViewController.addNewTracker(ToDoTracker.TrackerCategory) -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "148">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC8E36BA-D0F6-4CB1-A712-74F7E84C12D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "000FEBBE-B920-4581-9C52-037D59778DE2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "configViewModel(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98EB5DEC-9E0E-4172-995F-55814FCA2B31"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackerCardViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "configCell(viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5EC9FBF3-B8C4-4AFD-BF03-68D6486737FF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "dayCheckButtonTapped(viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "585044CE-6569-4409-8F52-8EE906C5F834"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69B176F1-2AE3-4364-BF98-68A3D933BF94"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
+            landmarkName = "dayCheckButtonTapped(viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17435837-032C-4168-ADEC-628FBE9C2763"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "NewHabitViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "17435837-032C-4168-ADEC-628FBE9C2763 - af007ae25550209b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; ToDoTracker.NewHabitViewController"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "352">
+               </Location>
+               <Location
+                  uuid = "17435837-032C-4168-ADEC-628FBE9C2763 - 856e2c44c030f5f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ToDoTracker.NewHabitViewController&gt;"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "320">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5AB798F-7E74-4DD3-9F16-28C3F37178F6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D20433A-F801-492C-9041-553939133A95"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2106D6BA-2BEC-4B82-AC0C-EEFCD34EA88D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "searchTextFieldEditingChanged()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C5D0865-CF4F-47FE-8F8F-4FE9F7DFFF0C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackerCardViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "dayCheckButtonIsEnabled()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFF9E631-BBA3-4763-B905-091E9CAC4C53"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackerCardViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "dayCheckButtonIsEnabled()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CFF9E631-BBA3-4763-B905-091E9CAC4C53 - dcada848580d7b5a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackerCardViewCell.dayCheckButtonIsEnabled() -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackerCardViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "308">
+               </Location>
+               <Location
+                  uuid = "CFF9E631-BBA3-4763-B905-091E9CAC4C53 - dcada848580d7b9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackerCardViewCell.dayCheckButtonIsEnabled() -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackerCardViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "1016">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
