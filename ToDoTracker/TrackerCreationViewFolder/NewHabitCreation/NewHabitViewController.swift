@@ -38,6 +38,12 @@ final class NewHabitViewController: UIViewController {
         return habitTableView
     }()
     
+    private let habitScrollView: UIScrollView = {
+       let scrollView = UIScrollView()
+        
+        return scrollView
+    }()
+    
     private let cancelButton: UIButton = {
         let cancelButton = UIButton()
         cancelButton.translatesAutoresizingMaskIntoConstraints = false

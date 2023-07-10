@@ -110,8 +110,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "createHabitButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -300,8 +300,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "NewHabitViewController"
             landmarkType = "3">
             <Locations>
@@ -348,8 +348,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -364,8 +364,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
