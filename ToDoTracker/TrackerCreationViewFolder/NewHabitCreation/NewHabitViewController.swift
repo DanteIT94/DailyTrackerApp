@@ -123,7 +123,7 @@ final class NewHabitViewController: UIViewController {
         if let text = habitTextField.text,
            !text.isEmpty,
            category != nil,
-           choosedDays.isEmpty == false {
+           !choosedDays.isEmpty {
             createHabitButton.isEnabled = true
             createHabitButton.backgroundColor = .YPBlack
             createHabitButton.setTitleColor(.YPWhite, for: .normal)
@@ -144,8 +144,6 @@ final class NewHabitViewController: UIViewController {
         let category: String = category ?? ""
         if let delegate = delegate {
             delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
-        } else {
-            print("Delegate is not set")
         }
         dismiss(animated: true)
     }

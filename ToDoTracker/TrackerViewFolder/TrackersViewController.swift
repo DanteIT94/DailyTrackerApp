@@ -84,6 +84,7 @@ final class TrackersViewController: UIViewController {
         return textPlaceholder
     }()
     
+    //MARK: -Variables
     private var categories: [TrackerCategory] = []
     //MockData.MockCategories.categories
     private var visibleCategories: [TrackerCategory] = []
