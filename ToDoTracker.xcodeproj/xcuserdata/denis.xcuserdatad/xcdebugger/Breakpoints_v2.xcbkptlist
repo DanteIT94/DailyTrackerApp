@@ -110,8 +110,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "createHabitButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -300,8 +300,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "NewHabitViewController"
             landmarkType = "3">
             <Locations>
@@ -348,8 +348,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -364,8 +364,8 @@
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,6 +446,180 @@
                   startingLineNumber = "167"
                   endingLineNumber = "167"
                   offsetFromSymbolStart = "1016">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D226E69D-C25C-4DD7-B588-0D45C672ECCE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "configureColorEmojiCollectionView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D226E69D-C25C-4DD7-B588-0D45C672ECCE - 37c8881e5ef63bdf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.configureColorEmojiCollectionView() -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "D226E69D-C25C-4DD7-B588-0D45C672ECCE - 37c8881e5ef639ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.configureColorEmojiCollectionView() -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52BD2793-E6ED-4ACF-8C32-0B035A171342"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
+            landmarkName = "NewHabitViewController"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "52BD2793-E6ED-4ACF-8C32-0B035A171342 - 1b9d8be6929e3e04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.tableView(_: __C.UITableView, numberOfRowsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "330"
+                  endingLineNumber = "330"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "52BD2793-E6ED-4ACF-8C32-0B035A171342 - 8bec898d95edaf8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.collectionView(_: __C.UICollectionView, layout: __C.UICollectionViewLayout, sizeForItemAt: Foundation.IndexPath) -&gt; __C.CGSize"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "330"
+                  endingLineNumber = "330"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E9A0C6E-92F4-43CF-922F-01229E521A8B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "contentView"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0E9A0C6E-92F4-43CF-922F-01229E521A8B - a74191325fb8b56f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; __C.UIView in variable initialization expression of ToDoTracker.NewHabitViewController.contentView : __C.UIView"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "0E9A0C6E-92F4-43CF-922F-01229E521A8B - af007ae25550228a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; ToDoTracker.NewHabitViewController"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "352">
+               </Location>
+               <Location
+                  uuid = "0E9A0C6E-92F4-43CF-922F-01229E521A8B - 856e2c44c030f7e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.NewHabitViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ToDoTracker.NewHabitViewController&gt;"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "0E9A0C6E-92F4-43CF-922F-01229E521A8B - a74191325fb8b56f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; __C.UIView in variable initialization expression of ToDoTracker.NewHabitViewController.contentView : __C.UIView"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "24">
                </Location>
             </Locations>
          </BreakpointContent>
