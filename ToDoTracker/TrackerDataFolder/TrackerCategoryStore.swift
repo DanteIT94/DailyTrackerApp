@@ -8,6 +8,12 @@
 import Foundation
 import CoreData
 
+enum TrackerCategoryStoreError: Error {
+    case noTrackerInTrackerCategory
+    case decodingError
+    case fetchError
+}
+
 struct TrackerCategoryStoreUpdate {
     struct IndexUpdating: Hashable {
         let oldIndex: IndexPath
