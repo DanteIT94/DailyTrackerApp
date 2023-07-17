@@ -8,6 +8,17 @@
 import Foundation
 import CoreData
 
+struct TrackerCategoryStoreUpdate {
+    struct IndexUpdating: Hashable {
+        let oldIndex: IndexPath
+        let newIndex: IndexPath
+    }
+    let insertedIndexes: IndexPath
+    
+    
+}
+
+
 final class TrackerCategoryStore: NSObject {
     
 }

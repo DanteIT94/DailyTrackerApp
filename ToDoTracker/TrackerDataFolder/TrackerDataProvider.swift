@@ -8,7 +8,15 @@
 import Foundation
 import CoreData
 
-final class TrackerDataProvider {
+protocol TrackerDataProviderProtocol: AnyObject {
+    
+}
+
+protocol TrackerDataProviderDelegate: AnyObject {
+    
+}
+
+final class TrackerDataProvider: NSObject {
     
     
 }

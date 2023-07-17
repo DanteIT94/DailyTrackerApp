@@ -35,7 +35,6 @@
 		9250B1652A6487F2003C0E45 /* TrackerStore .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B1642A6487F2003C0E45 /* TrackerStore .swift */; };
 		9250B1672A648805003C0E45 /* TrackerCategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B1662A648805003C0E45 /* TrackerCategoryStore.swift */; };
 		9250B1692A648822003C0E45 /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B1682A648822003C0E45 /* TrackerRecordStore.swift */; };
-		9250B16B2A64954A003C0E45 /* TrackerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B16A2A64954A003C0E45 /* TrackerDataStore.swift */; };
 		9250B16D2A6571AD003C0E45 /* TrackerPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B16C2A6571AC003C0E45 /* TrackerPersistentContainer.swift */; };
 		9250B16F2A65736E003C0E45 /* TrackerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B16E2A65736E003C0E45 /* TrackerDataProvider.swift */; };
 		929669C72A62E00200606172 /* ColorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929669C62A62E00200606172 /* ColorViewCell.swift */; };
@@ -75,7 +74,6 @@
 		9250B1642A6487F2003C0E45 /* TrackerStore .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackerStore .swift"; sourceTree = "<group>"; };
 		9250B1662A648805003C0E45 /* TrackerCategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategoryStore.swift; sourceTree = "<group>"; };
 		9250B1682A648822003C0E45 /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
-		9250B16A2A64954A003C0E45 /* TrackerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDataStore.swift; sourceTree = "<group>"; };
 		9250B16C2A6571AC003C0E45 /* TrackerPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerPersistentContainer.swift; sourceTree = "<group>"; };
 		9250B16E2A65736E003C0E45 /* TrackerDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDataProvider.swift; sourceTree = "<group>"; };
 		929669C62A62E00200606172 /* ColorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewCell.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 			children = (
 				9250B1602A64871A003C0E45 /* TrackerCoreData.xcdatamodeld */,
 				9250B16E2A65736E003C0E45 /* TrackerDataProvider.swift */,
-				9250B16A2A64954A003C0E45 /* TrackerDataStore.swift */,
 				9250B16C2A6571AC003C0E45 /* TrackerPersistentContainer.swift */,
 				9250B1642A6487F2003C0E45 /* TrackerStore .swift */,
 				9250B1662A648805003C0E45 /* TrackerCategoryStore.swift */,
@@ -341,7 +338,6 @@
 				923F99AA2A4DE49B00CFCE9E /* NewCategoryViewController.swift in Sources */,
 				92E6D0B52A59B5180003809D /* NewEventCell.swift in Sources */,
 				923F99972A48D4E700CFCE9E /* TrackerCategory.swift in Sources */,
-				9250B16B2A64954A003C0E45 /* TrackerDataStore.swift in Sources */,
 				923F99992A48E09100CFCE9E /* TrackerRecord.swift in Sources */,
 				923F99AF2A4E21C200CFCE9E /* SwitchCell.swift in Sources */,
 				9250B16F2A65736E003C0E45 /* TrackerDataProvider.swift in Sources */,
