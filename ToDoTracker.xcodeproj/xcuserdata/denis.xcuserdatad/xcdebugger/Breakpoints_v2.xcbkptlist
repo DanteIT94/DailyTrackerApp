@@ -30,8 +30,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "configCollectionView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "addNewHabit(_:)"
             landmarkType = "7">
             <Locations>
@@ -191,6 +191,21 @@
                   endingLineNumber = "227"
                   offsetFromSymbolStart = "148">
                </Location>
+               <Location
+                  uuid = "2B4D3F50-4646-4BD0-B54A-E5B0091E9304 - 2dd0f32de9781ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackersViewController.addNewHabit(ToDoTracker.TrackerCategory) -&gt; ()"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "382"
+                  endingLineNumber = "382"
+                  offsetFromSymbolStart = "76">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -204,10 +219,42 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FC8E36BA-D0F6-4CB1-A712-74F7E84C12D3 - b8d698d8467bd321"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackersViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  uuid = "FC8E36BA-D0F6-4CB1-A712-74F7E84C12D3 - b8d698d8467bd340"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.TrackersViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "301"
+                  endingLineNumber = "301"
+                  offsetFromSymbolStart = "204">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -220,8 +267,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "configViewModel(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -252,8 +299,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "dayCheckButtonTapped(viewModel:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -268,8 +315,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -284,8 +331,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "dayCheckButtonTapped(viewModel:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -380,8 +427,8 @@
             filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "searchTextFieldEditingChanged()"
             landmarkType = "7">
          </BreakpointContent>
@@ -622,6 +669,38 @@
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3932A8AA-0CA9-4A23-B881-DAB517B99FCF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "configViewModel(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD918316-D895-46F2-A4CD-DA4D99E0E6C7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/TrackerViewFolder/TrackersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
+            landmarkName = "addNewHabit(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
