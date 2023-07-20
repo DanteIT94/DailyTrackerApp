@@ -19,9 +19,9 @@ struct TrackerCategoryStoreUpdate {
         let oldIndex: IndexPath
         let newIndex: IndexPath
     }
-    let insertedIndexes: IndexPath
-    let deletedIndexes: IndexPath
-    let updatedIndexes: IndexPath
+    let insertedIndexes: [IndexPath]
+    let deletedIndexes: [IndexPath]
+    let updatedIndexes: [IndexPath]
     let movedIndexes: [IndexMoving]
     
 }
