@@ -227,6 +227,7 @@ final class NewHabitViewController: UIViewController {
            choosedDays.isEmpty == false,
            choosedColor != nil,
            choosedEmoji != nil {
+
             createHabitButton.isEnabled = true
             createHabitButton.backgroundColor = .YPBlack
             createHabitButton.setTitleColor(.YPWhite, for: .normal)
@@ -247,8 +248,6 @@ final class NewHabitViewController: UIViewController {
         let category: String = category ?? ""
         if let delegate = delegate {
             delegate.addNewHabit(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: .colorSection5 ?? .green, emoji: "❤️", schedule: choosedDays)]))
-        } else {
-            print("Delegate is not set")
         }
         dismiss(animated: true)
     }
