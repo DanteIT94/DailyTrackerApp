@@ -1,5 +1,5 @@
 //
-//  TabBarViewConroller.swift
+//  TabBarViewController.swift
 //  ToDoTracker
 //
 //  Created by Денис on 21.06.2023.
@@ -11,22 +11,24 @@ final class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createTabViewController()
-        
-    }
-    
-    //MARK: -Private Methods
-    private func createTabViewController() {
         tabBar.backgroundColor = .YPWhite
         tabBar.barTintColor = .YPBlue
+        
         // Создайте разделительную линию
           let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
           separatorLine.backgroundColor = UIColor.lightGray
-          
-          // Добавьте разделительную линию на TabBar
           tabBar.addSubview(separatorLine)
         
-        let trackersViewController = TrackersViewController()
+        
+        let trackerContainer = TrackerPersistentContainer()
+        let trackerStore = TrackerStore(context: trackerContainer.context)
+        let trackerCategoryStore = TrackerCategoryStore(context: trackerContainer.context, trackerDataStore: trackerStore)
+        let trackerRecordStore = TrackerRecordStore(context: trackerContainer.context)
+        
+        let trackerDataController = TrackerDataController(trackerCategoryStore: trackerCategoryStore, trackerStore: trackerStore, trackerRecordStore: trackerRecordStore, context: trackerContainer.context)
+        
+        let trackersViewController = TrackersViewController(trackerDataController: trackerDataController)
+        
         let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
         trackersViewController.tabBarItem = UITabBarItem(
             title: "Трекеры",
@@ -41,5 +43,6 @@ final class TabBarViewController: UITabBarController {
             selectedImage: nil)
         
         self.viewControllers = [trackersNavigationController, statisticViewController]
+        
     }
 }

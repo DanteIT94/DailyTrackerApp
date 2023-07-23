@@ -59,15 +59,18 @@ final class CategoryViewController: UIViewController {
     }()
     
     //MARK: -Business - Logic Properties
-    
+//    private var trackerDataController: TrackerDataControllerProtocol
     private var categoryArray: [String] = ["Важные"]
+//    private var categoriesFromCoreData: [String]?
     private var choosedCategoryIndex: Int?
     private var categoryTableViewHeightConstraint: NSLayoutConstraint?
     
     //MARK: -Initializers:
     init(choosedCategoryIndex: Int?) {
-        super.init(nibName: nil, bundle: nil)
+//        self.trackerDataController = trackerDataController
         self.choosedCategoryIndex = choosedCategoryIndex
+        super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -80,6 +83,8 @@ final class CategoryViewController: UIViewController {
         view.backgroundColor = .YPWhite
         createCategoryLayout()
         hidePlaceholders()
+//        getHeaderNameFromTrackerCategories()
+//        categoryArray += categoriesFromCoreData ?? []
     }
     
     //MARK: -Private Methods
@@ -129,6 +134,12 @@ final class CategoryViewController: UIViewController {
     private func updateCategoryTableViewHeight() {
         categoryTableViewHeightConstraint?.constant = CGFloat(categoryArray.count * 75)
     }
+    
+//    private func getHeaderNameFromTrackerCategories() {
+//        let categories: [TrackerCategory] = trackerDataController.trackerCategories
+//        let headerNames: [String] = categories.map { $0.headerName }
+//        categoriesFromCoreData = headerNames
+//    }
     
     //MARK: -@OBJC Methods
     
