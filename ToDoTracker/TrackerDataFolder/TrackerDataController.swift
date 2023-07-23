@@ -78,7 +78,6 @@ extension TrackerDataController: TrackerDataControllerProtocol {
     func fetchTrackerCategoriesFor(weekday: Int, animated: Bool) {
         let predicate = NSPredicate(format: "ANY %K.%K == %ld", #keyPath(TrackerCoreData.schedule), #keyPath(ScheduleCoreData.weekday), weekday)
         var trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
-//            trackerCategories.sort(by: {$1.headerName > $0.headerName})
         delegate?.updateView(trackerCategories: trackerCategories, animated: animated)
     }
     

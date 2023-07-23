@@ -92,7 +92,11 @@ extension TrackerRecordStore: TrackerRecordStoreProtocol {
         
         do {
             let trackerCount = try context.count(for: fetchRequest)
-            return (trackerCount != 0) ? true : false
+            if trackerCount > 0 {
+                return true
+            } else {
+                return false
+            }
         } catch {
             print("Exacly tracker doesn't exisists - \(error)")
             return false

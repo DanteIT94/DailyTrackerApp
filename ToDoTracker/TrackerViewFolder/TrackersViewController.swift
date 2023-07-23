@@ -84,10 +84,7 @@ final class TrackersViewController: UIViewController {
         return textPlaceholder
     }()
     
-//    private var categories: [TrackerCategory] = []
-    //MockData.MockCategories.categories
     private var visibleCategories: [TrackerCategory] = []
-//    private var completedTrackers: Set<TrackerRecord> = []
     private var currentDate: Date = Date()
     
     //Для трекеров
@@ -373,10 +370,8 @@ extension TrackersViewController: TrackerCardViewCellDelegate {
     func dayCheckButtonTapped(viewModel: CellViewModel) {
         if viewModel.buttonIsChecked {
             trackerDataController.addTrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate))
-//            completedTrackers.insert(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
         } else {
             trackerDataController.deleteTrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate))
-//            completedTrackers.remove(TrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate)))
         }
         collectionView.reloadItems(at: [viewModel.indexPath])
     }
