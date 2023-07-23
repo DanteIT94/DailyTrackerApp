@@ -84,8 +84,7 @@ final class TrackersViewController: UIViewController {
         return textPlaceholder
     }()
     
-    //MARK: -Variables
-    private var categories: [TrackerCategory] = []
+    //MARK: -Variable
     private var visibleCategories: [TrackerCategory] = []
     private var currentDate: Date = Date()
     
