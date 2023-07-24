@@ -39,6 +39,7 @@
 		9250B16F2A65736E003C0E45 /* TrackerDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B16E2A65736E003C0E45 /* TrackerDataController.swift */; };
 		929669C72A62E00200606172 /* ColorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929669C62A62E00200606172 /* ColorViewCell.swift */; };
 		929669C92A62E0FE00606172 /* EmojiViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929669C82A62E0FE00606172 /* EmojiViewCell.swift */; };
+		92A3C4122A6E869B003D9452 /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C4112A6E869B003D9452 /* UIPageViewController.swift */; };
 		92E6D07A2A56F5070003809D /* MockHelpers .swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D0792A56F5070003809D /* MockHelpers .swift */; };
 		92E6D0B52A59B5180003809D /* NewEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D0B42A59B5180003809D /* NewEventCell.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		9250B16E2A65736E003C0E45 /* TrackerDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDataController.swift; sourceTree = "<group>"; };
 		929669C62A62E00200606172 /* ColorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewCell.swift; sourceTree = "<group>"; };
 		929669C82A62E0FE00606172 /* EmojiViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewCell.swift; sourceTree = "<group>"; };
+		92A3C4112A6E869B003D9452 /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
 		92E6D0792A56F5070003809D /* MockHelpers .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MockHelpers .swift"; sourceTree = "<group>"; };
 		92E6D0B42A59B5180003809D /* NewEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,11 +115,11 @@
 			isa = PBXGroup;
 			children = (
 				923F99B22A514FA400CFCE9E /* LifeCycleControllers */,
+				92A3C4102A6E867B003D9452 /* UIPageViewFolder */,
 				923F99862A42F47F00CFCE9E /* TabBar */,
 				923F99872A42F5EB00CFCE9E /* TrackerViewFolder */,
 				923F999E2A4AFF9C00CFCE9E /* TrackerCreationViewFolder */,
 				923F998A2A42F71C00CFCE9E /* StatisticViewFolder */,
-				923F99932A48D4B200CFCE9E /* Models */,
 				9250B15F2A6486F8003C0E45 /* TrackerDataFolder */,
 				923F99322A3C859D00CFCE9E /* Assets.xcassets */,
 				923F99342A3C859D00CFCE9E /* LaunchScreen.storyboard */,
@@ -236,6 +238,7 @@
 		9250B15F2A6486F8003C0E45 /* TrackerDataFolder */ = {
 			isa = PBXGroup;
 			children = (
+				923F99932A48D4B200CFCE9E /* Models */,
 				9250B1602A64871A003C0E45 /* TrackerCoreData.xcdatamodeld */,
 				9250B16E2A65736E003C0E45 /* TrackerDataController.swift */,
 				9250B16C2A6571AC003C0E45 /* TrackerPersistentContainer.swift */,
@@ -253,6 +256,14 @@
 				929669C82A62E0FE00606172 /* EmojiViewCell.swift */,
 			);
 			path = TrackerColorEmojiCell;
+			sourceTree = "<group>";
+		};
+		92A3C4102A6E867B003D9452 /* UIPageViewFolder */ = {
+			isa = PBXGroup;
+			children = (
+				92A3C4112A6E869B003D9452 /* UIPageViewController.swift */,
+			);
+			path = UIPageViewFolder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				923F99902A42F78C00CFCE9E /* StatisticViewController.swift in Sources */,
+				92A3C4122A6E869B003D9452 /* UIPageViewController.swift in Sources */,
 				923F99B42A51AB8B00CFCE9E /* String+Extension.swift in Sources */,
 				923F99B72A53262C00CFCE9E /* NewEventViewController.swift in Sources */,
 				923F99892A42F62000CFCE9E /* TabBarViewController.swift in Sources */,
