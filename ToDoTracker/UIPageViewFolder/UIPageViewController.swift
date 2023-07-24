@@ -34,7 +34,6 @@ final class OnboardingViewController: UIPageViewController {
             secondImageView.topAnchor.constraint(equalTo: secondPage.view.topAnchor),
             secondImageView.bottomAnchor.constraint(equalTo: secondPage.view.bottomAnchor)
         ])
-        
         return [firstPage, secondPage]
     }()
     
