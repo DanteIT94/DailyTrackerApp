@@ -127,6 +127,18 @@ final class NewHabitViewController: UIViewController {
     private var selectedColorCellIndexPath: IndexPath?
     private var selectedEmojiCellIndexPath: IndexPath?
     
+    //MARK: -ТЕСТ
+    private var trackerCategoryStore: TrackerCategoryStore
+    private let categoryViewModel: CategoryViewModel
+    init(trackerCategoryStore: TrackerCategoryStore, categoryViewModel:CategoryViewModel) {
+        self.trackerCategoryStore = trackerCategoryStore
+        self.categoryViewModel = categoryViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
@@ -227,6 +239,7 @@ final class NewHabitViewController: UIViewController {
            choosedDays.isEmpty == false,
            choosedColor != nil,
            choosedEmoji != nil {
+
             createHabitButton.isEnabled = true
             createHabitButton.backgroundColor = .YPBlack
             createHabitButton.setTitleColor(.YPWhite, for: .normal)
@@ -262,7 +275,7 @@ extension NewHabitViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let categoryVC = CategoryViewController(choosedCategoryIndex: choosedCategoryIndex)
+            let categoryVC = CategoryViewController(trackerCategoryStore: trackerCategoryStore, viewModel: categoryViewModel)
             categoryVC.delegate = self
             navigationController?.pushViewController(categoryVC, animated: true)
         } else if indexPath.row == 1 {

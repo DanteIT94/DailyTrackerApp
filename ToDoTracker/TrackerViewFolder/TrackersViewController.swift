@@ -87,6 +87,7 @@ final class TrackersViewController: UIViewController {
     //MARK: -Variable
     private var visibleCategories: [TrackerCategory] = []
     private var currentDate: Date = Date()
+    private let categoryViewModel: CategoryViewModel
     
     //Для трекеров
     private var insertedIndexesInSearchTextField: [IndexPath] = []
@@ -97,10 +98,14 @@ final class TrackersViewController: UIViewController {
     
     //Блок корДаты
     private let trackerDataController: TrackerDataControllerProtocol
+    private var trackerCategoryStore: TrackerCategoryStore
+    
     
     //MARK: -Initializers
-    init(trackerDataController: TrackerDataControllerProtocol) {
+    init(trackerDataController: TrackerDataControllerProtocol, trackerCategoryStore: TrackerCategoryStore, categoryViewModel: CategoryViewModel) {
         self.trackerDataController = trackerDataController
+        self.trackerCategoryStore = trackerCategoryStore
+        self.categoryViewModel = categoryViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -229,9 +234,9 @@ final class TrackersViewController: UIViewController {
     
     //MARK: - @OBJC Methods
     @objc private func addTrackerButtonTapped() {
-        let newHabitViewController = NewHabitViewController()
+        let newHabitViewController = NewHabitViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
         newHabitViewController.delegate = self
-        let newEventViewController = NewEventViewController()
+        let newEventViewController = NewEventViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
         newEventViewController.delegate = self
         let NewTrackerTypeViewController = NewTrackerTypeViewController(newHabitViewController: newHabitViewController, newEventViewController: newEventViewController)
         let modalNavigationController = UINavigationController(rootViewController: NewTrackerTypeViewController)

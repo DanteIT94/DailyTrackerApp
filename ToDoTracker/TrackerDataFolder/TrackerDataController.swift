@@ -13,6 +13,9 @@ protocol TrackerDataControllerProtocol: AnyObject {
     func fetchTrackerCategoriesFor(weekday: Int, animated: Bool)
     func fetchSearchedCategories(textForSearching: String, weekday:Int)
     
+//    func saveTrackerCategory(headerName: String) throws
+//    func fetchAllTrackerCategory() -> [String]
+    
     func fetchRecordsCountForId(_ id: UUID) -> Int
     func checkTrackerRecordExists(id: UUID, date: String) -> Bool
     func addTrackerRecord(id: UUID, date: String)
@@ -34,8 +37,8 @@ final class TrackerDataController: NSObject {
     let trackerRecordStore: TrackerRecordStoreProtocol
     private var context: NSManagedObjectContext
     
-    var fetchResultController: NSFetchedResultsController<TrackerCoreData>?
-    
+    var fetchResultControllerForTracker: NSFetchedResultsController<TrackerCoreData>?
+
     //Блок индексов
     private var insertedIndexes: [IndexPath]?
     private var updatedIndexes: [IndexPath]?
@@ -52,25 +55,39 @@ final class TrackerDataController: NSObject {
         
         super.init()
         
-        let fetchRequest = TrackerCoreData.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \TrackerCoreData.name, ascending: true)]
+        let fetchRequestForTracker = TrackerCoreData.fetchRequest()
+        fetchRequestForTracker.sortDescriptors = [NSSortDescriptor(keyPath: \TrackerCoreData.name, ascending: true)]
         
-        let controller = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
+        let trackerController = NSFetchedResultsController(
+            fetchRequest: fetchRequestForTracker,
             managedObjectContext: context,
             sectionNameKeyPath: nil,
             cacheName: nil)
-        controller.delegate = self
+        trackerController.delegate = self
         
-        self.fetchResultController = controller
-        try? controller.performFetch()
-        
+        self.fetchResultControllerForTracker = trackerController
+        try? trackerController.performFetch()
     }
-    
-    
 }
 
 extension TrackerDataController: TrackerDataControllerProtocol {
+    
+    
+    //MARK: - ДЛЯ 16 СПРИНТА
+//    func saveTrackerCategory(headerName: String) throws {
+//        let newCategory = TrackerCategoryCoreData(context: context)
+//        newCategory.headerName = headerName
+//        
+//        try context.save()
+//    }
+//    
+//    func fetchAllTrackerCategory() -> [String] {
+//        guard let trackerCategoryObjects = self.fetchResultControllerForCategory?.fetchedObjects else { return [] }
+//        let categoryNames = trackerCategoryObjects.compactMap { $0.headerName}
+//        return categoryNames
+//    }
+    //-------------------------------------------------------
+    
     func addTrackerCategoryToCoreData(_ trackerCategory: TrackerCategory) throws {
         try trackerCategoryStore.addTrackerCategoryToCoreData(trackerCategory)
     }
@@ -108,7 +125,7 @@ extension TrackerDataController: TrackerDataControllerProtocol {
     }
     
     var trackerCategories: [TrackerCategory] {
-        guard let trackerObjects = self.fetchResultController?.fetchedObjects else { return [] }
+        guard let trackerObjects = self.fetchResultControllerForTracker?.fetchedObjects else { return [] }
         let trackerCategories = trackerCategoryStore.convertTrackersCoreDataToTrackerCategory(trackerObjects)
         return trackerCategories
     }
@@ -143,3 +160,4 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
         self.movedIndexes = nil
     }
 }
+    

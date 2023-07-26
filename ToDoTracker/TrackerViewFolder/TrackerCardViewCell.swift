@@ -14,7 +14,6 @@ protocol TrackerCardViewCellDelegate: AnyObject {
 final class TrackerCardViewCell: UICollectionViewCell {
     
     weak var delegate: TrackerCardViewCellDelegate?
-    //    static let reuseIdentifier = "TrackerCardCell"
     
     //MARK: -Private Properties
     //✅

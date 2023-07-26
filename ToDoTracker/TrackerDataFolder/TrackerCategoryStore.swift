@@ -27,6 +27,9 @@ struct TrackerCategoryStoreUpdate {
 }
 
 protocol TrackerCategoryStoreProtocol: AnyObject {
+    //MARK: - ДЛЯ 16 СПРИНТА
+    func fetchAllTrackerCategory() -> [String]
+    func createNewCategory(category: TrackerCategory) -> Bool
     ///Метод добавления категории и добавления в нее нового трекера
     func addTrackerCategoryToCoreData(_ trackerCategory: TrackerCategory) throws
     func convertTrackerCategoryCoreDataToTrackerCategory(_ objects: [TrackerCategoryCoreData]) throws -> [TrackerCategory]
@@ -40,14 +43,70 @@ final class TrackerCategoryStore: NSObject {
     private let context: NSManagedObjectContext
     private let trackerDataStore: TrackerStoreProtocol
     private weak var trackerDataController: NSFetchedResultsController<TrackerCoreData>?
+    lazy var fetchResultControllerForCategory: NSFetchedResultsController<TrackerCategoryCoreData> = {
+        //MARK: - ДЛЯ 16 СПРИНТА!!
+        let fetchRequestForCategory = TrackerCategoryCoreData.fetchRequest()
+        fetchRequestForCategory.sortDescriptors = [NSSortDescriptor(keyPath: \TrackerCategoryCoreData.headerName, ascending: true)]
+        
+        let categoryController = NSFetchedResultsController(
+            fetchRequest: fetchRequestForCategory,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        do {
+            try? categoryController.performFetch()
+        } catch {
+            print("Error \(error)")
+        }
+        return categoryController
+    }()
     
     init(context: NSManagedObjectContext, trackerDataStore: TrackerStoreProtocol) {
         self.context = context
         self.trackerDataStore = trackerDataStore
+        super.init()
     }
+    
+    //MARK: - Костыль для создания категории самой по себе - придумать как убрать
+    private func coreDataTrackerCategory(from category: TrackerCategory) -> TrackerCategoryCoreData {
+        
+        let coreDataCategory = TrackerCategoryCoreData(context: context)
+        coreDataCategory.headerName = category.headerName
+        
+        return coreDataCategory
+    }
+    
 }
 
 extension TrackerCategoryStore: TrackerCategoryStoreProtocol {
+    
+    //MARK: - Сгружаем все категории
+    func fetchAllTrackerCategory() -> [String] {
+        guard let trackerCategoryObjects = self.fetchResultControllerForCategory.fetchedObjects else { return [] }
+        let categoryNames = trackerCategoryObjects.compactMap { $0.headerName}
+        return categoryNames
+    }
+    
+    //MARK: -Функция для создания категории в NewCategoryController
+    func createNewCategory(category: TrackerCategory) -> Bool {
+        let request: NSFetchRequest<TrackerCategoryCoreData> = TrackerCategoryCoreData.fetchRequest()
+        request.predicate = NSPredicate(format: "headerName == %@", category.headerName)
+        do {
+            let results = try context.fetch(request)
+            if let _ = results.first {
+                return false
+            } else {
+                _ = coreDataTrackerCategory(from: category)
+                try context.save()
+                return true
+            }
+        } catch {
+            print("Error \(error)")
+            return false
+        }
+    }
+    
     func addTrackerCategoryToCoreData(_ trackerCategory: TrackerCategory) throws {
         ///Проверяем наличие трекеров в нужной категории
         guard let tracker = trackerCategory.trackerArray.first else {

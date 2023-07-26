@@ -42,6 +42,17 @@ final class NewCategoryViewController: UIViewController {
     
     weak var delegate: NewCategoryViewControllerDelegate?
     
+    private var trackerCategoryStore: TrackerCategoryStore
+    private lazy var fetchedResultsController = { trackerCategoryStore.fetchResultControllerForCategory }()
+    
+    init(trackerCategoryStore: TrackerCategoryStore) {
+        self.trackerCategoryStore = trackerCategoryStore
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -81,6 +92,16 @@ final class NewCategoryViewController: UIViewController {
     }
     
     @objc func readyButtonTapped() {
+        let newCategory = TrackerCategory(headerName: newCategoryTextField.text ?? "", trackerArray: [])
+        let success = trackerCategoryStore.createNewCategory(category: newCategory)
+        if success {
+            // Обновление fetchedResultsController после создания новой категории
+            do {
+                try fetchedResultsController.performFetch()
+            } catch {
+                assertionFailure("An error occurred while fetching the updated data: \(error)")
+            }
+        }
         guard let category = newCategoryTextField.text else { return }
         delegate?.didAddCategory(category: category)
         navigationController?.popViewController(animated: true)

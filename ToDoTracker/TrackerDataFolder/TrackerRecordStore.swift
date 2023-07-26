@@ -18,7 +18,6 @@ protocol TrackerRecordStoreProtocol: AnyObject {
 
 final class TrackerRecordStore: NSObject {
     let context: NSManagedObjectContext
-    
     init(context: NSManagedObjectContext) {
         self.context = context
     }
@@ -102,10 +101,6 @@ extension TrackerRecordStore: TrackerRecordStoreProtocol {
             return false
         }
     }
-    
-
-    
-    
 }
 
 

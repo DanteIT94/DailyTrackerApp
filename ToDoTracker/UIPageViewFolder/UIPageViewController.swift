@@ -38,11 +38,10 @@ final class OnboardingViewController: UIPageViewController {
     }()
     
     let pageTexts = ["Отслеживайте только то, что хотите", "Даже если это не литры воды и йога"]
-    
     var currentPageIndex = 0
     
     lazy var onboardingLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         label.textAlignment = .center
@@ -62,11 +61,12 @@ final class OnboardingViewController: UIPageViewController {
     }()
     
     lazy var onboardingButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("Вот это технология!", for: .normal)
         button.backgroundColor = .YPBlack
         button.layer.cornerRadius = 16
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(goToMainScreenButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -115,6 +115,25 @@ final class OnboardingViewController: UIPageViewController {
         onboardingLabel.text = pageTexts[currentPageIndex]
     }
     
+    @objc func goToMainScreenButtonTapped() {
+        UserDefaults.standard.set(true, forKey: "hasCompletedTransition")
+        switchToTabBarController()
+    }
+
+    private func switchToTabBarController() {
+        guard let window = UIApplication.shared.windows.first else {
+            assertionFailure("Invalid config")
+            return
+        }
+        let tabBarController = TabBarViewController()
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            let oldState = UIView.areAnimationsEnabled
+            UIView.setAnimationsEnabled(false)
+            window.rootViewController = tabBarController
+            UIView.setAnimationsEnabled(oldState)
+        }, completion: nil)
+    }
+    
 }
 
 //MARK: -UIPageViewControllerDataSource
@@ -151,8 +170,8 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
 extension OnboardingViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed,
-            let currentViewController = pageViewController.viewControllers?.first,
-            let currentIndex = pages.firstIndex(of: currentViewController) {
+           let currentViewController = pageViewController.viewControllers?.first,
+           let currentIndex = pages.firstIndex(of: currentViewController) {
             currentPageIndex = currentIndex
             updateOnboardingLabel()
             pageControl.currentPage = currentIndex

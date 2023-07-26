@@ -9,13 +9,17 @@ import CoreData
 import Foundation
 
 final class TrackerPersistentContainer {
-    lazy var context: NSManagedObjectContext = {
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TrackerCoreData")
         container.loadPersistentStores(completionHandler: { (description, error) in
             if let error = error as NSError? {
-                fatalError("Ошибка инициализации контейнера CoreData: \(error), \(error.userInfo)")
+                assertionFailure("Ошибка инициализации контейнера CoreData: \(error), \(error.userInfo)")
             }
         })
-        return container.viewContext
+        return container
+    }()
+
+    lazy var context: NSManagedObjectContext = {
+        return persistentContainer.viewContext
     }()
 }

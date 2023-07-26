@@ -20,6 +20,7 @@ final class CategoryViewController: UIViewController {
         let categoryTableView = UITableView()
         categoryTableView.translatesAutoresizingMaskIntoConstraints = false
         categoryTableView.backgroundColor = .YPWhite
+        categoryTableView.isScrollEnabled = false
         return categoryTableView
     }()
     
@@ -58,19 +59,28 @@ final class CategoryViewController: UIViewController {
         return addCategoryButton
     }()
     
+    
+    
     //MARK: -Business - Logic Properties
-//    private var trackerDataController: TrackerDataControllerProtocol
-    private var categoryArray: [String] = ["Важные"]
-//    private var categoriesFromCoreData: [String]?
-    private var choosedCategoryIndex: Int?
+//    private var categories: [String] = ["Важное"]
+//    private var choosedCategoryIndex: Int?
     private var categoryTableViewHeightConstraint: NSLayoutConstraint?
+    private var viewModel: CategoryViewModel
+    private var trackerCategoryStore: TrackerCategoryStore
+
     
     //MARK: -Initializers:
-    init(choosedCategoryIndex: Int?) {
-//        self.trackerDataController = trackerDataController
-        self.choosedCategoryIndex = choosedCategoryIndex
+    init(trackerCategoryStore: TrackerCategoryStore, viewModel: CategoryViewModel) {
+//        self.choosedCategoryIndex = choosedCategoryIndex
+        self.trackerCategoryStore = trackerCategoryStore
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         
+//        self.viewModel.$categories.bind(action: { [weak self] _ in
+//            DispatchQueue.main.async {
+//                self?.categoryTableView.reloadData()
+//            }
+//        })
     }
     
     required init?(coder: NSCoder) {
@@ -82,12 +92,14 @@ final class CategoryViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .YPWhite
         createCategoryLayout()
+        viewModel.fetchAllTrackerCategories()
+        updateCategoryTableViewHeight()
         hidePlaceholders()
-//        getHeaderNameFromTrackerCategories()
-//        categoryArray += categoriesFromCoreData ?? []
     }
     
     //MARK: -Private Methods
+    //MARK: Работа с MVVM
+    //-----------------------------------------------------------------
     private func createCategoryLayout() {
         navigationItem.title = "Категории"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
@@ -99,7 +111,7 @@ final class CategoryViewController: UIViewController {
         categoryTableView.separatorStyle = .singleLine
         categoryTableView.separatorColor = .YPGrey
         //---------------------------------------
-        categoryTableViewHeightConstraint = categoryTableView.heightAnchor.constraint(equalToConstant: CGFloat(categoryArray.count * 75))
+        categoryTableViewHeightConstraint = categoryTableView.heightAnchor.constraint(equalToConstant: CGFloat(viewModel.numberOfCategories * 75))
         categoryTableViewHeightConstraint?.isActive = true
         //---------------------------------------
         [categoryTableView, imagePlaceholder, textPlaceholder, addCategoryButton].forEach{
@@ -121,30 +133,25 @@ final class CategoryViewController: UIViewController {
             addCategoryButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             addCategoryButton.heightAnchor.constraint(equalToConstant: 60)
         ])
-        
     }
     
     private func hidePlaceholders() {
-        if categoryArray.count != 0 {
+        if viewModel.categories.count != 0 {
             textPlaceholder.isHidden = true
             imagePlaceholder.isHidden = true
         }
     }
     
     private func updateCategoryTableViewHeight() {
-        categoryTableViewHeightConstraint?.constant = CGFloat(categoryArray.count * 75)
+        let newHeight = CGFloat(viewModel.numberOfCategories * 75)
+        categoryTableViewHeightConstraint?.constant = newHeight
+        categoryTableViewHeightConstraint?.isActive = true
     }
-    
-//    private func getHeaderNameFromTrackerCategories() {
-//        let categories: [TrackerCategory] = trackerDataController.trackerCategories
-//        let headerNames: [String] = categories.map { $0.headerName }
-//        categoriesFromCoreData = headerNames
-//    }
     
     //MARK: -@OBJC Methods
     
     @objc private func addCategoryButtonTapped() {
-        let newCategoryVC = NewCategoryViewController()
+        let newCategoryVC = NewCategoryViewController(trackerCategoryStore: trackerCategoryStore)
         newCategoryVC.delegate = self
         navigationController?.pushViewController(newCategoryVC, animated: true)
     }
@@ -158,8 +165,9 @@ extension CategoryViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedTitle = categoryArray[indexPath.row]
-        delegate?.addCategory(selectedTitle, index: choosedCategoryIndex ?? 1)
+        let categories = viewModel.categories.map { $0.headerName }
+        guard let selectedTitle = categories[indexPath.row] else { return }
+        delegate?.addCategory(selectedTitle, index: indexPath.row)
         navigationController?.popViewController(animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -168,14 +176,14 @@ extension CategoryViewController: UITableViewDelegate {
 //MARK: -UITableViewDataSource
 extension CategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        return viewModel.numberOfCategories
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
         cell.backgroundColor = .YPBackgroundDay
-        cell.textLabel?.text =  categoryArray[indexPath.row]
-        
+        let cellArray = viewModel.categories.map({$0.headerName})
+        cell.textLabel?.text = cellArray[indexPath.row]
         return cell
     }
     
@@ -193,7 +201,7 @@ extension CategoryViewController: UITableViewDataSource {
         }
         //MARK: -Настройка углов TableView
         if let categoryCell = cell as? CategoryCell {
-            if categoryArray.count == 1 {
+            if viewModel.numberOfCategories == 1 {
                 categoryCell.layer.cornerRadius = 16
                 categoryCell.clipsToBounds = true
                 categoryCell.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
@@ -214,7 +222,9 @@ extension CategoryViewController: UITableViewDataSource {
 
 extension CategoryViewController: NewCategoryViewControllerDelegate {
     func didAddCategory(category: String) {
-        categoryArray.append(category)
+        var categories = viewModel.categories.map({$0.headerName})
+        categories.append(category)
+        viewModel.fetchAllTrackerCategories()
         updateCategoryTableViewHeight()
         categoryTableView.reloadData()
         hidePlaceholders()
