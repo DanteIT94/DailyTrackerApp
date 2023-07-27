@@ -18,7 +18,7 @@ final class TrackersViewController: UIViewController {
     //MARK: - Private Properties
     private let dateFormmater: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         return dateFormatter
     }()
     
@@ -26,6 +26,7 @@ final class TrackersViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date
+        
         var calendar = Calendar.current
         calendar.locale = Locale(identifier: "ru_RU")
         datePicker.calendar = calendar
@@ -133,9 +134,12 @@ final class TrackersViewController: UIViewController {
         let rightButton = UIBarButtonItem(customView: datePicker)
         leftButton.tintColor = .YPBlack
         
+        let formattedDate = dateFormmater.string(from: datePicker.date)
+        
         navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
         
+        navigationItem.rightBarButtonItem?.title = formattedDate
         navigationItem.title = "Трекеры"
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -212,7 +216,7 @@ final class TrackersViewController: UIViewController {
         //Значение дня недели уменьшается на 1 для приведения его к правильному формату (0-понедельник, 1-вторник и т.д.).
         let filterDayOfWeek = calendar.component(.weekday, from: currentDate) - 1
         let filterText = (searchTextField.text ?? "").lowercased()
-
+        
         visibleCategories = trackerDataController.trackerCategories.compactMap { category in
             let trackers = category.trackerArray.filter { tracker in
                 let textCondition = filterText.isEmpty ||

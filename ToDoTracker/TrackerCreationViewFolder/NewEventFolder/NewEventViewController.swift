@@ -378,7 +378,7 @@ extension NewEventViewController: UICollectionViewDelegate, UICollectionViewData
             
             selectedColorCellIndexPath = indexPath
             choosedColor = selectedColor
-
+            
         } else if collectionView == emojiCollectionView {
             // Нажатие на ячейку коллекции эмодзи
             let selectedEmoji = emojiData[indexPath.item]

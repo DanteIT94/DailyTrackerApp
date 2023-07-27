@@ -37,6 +37,7 @@
 		9250B1692A648822003C0E45 /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B1682A648822003C0E45 /* TrackerRecordStore.swift */; };
 		9250B16D2A6571AD003C0E45 /* TrackerPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B16C2A6571AC003C0E45 /* TrackerPersistentContainer.swift */; };
 		9250B16F2A65736E003C0E45 /* TrackerDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B16E2A65736E003C0E45 /* TrackerDataController.swift */; };
+		9253F9442A7297040059472C /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9253F9432A7297040059472C /* CustomPageViewController.swift */; };
 		929669C72A62E00200606172 /* ColorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929669C62A62E00200606172 /* ColorViewCell.swift */; };
 		929669C92A62E0FE00606172 /* EmojiViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929669C82A62E0FE00606172 /* EmojiViewCell.swift */; };
 		92A3C4122A6E869B003D9452 /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C4112A6E869B003D9452 /* UIPageViewController.swift */; };
@@ -80,6 +81,7 @@
 		9250B1682A648822003C0E45 /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
 		9250B16C2A6571AC003C0E45 /* TrackerPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerPersistentContainer.swift; sourceTree = "<group>"; };
 		9250B16E2A65736E003C0E45 /* TrackerDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDataController.swift; sourceTree = "<group>"; };
+		9253F9432A7297040059472C /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomPageViewController.swift; path = ToDoTracker/CustomPageViewController.swift; sourceTree = SOURCE_ROOT; };
 		929669C62A62E00200606172 /* ColorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewCell.swift; sourceTree = "<group>"; };
 		929669C82A62E0FE00606172 /* EmojiViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewCell.swift; sourceTree = "<group>"; };
 		92A3C4112A6E869B003D9452 /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				92A3C4112A6E869B003D9452 /* UIPageViewController.swift */,
+				9253F9432A7297040059472C /* CustomPageViewController.swift */,
 			);
 			path = UIPageViewFolder;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				9250B16D2A6571AD003C0E45 /* TrackerPersistentContainer.swift in Sources */,
 				923F999B2A49F9F000CFCE9E /* HeaderCollectionReusableView.swift in Sources */,
 				923F998E2A42F76100CFCE9E /* TrackersViewController.swift in Sources */,
+				9253F9442A7297040059472C /* CustomPageViewController.swift in Sources */,
 				923F99922A43A12F00CFCE9E /* TrackerCardViewCell.swift in Sources */,
 				929669C92A62E0FE00606172 /* EmojiViewCell.swift in Sources */,
 				9250B1692A648822003C0E45 /* TrackerRecordStore.swift in Sources */,

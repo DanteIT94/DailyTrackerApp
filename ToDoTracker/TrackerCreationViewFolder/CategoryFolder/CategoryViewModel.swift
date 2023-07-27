@@ -13,9 +13,9 @@ class CategoryViewModel {
     private let trackerCategoryStore: TrackerCategoryStore
     @Observable private(set) var categories: [TrackerCategoryCoreData] = []
     @Observable private(set) var selectedCategory: TrackerCategoryCoreData?
-
+    
     var numberOfCategories: Int { categories.count }
-
+    
     
     init(trackerCategoryStore: TrackerCategoryStore) {
         self.trackerCategoryStore = trackerCategoryStore

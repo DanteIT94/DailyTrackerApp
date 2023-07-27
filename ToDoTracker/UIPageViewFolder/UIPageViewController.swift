@@ -10,30 +10,8 @@ import UIKit
 final class OnboardingViewController: UIPageViewController {
     
     lazy var pages: [UIViewController] = {
-        let firstPage = UIViewController()
-        let firstImageView = UIImageView(image: UIImage(named: "PageImageView1"))
-        firstImageView.contentMode = .scaleAspectFill
-        firstPage.view.addSubview(firstImageView)
-        firstImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            firstImageView.leadingAnchor.constraint(equalTo: firstPage.view.leadingAnchor),
-            firstImageView.trailingAnchor.constraint(equalTo: firstPage.view.trailingAnchor),
-            firstImageView.topAnchor.constraint(equalTo: firstPage.view.topAnchor),
-            firstImageView.bottomAnchor.constraint(equalTo: firstPage.view.bottomAnchor)
-        ])
-        
-        let secondPage = UIViewController()
-        let secondImageView = UIImageView(image: UIImage(named: "PageImageView2"))
-        secondImageView.contentMode = .scaleAspectFill
-        secondPage.view.addSubview(secondImageView)
-        secondImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            secondImageView.leadingAnchor.constraint(equalTo: secondPage.view.leadingAnchor),
-            secondImageView.trailingAnchor.constraint(equalTo: secondPage.view.trailingAnchor),
-            secondImageView.topAnchor.constraint(equalTo: secondPage.view.topAnchor),
-            secondImageView.bottomAnchor.constraint(equalTo: secondPage.view.bottomAnchor)
-        ])
+        let firstPage = CustomPageViewController(image: UIImage(named: "PageImageView1"))
+        let secondPage = CustomPageViewController(image: UIImage(named: "PageImageView2"))
         return [firstPage, secondPage]
     }()
     
@@ -54,7 +32,8 @@ final class OnboardingViewController: UIPageViewController {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
-        
+        pageControl.currentPageIndicatorTintColor = .YPBlack
+        pageControl.pageIndicatorTintColor = .YPGrey
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         
         return pageControl
@@ -63,6 +42,7 @@ final class OnboardingViewController: UIPageViewController {
     lazy var onboardingButton: UIButton = {
         let button = UIButton()
         button.setTitle("Вот это технология!", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .YPBlack
         button.layer.cornerRadius = 16
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -93,14 +73,14 @@ final class OnboardingViewController: UIPageViewController {
         
         NSLayoutConstraint.activate([
             onboardingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            onboardingLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 62),
+            onboardingLabel.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -130),
             onboardingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             onboardingLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 8),
-            pageControl.bottomAnchor.constraint(equalTo: onboardingButton.topAnchor, constant: -10),
+            pageControl.bottomAnchor.constraint(equalTo: onboardingButton.topAnchor, constant: -24),
             //Кнопка
-            onboardingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            onboardingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             onboardingButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             onboardingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             onboardingButton.heightAnchor.constraint(equalToConstant: 60)
@@ -116,10 +96,10 @@ final class OnboardingViewController: UIPageViewController {
     }
     
     @objc func goToMainScreenButtonTapped() {
-        UserDefaults.standard.set(true, forKey: "hasCompletedTransition")
+        UserDefaults.standard.set(false, forKey: "hasCompletedTransition")
         switchToTabBarController()
     }
-
+    
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else {
             assertionFailure("Invalid config")

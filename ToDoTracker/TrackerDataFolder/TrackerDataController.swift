@@ -13,8 +13,8 @@ protocol TrackerDataControllerProtocol: AnyObject {
     func fetchTrackerCategoriesFor(weekday: Int, animated: Bool)
     func fetchSearchedCategories(textForSearching: String, weekday:Int)
     
-//    func saveTrackerCategory(headerName: String) throws
-//    func fetchAllTrackerCategory() -> [String]
+    //    func saveTrackerCategory(headerName: String) throws
+    //    func fetchAllTrackerCategory() -> [String]
     
     func fetchRecordsCountForId(_ id: UUID) -> Int
     func checkTrackerRecordExists(id: UUID, date: String) -> Bool
@@ -38,7 +38,7 @@ final class TrackerDataController: NSObject {
     private var context: NSManagedObjectContext
     
     var fetchResultControllerForTracker: NSFetchedResultsController<TrackerCoreData>?
-
+    
     //Блок индексов
     private var insertedIndexes: [IndexPath]?
     private var updatedIndexes: [IndexPath]?
@@ -72,29 +72,13 @@ final class TrackerDataController: NSObject {
 
 extension TrackerDataController: TrackerDataControllerProtocol {
     
-    
-    //MARK: - ДЛЯ 16 СПРИНТА
-//    func saveTrackerCategory(headerName: String) throws {
-//        let newCategory = TrackerCategoryCoreData(context: context)
-//        newCategory.headerName = headerName
-//        
-//        try context.save()
-//    }
-//    
-//    func fetchAllTrackerCategory() -> [String] {
-//        guard let trackerCategoryObjects = self.fetchResultControllerForCategory?.fetchedObjects else { return [] }
-//        let categoryNames = trackerCategoryObjects.compactMap { $0.headerName}
-//        return categoryNames
-//    }
-    //-------------------------------------------------------
-    
     func addTrackerCategoryToCoreData(_ trackerCategory: TrackerCategory) throws {
         try trackerCategoryStore.addTrackerCategoryToCoreData(trackerCategory)
     }
     
     func fetchTrackerCategoriesFor(weekday: Int, animated: Bool) {
         let predicate = NSPredicate(format: "ANY %K.%K == %ld", #keyPath(TrackerCoreData.schedule), #keyPath(ScheduleCoreData.weekday), weekday)
-        var trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
+        let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
         delegate?.updateView(trackerCategories: trackerCategories, animated: animated)
     }
     
@@ -103,7 +87,7 @@ extension TrackerDataController: TrackerDataControllerProtocol {
         let textForSearchingPredicate = NSPredicate(format: "%K Contains[cd] %@", #keyPath(TrackerCoreData.name), textForSearching)
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [weekdayPredicate, textForSearchingPredicate])
         let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(compoundPredicate)
-//        trackerCategories.sort(by: {$1.headerName > $0.headerName})
+        //        trackerCategories.sort(by: {$1.headerName > $0.headerName})
         delegate?.updateView(trackerCategories: trackerCategories, animated: true)
         
     }
@@ -142,7 +126,7 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // Конец процесса обновления данных, все изменения уже отслежены.
-
+        
         // Создание объекта с информацией об обновлении данных.
         guard let insertedIndexes, let deletedIndexes, let updatedIndexes, let movedIndexes else { return }
         let update = TrackerCategoryStoreUpdate(
@@ -151,7 +135,7 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
             updatedIndexes: updatedIndexes,
             movedIndexes: movedIndexes)
         // Посылка обновления представлению пользовательского интерфейса через делегата.
-            delegate?.updateViewWithController(update)
+        delegate?.updateViewWithController(update)
         
         // Сброс массивов, так как процесс обновления данных завершен.
         self.insertedIndexes = nil
@@ -160,4 +144,4 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
         self.movedIndexes = nil
     }
 }
-    
+

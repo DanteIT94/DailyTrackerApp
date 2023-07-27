@@ -54,11 +54,8 @@ final class TrackerCategoryStore: NSObject {
             sectionNameKeyPath: nil,
             cacheName: nil)
         
-        do {
-            try? categoryController.performFetch()
-        } catch {
-            print("Error \(error)")
-        }
+        try? categoryController.performFetch()
+        
         return categoryController
     }()
     

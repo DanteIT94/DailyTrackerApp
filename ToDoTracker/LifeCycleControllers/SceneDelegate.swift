@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         let onboardingShown = UserDefaults.standard.bool(forKey: "hasCompletedTransition")
-        if !onboardingShown {
+        if onboardingShown {
             // Показать OnboardingViewController только если еще не показывали
             let onboardingViewController = OnboardingViewController()
             window?.rootViewController = onboardingViewController
@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let tabBarViewController = TabBarViewController()
             window?.rootViewController = tabBarViewController
         }
-
+        
         window?.makeKeyAndVisible()
         
     }

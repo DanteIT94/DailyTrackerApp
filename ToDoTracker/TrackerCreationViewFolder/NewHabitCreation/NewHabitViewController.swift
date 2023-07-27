@@ -239,7 +239,7 @@ final class NewHabitViewController: UIViewController {
            choosedDays.isEmpty == false,
            choosedColor != nil,
            choosedEmoji != nil {
-
+            
             createHabitButton.isEnabled = true
             createHabitButton.backgroundColor = .YPBlack
             createHabitButton.setTitleColor(.YPWhite, for: .normal)
@@ -383,7 +383,7 @@ extension NewHabitViewController: UICollectionViewDelegate, UICollectionViewData
             
             selectedColorCellIndexPath = indexPath
             choosedColor = selectedColor
-
+            
         } else if collectionView == emojiCollectionView {
             // Нажатие на ячейку коллекции эмодзи
             let selectedEmoji = emojiData[indexPath.item]
@@ -399,7 +399,7 @@ extension NewHabitViewController: UICollectionViewDelegate, UICollectionViewData
             choosedEmoji = selectedEmoji
         }
     }
-
+    
 }
 
 //MARK: -UICollectionViewDelegateFlowLayout

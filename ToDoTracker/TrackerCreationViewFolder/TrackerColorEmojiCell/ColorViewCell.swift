@@ -9,7 +9,7 @@ import UIKit
 
 class ColorViewCell: UICollectionViewCell {
     // Добавьте элементы интерфейса пользователя для отображения цвета
-     let colorView: UIView = {
+    let colorView: UIView = {
         let colorView = UIView()
         colorView.layer.cornerRadius = 8
         colorView.layer.masksToBounds = true
@@ -22,11 +22,11 @@ class ColorViewCell: UICollectionViewCell {
         contentView.addSubview(colorView)
         
         NSLayoutConstraint.activate([
-                    colorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-                    colorView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                    colorView.widthAnchor.constraint(equalToConstant: 40),
-                    colorView.heightAnchor.constraint(equalToConstant: 40)
-                ])
+            colorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            colorView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            colorView.widthAnchor.constraint(equalToConstant: 40),
+            colorView.heightAnchor.constraint(equalToConstant: 40)
+        ])
         // Настройте внешний вид ячейки
         backgroundColor = .clear
         
