@@ -167,7 +167,6 @@ final class TrackersViewController: UIViewController {
             searchStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -indend),
             searchStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             //Коллекция
-            ///НУЖНО БУДЕТ ЕЩЕ РАЗ ПРОВЕРИТЬ!!
             collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: indend),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -indend),

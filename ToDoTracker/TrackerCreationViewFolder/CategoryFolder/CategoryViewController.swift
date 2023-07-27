@@ -62,8 +62,6 @@ final class CategoryViewController: UIViewController {
     
     
     //MARK: -Business - Logic Properties
-    //    private var categories: [String] = ["Важное"]
-    //    private var choosedCategoryIndex: Int?
     private var categoryTableViewHeightConstraint: NSLayoutConstraint?
     private var viewModel: CategoryViewModel
     private var trackerCategoryStore: TrackerCategoryStore
@@ -71,16 +69,9 @@ final class CategoryViewController: UIViewController {
     
     //MARK: -Initializers:
     init(trackerCategoryStore: TrackerCategoryStore, viewModel: CategoryViewModel) {
-        //        self.choosedCategoryIndex = choosedCategoryIndex
         self.trackerCategoryStore = trackerCategoryStore
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
-        //        self.viewModel.$categories.bind(action: { [weak self] _ in
-        //            DispatchQueue.main.async {
-        //                self?.categoryTableView.reloadData()
-        //            }
-        //        })
     }
     
     required init?(coder: NSCoder) {
@@ -98,8 +89,6 @@ final class CategoryViewController: UIViewController {
     }
     
     //MARK: -Private Methods
-    //MARK: Работа с MVVM
-    //-----------------------------------------------------------------
     private func createCategoryLayout() {
         navigationItem.title = "Категории"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]

@@ -95,7 +95,7 @@ final class NewCategoryViewController: UIViewController {
         let newCategory = TrackerCategory(headerName: newCategoryTextField.text ?? "", trackerArray: [])
         let success = trackerCategoryStore.createNewCategory(category: newCategory)
         if success {
-            // Обновление fetchedResultsController после создания новой категории
+            /// Обновление fetchedResultsController после создания новой категории
             do {
                 try fetchedResultsController.performFetch()
             } catch {
@@ -123,11 +123,13 @@ extension NewCategoryViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() // Закрывает клавиатуру при нажатии кнопки "Ввод"
+        /// Закрывает клавиатуру при нажатии кнопки "Ввод"
+        textField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.resignFirstResponder() // Закрывает клавиатуру при нажатии на свободную область
+        /// Закрывает клавиатуру при нажатии на свободную область
+        textField.resignFirstResponder()
     }
 }

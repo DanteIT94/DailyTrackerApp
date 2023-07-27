@@ -13,9 +13,6 @@ protocol TrackerDataControllerProtocol: AnyObject {
     func fetchTrackerCategoriesFor(weekday: Int, animated: Bool)
     func fetchSearchedCategories(textForSearching: String, weekday:Int)
     
-    //    func saveTrackerCategory(headerName: String) throws
-    //    func fetchAllTrackerCategory() -> [String]
-    
     func fetchRecordsCountForId(_ id: UUID) -> Int
     func checkTrackerRecordExists(id: UUID, date: String) -> Bool
     func addTrackerRecord(id: UUID, date: String)
@@ -39,7 +36,7 @@ final class TrackerDataController: NSObject {
     
     var fetchResultControllerForTracker: NSFetchedResultsController<TrackerCoreData>?
     
-    //Блок индексов
+    ///Блок индексов
     private var insertedIndexes: [IndexPath]?
     private var updatedIndexes: [IndexPath]?
     private var deletedIndexes: [IndexPath]?
@@ -87,7 +84,6 @@ extension TrackerDataController: TrackerDataControllerProtocol {
         let textForSearchingPredicate = NSPredicate(format: "%K Contains[cd] %@", #keyPath(TrackerCoreData.name), textForSearching)
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [weekdayPredicate, textForSearchingPredicate])
         let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(compoundPredicate)
-        //        trackerCategories.sort(by: {$1.headerName > $0.headerName})
         delegate?.updateView(trackerCategories: trackerCategories, animated: true)
         
     }

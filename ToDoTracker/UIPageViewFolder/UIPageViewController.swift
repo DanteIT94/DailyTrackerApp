@@ -96,7 +96,7 @@ final class OnboardingViewController: UIPageViewController {
     }
     
     @objc func goToMainScreenButtonTapped() {
-        UserDefaults.standard.set(false, forKey: "hasCompletedTransition")
+        UserDefaults.standard.set(true, forKey: "hasCompletedTransition")
         switchToTabBarController()
     }
     

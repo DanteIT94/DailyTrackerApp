@@ -59,7 +59,6 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayCheckButton.translatesAutoresizingMaskIntoConstraints = false
         dayCheckButton.setTitle("", for: .normal)
         dayCheckButton.tintColor = .YPWhite
-//        dayCheckButton.backgroundColor = .colorSection5
         dayCheckButton.layer.cornerRadius = 16
         dayCheckButton.layer.masksToBounds = true
         dayCheckButton.imageView?.contentMode = .scaleAspectFill

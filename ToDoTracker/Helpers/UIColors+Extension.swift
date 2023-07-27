@@ -18,7 +18,7 @@ extension UIColor {
     static let YPBackgroundDay = UIColor(named: "YPBackgroundDay")
 }
 
-//Цвета для UICollectionView!
+///Цвета для UICollectionView!
 extension UIColor {
     static let colorSection1 = UIColor(named: "Colorselection1")
     static let colorSection2 = UIColor(named: "Colorselection2")
@@ -40,7 +40,7 @@ extension UIColor {
     static let colorSection18 = UIColor(named: "Colorselection18")
 }
 
-//Для перевода цвета в КорДату и обратно (Привет, Хоббит)
+///Для перевода цвета в КорДату и обратно (Привет, Хоббит)
 extension UIColor {
     
     func hexString() -> String {

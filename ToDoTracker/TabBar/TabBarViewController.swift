@@ -21,14 +21,26 @@ final class TabBarViewController: UITabBarController {
         
         
         let trackerContainer = TrackerPersistentContainer()
+        
         let trackerStore = TrackerStore(context: trackerContainer.context)
-        let trackerCategoryStore = TrackerCategoryStore(context: trackerContainer.context, trackerDataStore: trackerStore)
+        let trackerCategoryStore = TrackerCategoryStore(
+            context: trackerContainer.context,
+            trackerDataStore: trackerStore)
         let trackerRecordStore = TrackerRecordStore(context: trackerContainer.context)
-        let categoryViewModel = CategoryViewModel(trackerCategoryStore: trackerCategoryStore)
         
-        let trackerDataController = TrackerDataController(trackerCategoryStore: trackerCategoryStore, trackerStore: trackerStore, trackerRecordStore: trackerRecordStore, context: trackerContainer.context)
+        let categoryViewModel = CategoryViewModel(
+            trackerCategoryStore: trackerCategoryStore)
         
-        let trackersViewController = TrackersViewController(trackerDataController: trackerDataController, trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
+        let trackerDataController = TrackerDataController(
+            trackerCategoryStore: trackerCategoryStore,
+            trackerStore: trackerStore,
+            trackerRecordStore: trackerRecordStore,
+            context: trackerContainer.context)
+        
+        let trackersViewController = TrackersViewController(
+            trackerDataController: trackerDataController,
+            trackerCategoryStore: trackerCategoryStore,
+            categoryViewModel: categoryViewModel)
         
         let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
         trackersViewController.tabBarItem = UITabBarItem(

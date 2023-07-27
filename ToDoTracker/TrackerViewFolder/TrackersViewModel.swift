@@ -10,7 +10,7 @@ import UIKit
 
 class TrackersViewModel {
     
-    //MARK: -Private Properties
+    //MARK: - Private Properties
     private let trackerDataController: TrackerDataControllerProtocol
     private var visibleCategories: [TrackerCategory] = []
     
@@ -19,10 +19,9 @@ class TrackersViewModel {
         self.trackerDataController = trackerDataController
     }
     
-    //MARK: -Private Methods
+    //MARK: - Private Methods
     
     func fetch() {
-        
     }
     
     

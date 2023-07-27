@@ -162,13 +162,13 @@ extension ScheduleViewController: UITableViewDataSource {
         cell.backgroundColor = .YPBackground
         cell.textLabel?.text = days[indexPath.row]
         
-        // Get the switch state value from the dictionary
+        /// Get the switch state value from the dictionary
         let switchState = switchStates[indexPath.row] ?? false
         
-        // Set the switch state value
+        /// Set the switch state value
         cell.switcher.isOn = switchState
         
-        // Add a target for the switch value change event
+        /// Add a target for the switch value change event
         cell.delegate = self
         
         return cell
@@ -202,7 +202,7 @@ extension ScheduleViewController: UITableViewDataSource {
 extension ScheduleViewController: SwitchCellDelegate {
     func switchCellDidToggle(_ cell: SwitchCell, isOn: Bool) {
         if let indexPath = weekdayTableView.indexPath(for: cell) {
-            // Save the switch state value in the dictionary
+            /// Save the switch state value in the dictionary
             switchStates[indexPath.row] = isOn
         }
     }

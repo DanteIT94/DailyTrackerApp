@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 class CategoryViewModel {
     
@@ -23,13 +22,9 @@ class CategoryViewModel {
     
     
     func fetchAllTrackerCategories() {
-        // Здесь просто вызываем метод fetchTrackerCategoriesFor у TrackerDataController
+        /// Здесь просто вызываем метод fetchTrackerCategoriesFor у TrackerDataController
         let fetchedResulstController = trackerCategoryStore.fetchResultControllerForCategory
         categories = fetchedResulstController.fetchedObjects ?? []
     }
-    
-    // Дополнительные методы ViewModel для обработки действий пользователя и другой логики
-    
-    
 }
 

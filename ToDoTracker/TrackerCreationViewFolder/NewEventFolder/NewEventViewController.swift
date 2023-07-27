@@ -38,7 +38,6 @@ final class NewEventViewController: UIViewController {
         return eventTableView
     }()
     
-    //-----------------------------------------------------------------
     //БЛОК Цвета и Эмодзи для Выбора
     private lazy var habitScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -47,11 +46,10 @@ final class NewEventViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = true
         scrollView.backgroundColor = .YPWhite
         scrollView.contentSize = contentSize
-        //        scrollView.isUserInteractionEnabled = false
         return scrollView
     }()
     
-    //Прослойка для ScrollView
+    ///Прослойка для ScrollView
     private lazy var contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -128,7 +126,6 @@ final class NewEventViewController: UIViewController {
     private var selectedColorCellIndexPath: IndexPath?
     private var selectedEmojiCellIndexPath: IndexPath?
     
-    //MARK: -ТЕСТ
     private var trackerCategoryStore: TrackerCategoryStore
     private let categoryViewModel: CategoryViewModel
     init(trackerCategoryStore: TrackerCategoryStore, categoryViewModel: CategoryViewModel) {
@@ -463,7 +460,8 @@ extension NewEventViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.resignFirstResponder() // Закрывает клавиатуру при нажатии на свободную область
+        /// Закрывает клавиатуру при нажатии на свободную область
+        textField.resignFirstResponder()
     }
     
     private func showReminderAlert() {
