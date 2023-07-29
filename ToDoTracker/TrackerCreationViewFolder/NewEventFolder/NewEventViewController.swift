@@ -25,7 +25,9 @@ final class NewEventViewController: UIViewController {
         eventTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: eventTextField.frame.height))
         eventTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
-        eventTextField.attributedPlaceholder = NSAttributedString(string: "Введите название трекера", attributes: attributes)
+        eventTextField.attributedPlaceholder = NSAttributedString(
+            string: NSLocalizedString("trackerNameTextField", comment: ""),
+            attributes: attributes)
         eventTextField.layer.masksToBounds = true
         eventTextField.layer.cornerRadius = 16
         return eventTextField
@@ -94,7 +96,8 @@ final class NewEventViewController: UIViewController {
     private let cancelButton: UIButton = {
         let cancelButton = UIButton()
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.setTitle("Отменить", for: .normal)
+        cancelButton.setTitle(NSLocalizedString(
+            "newTrackerVCCancelButton", comment: ""), for: .normal)
         cancelButton.setTitleColor(.YPRed, for: .normal)
         cancelButton.layer.borderColor = UIColor.YPRed?.cgColor
         cancelButton.layer.borderWidth = 2.0
@@ -108,7 +111,8 @@ final class NewEventViewController: UIViewController {
     private let createEventButton: UIButton = {
         let createEventButton = UIButton()
         createEventButton.translatesAutoresizingMaskIntoConstraints = false
-        createEventButton.setTitle("Создать", for: .normal)
+        createEventButton.setTitle(NSLocalizedString(
+            "newTrackerVCCreateButton", comment: ""), for: .normal)
         createEventButton.setTitleColor(.YPWhite, for: .normal)
         createEventButton.backgroundColor = .YPGrey
         createEventButton.layer.cornerRadius = 16
@@ -158,7 +162,8 @@ final class NewEventViewController: UIViewController {
     }
     
     private func createEventLayout() {
-        navigationItem.title = "Новое нерегулярное событие"
+        navigationItem.title = NSLocalizedString(
+            "newEventTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         
@@ -292,7 +297,8 @@ extension NewEventViewController: UITableViewDataSource {
         cell.backgroundColor = .YPBackgroundDay
         
         if indexPath.row == 0 {
-            cell.textLabel?.text = "Категории"
+            cell.textLabel?.text = NSLocalizedString(
+                "chooseCategoryButton", comment: "")
         }
         return cell
     }
@@ -405,7 +411,8 @@ extension NewEventViewController: UICollectionViewDelegateFlowLayout {
                 // Заголовок для коллекции цветов
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ColorHeader", for: indexPath)
                 let titleLabel = UILabel()
-                titleLabel.text = "Цвет"
+                titleLabel.text = NSLocalizedString(
+                    "colorCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -416,7 +423,8 @@ extension NewEventViewController: UICollectionViewDelegateFlowLayout {
                 // Заголовок для коллекции эмодзи
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "EmojiHeader", for: indexPath)
                 let titleLabel = UILabel()
-                titleLabel.text = "Emojie"
+                titleLabel.text = NSLocalizedString(
+                    "emojieCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -465,7 +473,12 @@ extension NewEventViewController: UITextFieldDelegate {
     }
     
     private func showReminderAlert() {
-        let alertController = UIAlertController(title: "Напоминание", message: "Сначала выберите Категорию, Эмодзи и Цвет", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: NSLocalizedString(
+                "eventAlertTitle", comment: ""),
+            message: NSLocalizedString(
+                "eventAlertText", comment: ""),
+            preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)

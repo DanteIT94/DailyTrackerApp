@@ -122,19 +122,10 @@ final class TrackerCardViewCell: UICollectionViewCell {
     
     //✅
     //для склонения дней в ячейке
-    private func daysDeclension(for counter: Int) -> String{
-        let remainder = counter % 10
-        if counter == 11 || counter == 12 || counter == 13 || counter == 14 {
-            return "дней"
-        }
-        switch remainder {
-        case 1:
-            return "день"
-        case 2, 3, 4:
-            return "дня"
-        default:
-            return "дней"
-        }
+    private func daysDeclension(for counter: Int) -> String {
+        let formatString: String = NSLocalizedString("numberOfDays", comment: "")
+        let resultString: String = String.localizedStringWithFormat(formatString, counter)
+        return resultString
     }
     
     //MARK: -Обновления состояния кнопки dayCheckButton в зависимости от значения свойства buttonIsChecked

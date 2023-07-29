@@ -15,7 +15,9 @@ final class OnboardingViewController: UIPageViewController {
         return [firstPage, secondPage]
     }()
     
-    let pageTexts = ["Отслеживайте только то, что хотите", "Даже если это не литры воды и йога"]
+    let pageTexts = [
+        NSLocalizedString("firstOnboardingTitle", comment: ""),
+        NSLocalizedString("secondOnboardingTitle", comment: "")]
     var currentPageIndex = 0
     
     lazy var onboardingLabel: UILabel = {
@@ -41,7 +43,7 @@ final class OnboardingViewController: UIPageViewController {
     
     lazy var onboardingButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Вот это технология!", for: .normal)
+        button.setTitle(NSLocalizedString("onboardingButton", comment: ""), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .YPBlack
         button.layer.cornerRadius = 16

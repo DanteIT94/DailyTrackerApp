@@ -19,6 +19,7 @@ final class TrackersViewController: UIViewController {
     private let dateFormmater: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateFormatter.dateStyle = .short
         return dateFormatter
     }()
     
@@ -26,13 +27,13 @@ final class TrackersViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date
-        
-        var calendar = Calendar.current
-        calendar.locale = Locale(identifier: "ru_RU")
-        datePicker.calendar = calendar
+//        var calendar = Calendar.current
+//        calendar.locale = Locale(identifier: "ru_RU")
+//        datePicker.calendar = calendar
         datePicker.preferredDatePickerStyle = .compact
         return datePicker
     }()
+    
     
     //---------------------------------------------------------------
     //MARK: -Блок поисковой строки
@@ -47,7 +48,8 @@ final class TrackersViewController: UIViewController {
     private let searchTextField: UISearchTextField = {
         let searchTextField = UISearchTextField()
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        searchTextField.placeholder = "Поиск"
+        searchTextField.placeholder = NSLocalizedString(
+            "searchField", comment: "")
         searchTextField.addTarget(nil, action: #selector(searchTextFieldEditingChanged), for: .editingChanged)
         return searchTextField
     }()
@@ -55,7 +57,8 @@ final class TrackersViewController: UIViewController {
     private let cancelSearchButton: UIButton = {
         let cancelSearchButton = UIButton()
         cancelSearchButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelSearchButton.setTitle("Отменить", for: .normal)
+        cancelSearchButton.setTitle(NSLocalizedString(
+            "cancelSearchButton", comment: ""), for: .normal)
         cancelSearchButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         cancelSearchButton.setTitleColor(.YPBlue, for: .normal)
         cancelSearchButton.addTarget(nil, action: #selector(cancelSearchButtonTapped), for: .touchUpInside)
@@ -130,17 +133,18 @@ final class TrackersViewController: UIViewController {
     
     //MARK: - Private Methods
     private func configNavigationBar() {
+//        let formattedDate = dateFormmater.string(from: datePicker.date)
         let leftButton = UIBarButtonItem(image: UIImage(named: "Plus"), style: .done, target: self, action: #selector(addTrackerButtonTapped))
         let rightButton = UIBarButtonItem(customView: datePicker)
         leftButton.tintColor = .YPBlack
         
-        let formattedDate = dateFormmater.string(from: datePicker.date)
+
         
         navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
         
-        navigationItem.rightBarButtonItem?.title = formattedDate
-        navigationItem.title = "Трекеры"
+//        navigationItem.rightBarButtonItem?.title = formattedDate
+        navigationItem.title = NSLocalizedString("navigTitleMainVC", comment: "")
         navigationController?.navigationBar.prefersLargeTitles = true
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
@@ -189,10 +193,14 @@ final class TrackersViewController: UIViewController {
             switch type {
             case .noTrackers:
                 imagePlaceholder.image = UIImage(named: "Image_placeholder")
-                textPlaceholder.text = "Что будем отслеживать?"
+                textPlaceholder.text = NSLocalizedString(
+                    "emptyPlaceholderText",
+                    comment: "")
             case .notFoundTrackers:
                 imagePlaceholder.image = UIImage(named: "NotFound_placeholder")
-                textPlaceholder.text = "Ничего не найдено"
+                textPlaceholder.text = NSLocalizedString(
+                    "noTrackersPlaceholderText",
+                    comment: "")
             }
         } else {
             imagePlaceholder.isHidden = true

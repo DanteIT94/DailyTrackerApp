@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  ToDoTracker
+
+  Created by Денис on 28.07.2023.
+  
+*/
+
+//OnBoardingView
+
+"firstOnboardingTitle" = "Отслеживайте только то, что хотите";
+"secondOnboardingTitle" = "Даже если это не литры воды и йога";
+"onboardingButton" = "Вот это технология!";
+
+//TabBar
+"trackersTab" = "Трекеры";
+"statistic" = "Статистика";
+
+//MainVC
+"navigTitleMainVC" = "Трекеры";
+"searchField" = "Поиск";
+"cancelSearchButton" = "Отменить";
+"emptyPlaceholderText" = "Что будем отслеживать?";
+"noTrackersPlaceholderText" = "Ничего не найдено";
+
+//TrackerTypeVC
+
+"trackerTypeVCTitle" = "Создание Трекера";
+"habitTypeButton" = "Привычка";
+"eventTypeButton" = "Нерегулярное событие";
+
+//NewHabitCreateVC
+
+"newHabitTitle" = "Новая привычка";
+"trackerNameTextField" = "Введите название трекера";
+"chooseCategoryButton" = "Категории";
+"chooseScheduleButton" = "Расписание";
+"emojieCollectionTitle" = "Emojie";
+"colorCollectionTitle" = "Цвет";
+"newTrackerVCCancelButton" = "Отменить";
+"newTrackerVCCreateButton" = "Создать";
+"doneButton" = "Готово";
+"everyDayText" = "Каждый день";
+"habitAlertTitle" = "Напоминание";
+"habitAlertText" = "Сначала выберите Категорию, Расписание, Эмодзи и Цвет";
+
+//NewEventCreateVC
+"newEventTitle" = "Новое нерегулярное событие";
+"eventAlertTitle" = "Напоминание";
+"eventAlertText" = "Сначала выберите Категорию, Эмодзи и Цвет";
+
+//CategoryVC
+
+"categoryTitle" = "Категории";
+"addCategoryButton" = "Добавить категорию";
+"emptyCategoryPlaceholderText" = "Привычки и события можно \nобъединить по смыслу";
+
+//AddCategoryVC
+"newCategoryTitle" = "Новая категория";
+"newCategoryTextField" = "Название Категории (не менее 3 символов)";
+
+// ScheduleVC
+"scheduleTitle" = "Расписание";

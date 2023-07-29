@@ -35,14 +35,12 @@ final class CategoryViewController: UIViewController {
     private let textPlaceholder: UILabel = {
         let textPlaceholder = UILabel()
         textPlaceholder.translatesAutoresizingMaskIntoConstraints = false
-        textPlaceholder.text = """
-                                Привычки и события можно
-                                объединить по смыслу
-                                """
+        textPlaceholder.text = NSLocalizedString(
+            "emptyCategoryPlaceholderText", comment: "")
         textPlaceholder.textAlignment = .center
         textPlaceholder.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         textPlaceholder.textColor = .YPBlack
-        textPlaceholder.numberOfLines = 2
+        textPlaceholder.numberOfLines = 0
         textPlaceholder.isHidden = false
         return textPlaceholder
     }()
@@ -50,7 +48,8 @@ final class CategoryViewController: UIViewController {
     private let addCategoryButton: UIButton = {
         let addCategoryButton = UIButton()
         addCategoryButton.translatesAutoresizingMaskIntoConstraints = false
-        addCategoryButton.setTitle("Добавить категорию", for: .normal)
+        addCategoryButton.setTitle(NSLocalizedString(
+            "addCategoryButton", comment: ""), for: .normal)
         addCategoryButton.setTitleColor(.YPWhite, for: .normal)
         addCategoryButton.backgroundColor = .YPBlack
         addCategoryButton.layer.cornerRadius = 16
@@ -90,7 +89,8 @@ final class CategoryViewController: UIViewController {
     
     //MARK: -Private Methods
     private func createCategoryLayout() {
-        navigationItem.title = "Категории"
+        navigationItem.title = NSLocalizedString(
+            "categoryTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         //---------------------------------------
