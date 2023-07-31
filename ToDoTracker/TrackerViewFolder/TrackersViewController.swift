@@ -18,7 +18,8 @@ final class TrackersViewController: UIViewController {
     //MARK: - Private Properties
     private let dateFormmater: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateFormatter.dateStyle = .short
         return dateFormatter
     }()
     
@@ -26,12 +27,13 @@ final class TrackersViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date
-        var calendar = Calendar.current
-        calendar.locale = Locale(identifier: "ru_RU")
-        datePicker.calendar = calendar
+//        var calendar = Calendar.current
+//        calendar.locale = Locale(identifier: "ru_RU")
+//        datePicker.calendar = calendar
         datePicker.preferredDatePickerStyle = .compact
         return datePicker
     }()
+    
     
     //---------------------------------------------------------------
     //MARK: -Блок поисковой строки
@@ -46,7 +48,8 @@ final class TrackersViewController: UIViewController {
     private let searchTextField: UISearchTextField = {
         let searchTextField = UISearchTextField()
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        searchTextField.placeholder = "Поиск"
+        searchTextField.placeholder = NSLocalizedString(
+            "searchField", comment: "")
         searchTextField.addTarget(nil, action: #selector(searchTextFieldEditingChanged), for: .editingChanged)
         return searchTextField
     }()
@@ -54,7 +57,8 @@ final class TrackersViewController: UIViewController {
     private let cancelSearchButton: UIButton = {
         let cancelSearchButton = UIButton()
         cancelSearchButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelSearchButton.setTitle("Отменить", for: .normal)
+        cancelSearchButton.setTitle(NSLocalizedString(
+            "cancelSearchButton", comment: ""), for: .normal)
         cancelSearchButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         cancelSearchButton.setTitleColor(.YPBlue, for: .normal)
         cancelSearchButton.addTarget(nil, action: #selector(cancelSearchButtonTapped), for: .touchUpInside)
@@ -87,6 +91,7 @@ final class TrackersViewController: UIViewController {
     //MARK: -Variable
     private var visibleCategories: [TrackerCategory] = []
     private var currentDate: Date = Date()
+    private let categoryViewModel: CategoryViewModel
     
     //Для трекеров
     private var insertedIndexesInSearchTextField: [IndexPath] = []
@@ -97,10 +102,14 @@ final class TrackersViewController: UIViewController {
     
     //Блок корДаты
     private let trackerDataController: TrackerDataControllerProtocol
+    private var trackerCategoryStore: TrackerCategoryStore
+    
     
     //MARK: -Initializers
-    init(trackerDataController: TrackerDataControllerProtocol) {
+    init(trackerDataController: TrackerDataControllerProtocol, trackerCategoryStore: TrackerCategoryStore, categoryViewModel: CategoryViewModel) {
         self.trackerDataController = trackerDataController
+        self.trackerCategoryStore = trackerCategoryStore
+        self.categoryViewModel = categoryViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -124,14 +133,18 @@ final class TrackersViewController: UIViewController {
     
     //MARK: - Private Methods
     private func configNavigationBar() {
+//        let formattedDate = dateFormmater.string(from: datePicker.date)
         let leftButton = UIBarButtonItem(image: UIImage(named: "Plus"), style: .done, target: self, action: #selector(addTrackerButtonTapped))
         let rightButton = UIBarButtonItem(customView: datePicker)
         leftButton.tintColor = .YPBlack
         
+
+        
         navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
         
-        navigationItem.title = "Трекеры"
+//        navigationItem.rightBarButtonItem?.title = formattedDate
+        navigationItem.title = NSLocalizedString("navigTitleMainVC", comment: "")
         navigationController?.navigationBar.prefersLargeTitles = true
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
@@ -158,7 +171,6 @@ final class TrackersViewController: UIViewController {
             searchStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -indend),
             searchStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             //Коллекция
-            ///НУЖНО БУДЕТ ЕЩЕ РАЗ ПРОВЕРИТЬ!!
             collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: indend),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -indend),
@@ -181,10 +193,14 @@ final class TrackersViewController: UIViewController {
             switch type {
             case .noTrackers:
                 imagePlaceholder.image = UIImage(named: "Image_placeholder")
-                textPlaceholder.text = "Что будем отслеживать?"
+                textPlaceholder.text = NSLocalizedString(
+                    "emptyPlaceholderText",
+                    comment: "")
             case .notFoundTrackers:
                 imagePlaceholder.image = UIImage(named: "NotFound_placeholder")
-                textPlaceholder.text = "Ничего не найдено"
+                textPlaceholder.text = NSLocalizedString(
+                    "noTrackersPlaceholderText",
+                    comment: "")
             }
         } else {
             imagePlaceholder.isHidden = true
@@ -207,7 +223,7 @@ final class TrackersViewController: UIViewController {
         //Значение дня недели уменьшается на 1 для приведения его к правильному формату (0-понедельник, 1-вторник и т.д.).
         let filterDayOfWeek = calendar.component(.weekday, from: currentDate) - 1
         let filterText = (searchTextField.text ?? "").lowercased()
-
+        
         visibleCategories = trackerDataController.trackerCategories.compactMap { category in
             let trackers = category.trackerArray.filter { tracker in
                 let textCondition = filterText.isEmpty ||
@@ -229,9 +245,9 @@ final class TrackersViewController: UIViewController {
     
     //MARK: - @OBJC Methods
     @objc private func addTrackerButtonTapped() {
-        let newHabitViewController = NewHabitViewController()
+        let newHabitViewController = NewHabitViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
         newHabitViewController.delegate = self
-        let newEventViewController = NewEventViewController()
+        let newEventViewController = NewEventViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
         newEventViewController.delegate = self
         let NewTrackerTypeViewController = NewTrackerTypeViewController(newHabitViewController: newHabitViewController, newEventViewController: newEventViewController)
         let modalNavigationController = UINavigationController(rootViewController: NewTrackerTypeViewController)

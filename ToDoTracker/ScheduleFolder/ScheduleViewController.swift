@@ -28,7 +28,8 @@ final class ScheduleViewController: UIViewController {
     private let okButton: UIButton = {
         let okButton = UIButton()
         okButton.translatesAutoresizingMaskIntoConstraints = false
-        okButton.setTitle("Готово", for: .normal)
+        okButton.setTitle(NSLocalizedString(
+            "doneButton", comment: ""), for: .normal)
         okButton.backgroundColor = .YPBlack
         okButton.setTitleColor(.YPWhite, for: .normal)
         okButton.layer.cornerRadius = 16
@@ -45,8 +46,8 @@ final class ScheduleViewController: UIViewController {
     // MARK: - Initializer
     init(choosedDays: [Int]) {
         super.init(nibName: nil, bundle: nil)
-        
-        calendar.locale = Locale(identifier: "ru_RU")
+//
+//        calendar.locale = Locale.current
         days = calendar.weekdaySymbols
         finalList = choosedDays
         setupInitialSelectedDays()
@@ -69,7 +70,8 @@ final class ScheduleViewController: UIViewController {
     
     // MARK: - Private Methods
     private func createScheduleLayout() {
-        navigationItem.title = "Расписание"
+        navigationItem.title = NSLocalizedString(
+            "scheduleTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         
@@ -112,7 +114,7 @@ final class ScheduleViewController: UIViewController {
     private func configDaysArray() {
         let weekdaySymbols = calendar.weekdaySymbols
         let firstDayIndex = 1 // Index of "Понедельник" in the weekdaySymbols array
-        
+
         // Form a new array with shifted weekdays
         let weekdays = Array(weekdaySymbols[firstDayIndex...]) + Array(weekdaySymbols[..<firstDayIndex])
         days = weekdays.map { $0.capitalizeFirstLetter() }
@@ -162,13 +164,13 @@ extension ScheduleViewController: UITableViewDataSource {
         cell.backgroundColor = .YPBackground
         cell.textLabel?.text = days[indexPath.row]
         
-        // Get the switch state value from the dictionary
+        /// Get the switch state value from the dictionary
         let switchState = switchStates[indexPath.row] ?? false
         
-        // Set the switch state value
+        /// Set the switch state value
         cell.switcher.isOn = switchState
         
-        // Add a target for the switch value change event
+        /// Add a target for the switch value change event
         cell.delegate = self
         
         return cell
@@ -202,7 +204,7 @@ extension ScheduleViewController: UITableViewDataSource {
 extension ScheduleViewController: SwitchCellDelegate {
     func switchCellDidToggle(_ cell: SwitchCell, isOn: Bool) {
         if let indexPath = weekdayTableView.indexPath(for: cell) {
-            // Save the switch state value in the dictionary
+            /// Save the switch state value in the dictionary
             switchStates[indexPath.row] = isOn
         }
     }

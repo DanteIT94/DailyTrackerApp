@@ -25,7 +25,9 @@ final class NewHabitViewController: UIViewController {
         habitTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: habitTextField.frame.height))
         habitTextField.leftViewMode = .always
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.YPGrey as Any]
-        habitTextField.attributedPlaceholder = NSAttributedString(string: "Введите название трекера", attributes: attributes)
+        habitTextField.attributedPlaceholder = NSAttributedString(
+            string: NSLocalizedString("trackerNameTextField", comment: ""),
+            attributes: attributes)
         habitTextField.layer.masksToBounds = true
         habitTextField.layer.cornerRadius = 16
         return habitTextField
@@ -95,7 +97,8 @@ final class NewHabitViewController: UIViewController {
     private let cancelButton: UIButton = {
         let cancelButton = UIButton()
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.setTitle("Отменить", for: .normal)
+        cancelButton.setTitle(NSLocalizedString(
+            "newTrackerVCCancelButton", comment: ""), for: .normal)
         cancelButton.setTitleColor(.YPRed, for: .normal)
         cancelButton.layer.borderColor = UIColor.YPRed?.cgColor
         cancelButton.layer.borderWidth = 2.0
@@ -109,7 +112,8 @@ final class NewHabitViewController: UIViewController {
     private let createHabitButton: UIButton = {
         let createHabitButton = UIButton()
         createHabitButton.translatesAutoresizingMaskIntoConstraints = false
-        createHabitButton.setTitle("Создать", for: .normal)
+        createHabitButton.setTitle(NSLocalizedString(
+            "newTrackerVCCreateButton", comment: ""), for: .normal)
         createHabitButton.setTitleColor(.YPWhite, for: .normal)
         createHabitButton.backgroundColor = .YPGrey
         createHabitButton.layer.cornerRadius = 16
@@ -127,6 +131,18 @@ final class NewHabitViewController: UIViewController {
     private var selectedColorCellIndexPath: IndexPath?
     private var selectedEmojiCellIndexPath: IndexPath?
     
+    //MARK: -ТЕСТ
+    private var trackerCategoryStore: TrackerCategoryStore
+    private let categoryViewModel: CategoryViewModel
+    init(trackerCategoryStore: TrackerCategoryStore, categoryViewModel:CategoryViewModel) {
+        self.trackerCategoryStore = trackerCategoryStore
+        self.categoryViewModel = categoryViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: -LifeCycle
     override func viewDidLoad() {
@@ -148,7 +164,8 @@ final class NewHabitViewController: UIViewController {
     }
     
     private func createHabitLayout() {
-        navigationItem.title = "Новая привычка"
+        navigationItem.title = NSLocalizedString(
+            "newHabitTitle", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         navigationItem.hidesBackButton = true
         
@@ -227,6 +244,7 @@ final class NewHabitViewController: UIViewController {
            choosedDays.isEmpty == false,
            choosedColor != nil,
            choosedEmoji != nil {
+            
             createHabitButton.isEnabled = true
             createHabitButton.backgroundColor = .YPBlack
             createHabitButton.setTitleColor(.YPWhite, for: .normal)
@@ -262,7 +280,7 @@ extension NewHabitViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let categoryVC = CategoryViewController(choosedCategoryIndex: choosedCategoryIndex)
+            let categoryVC = CategoryViewController(trackerCategoryStore: trackerCategoryStore, viewModel: categoryViewModel)
             categoryVC.delegate = self
             navigationController?.pushViewController(categoryVC, animated: true)
         } else if indexPath.row == 1 {
@@ -285,9 +303,11 @@ extension NewHabitViewController: UITableViewDataSource {
         cell.backgroundColor = .YPBackgroundDay
         
         if indexPath.row == 0 {
-            cell.textLabel?.text = "Категории"
+            cell.textLabel?.text = NSLocalizedString(
+                "chooseCategoryButton", comment: "")
         } else if indexPath.row == 1 {
-            cell.textLabel?.text = "Расписание"
+            cell.textLabel?.text = NSLocalizedString(
+                "chooseScheduleButton", comment: "")
         }
         return cell
     }
@@ -370,7 +390,7 @@ extension NewHabitViewController: UICollectionViewDelegate, UICollectionViewData
             
             selectedColorCellIndexPath = indexPath
             choosedColor = selectedColor
-
+            
         } else if collectionView == emojiCollectionView {
             // Нажатие на ячейку коллекции эмодзи
             let selectedEmoji = emojiData[indexPath.item]
@@ -386,7 +406,7 @@ extension NewHabitViewController: UICollectionViewDelegate, UICollectionViewData
             choosedEmoji = selectedEmoji
         }
     }
-
+    
 }
 
 //MARK: -UICollectionViewDelegateFlowLayout
@@ -401,7 +421,8 @@ extension NewHabitViewController: UICollectionViewDelegateFlowLayout {
                 // Заголовок для коллекции цветов
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ColorHeader", for: indexPath)
                 let titleLabel = UILabel()
-                titleLabel.text = "Цвет"
+                titleLabel.text = NSLocalizedString(
+                    "colorCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -412,7 +433,8 @@ extension NewHabitViewController: UICollectionViewDelegateFlowLayout {
                 // Заголовок для коллекции эмодзи
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "EmojiHeader", for: indexPath)
                 let titleLabel = UILabel()
-                titleLabel.text = "Emojie"
+                titleLabel.text = NSLocalizedString(
+                    "emojieCollectionTitle", comment: "")
                 titleLabel.textColor = .YPBlack
                 titleLabel.font = .boldSystemFont(ofSize: 19)
                 titleLabel.textAlignment = .left
@@ -447,17 +469,22 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
     func addWeekDays(_ weekdays: [Int]) {
         choosedDays = weekdays
         var daysView = ""
+        
         if weekdays.count == 7 {
-            daysView = "Каждый день"
+            daysView = NSLocalizedString(
+                "everyDayText", comment: "")
         } else {
-            for index in choosedDays {
-                var calendar = Calendar.current
-                calendar.locale = Locale(identifier: "ru_RU")
-                let day = calendar.shortWeekdaySymbols[index]
-                daysView.append(day)
-                daysView.append(", ")
-            }
-            daysView = String(daysView.dropLast(2))
+//            for index in choosedDays {
+//                var calendar = Calendar.current
+//                calendar.locale = Locale(identifier: "ru_RU")
+//                let day = calendar.shortWeekdaySymbols[index]
+//                daysView.append(day)
+//                daysView.append(", ")
+//            }
+            
+            daysView = weekdays
+                .map {Calendar.current.shortWeekdaySymbols[$0]}
+                .joined(separator: ", ")
         }
         let indexPath = IndexPath(row: 1, section: 0)
         if let cell = habitTableView.cellForRow(at: indexPath) as? NewHabitCell {
@@ -487,7 +514,12 @@ extension NewHabitViewController: UITextFieldDelegate {
     }
     
     private func showReminderAlert() {
-        let alertController = UIAlertController(title: "Напоминание", message: "Сначала выберите Категорию, Расписание, Эмодзи и Цвет", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: NSLocalizedString(
+                "habitAlertTitle", comment: ""),
+            message: NSLocalizedString(
+                "habitAlertText", comment: ""),
+            preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)

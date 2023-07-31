@@ -34,9 +34,9 @@ final class TrackerDataController: NSObject {
     let trackerRecordStore: TrackerRecordStoreProtocol
     private var context: NSManagedObjectContext
     
-    var fetchResultController: NSFetchedResultsController<TrackerCoreData>?
+    var fetchResultControllerForTracker: NSFetchedResultsController<TrackerCoreData>?
     
-    //Блок индексов
+    ///Блок индексов
     private var insertedIndexes: [IndexPath]?
     private var updatedIndexes: [IndexPath]?
     private var deletedIndexes: [IndexPath]?
@@ -52,32 +52,30 @@ final class TrackerDataController: NSObject {
         
         super.init()
         
-        let fetchRequest = TrackerCoreData.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \TrackerCoreData.name, ascending: true)]
+        let fetchRequestForTracker = TrackerCoreData.fetchRequest()
+        fetchRequestForTracker.sortDescriptors = [NSSortDescriptor(keyPath: \TrackerCoreData.name, ascending: true)]
         
-        let controller = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
+        let trackerController = NSFetchedResultsController(
+            fetchRequest: fetchRequestForTracker,
             managedObjectContext: context,
             sectionNameKeyPath: nil,
             cacheName: nil)
-        controller.delegate = self
+        trackerController.delegate = self
         
-        self.fetchResultController = controller
-        try? controller.performFetch()
-        
+        self.fetchResultControllerForTracker = trackerController
+        try? trackerController.performFetch()
     }
-    
-    
 }
 
 extension TrackerDataController: TrackerDataControllerProtocol {
+    
     func addTrackerCategoryToCoreData(_ trackerCategory: TrackerCategory) throws {
         try trackerCategoryStore.addTrackerCategoryToCoreData(trackerCategory)
     }
     
     func fetchTrackerCategoriesFor(weekday: Int, animated: Bool) {
         let predicate = NSPredicate(format: "ANY %K.%K == %ld", #keyPath(TrackerCoreData.schedule), #keyPath(ScheduleCoreData.weekday), weekday)
-        var trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
+        let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(predicate)
         delegate?.updateView(trackerCategories: trackerCategories, animated: animated)
     }
     
@@ -86,7 +84,6 @@ extension TrackerDataController: TrackerDataControllerProtocol {
         let textForSearchingPredicate = NSPredicate(format: "%K Contains[cd] %@", #keyPath(TrackerCoreData.name), textForSearching)
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [weekdayPredicate, textForSearchingPredicate])
         let trackerCategories = trackerCategoryStore.fetchTrackerCategoryWithPredicates(compoundPredicate)
-//        trackerCategories.sort(by: {$1.headerName > $0.headerName})
         delegate?.updateView(trackerCategories: trackerCategories, animated: true)
         
     }
@@ -108,7 +105,7 @@ extension TrackerDataController: TrackerDataControllerProtocol {
     }
     
     var trackerCategories: [TrackerCategory] {
-        guard let trackerObjects = self.fetchResultController?.fetchedObjects else { return [] }
+        guard let trackerObjects = self.fetchResultControllerForTracker?.fetchedObjects else { return [] }
         let trackerCategories = trackerCategoryStore.convertTrackersCoreDataToTrackerCategory(trackerObjects)
         return trackerCategories
     }
@@ -125,7 +122,7 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // Конец процесса обновления данных, все изменения уже отслежены.
-
+        
         // Создание объекта с информацией об обновлении данных.
         guard let insertedIndexes, let deletedIndexes, let updatedIndexes, let movedIndexes else { return }
         let update = TrackerCategoryStoreUpdate(
@@ -134,7 +131,7 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
             updatedIndexes: updatedIndexes,
             movedIndexes: movedIndexes)
         // Посылка обновления представлению пользовательского интерфейса через делегата.
-            delegate?.updateViewWithController(update)
+        delegate?.updateViewWithController(update)
         
         // Сброс массивов, так как процесс обновления данных завершен.
         self.insertedIndexes = nil
@@ -143,3 +140,4 @@ extension TrackerDataController: NSFetchedResultsControllerDelegate {
         self.movedIndexes = nil
     }
 }
+

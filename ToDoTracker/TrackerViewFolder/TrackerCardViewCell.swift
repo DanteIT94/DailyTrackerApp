@@ -14,7 +14,6 @@ protocol TrackerCardViewCellDelegate: AnyObject {
 final class TrackerCardViewCell: UICollectionViewCell {
     
     weak var delegate: TrackerCardViewCellDelegate?
-    //    static let reuseIdentifier = "TrackerCardCell"
     
     //MARK: -Private Properties
     //✅
@@ -60,7 +59,6 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayCheckButton.translatesAutoresizingMaskIntoConstraints = false
         dayCheckButton.setTitle("", for: .normal)
         dayCheckButton.tintColor = .YPWhite
-        dayCheckButton.backgroundColor = .colorSection5
         dayCheckButton.layer.cornerRadius = 16
         dayCheckButton.layer.masksToBounds = true
         dayCheckButton.imageView?.contentMode = .scaleAspectFill
@@ -78,6 +76,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         emojiLabel.text = viewModel.tracker.emoji
         dayLabel.text = "\(viewModel.dayCounter) \(daysDeclension(for: viewModel.dayCounter))"
         cardBackgroundView.backgroundColor = viewModel.tracker.color
+        dayCheckButton.backgroundColor = viewModel.tracker.color
         self.viewModel = viewModel
         dayCheckButtonState()
         dayCheckButtonIsEnabled()
@@ -123,19 +122,10 @@ final class TrackerCardViewCell: UICollectionViewCell {
     
     //✅
     //для склонения дней в ячейке
-    private func daysDeclension(for counter: Int) -> String{
-        let remainder = counter % 10
-        if counter == 11 || counter == 12 || counter == 13 || counter == 14 {
-            return "дней"
-        }
-        switch remainder {
-        case 1:
-            return "день"
-        case 2, 3, 4:
-            return "дня"
-        default:
-            return "дней"
-        }
+    private func daysDeclension(for counter: Int) -> String {
+        let formatString: String = NSLocalizedString("numberOfDays", comment: "")
+        let resultString: String = String.localizedStringWithFormat(formatString, counter)
+        return resultString
     }
     
     //MARK: -Обновления состояния кнопки dayCheckButton в зависимости от значения свойства buttonIsChecked

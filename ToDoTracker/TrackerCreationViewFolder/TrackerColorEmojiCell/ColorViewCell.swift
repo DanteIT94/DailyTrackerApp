@@ -8,8 +8,7 @@
 import UIKit
 
 class ColorViewCell: UICollectionViewCell {
-    // Добавьте элементы интерфейса пользователя для отображения цвета
-     let colorView: UIView = {
+    let colorView: UIView = {
         let colorView = UIView()
         colorView.layer.cornerRadius = 8
         colorView.layer.masksToBounds = true
@@ -22,16 +21,12 @@ class ColorViewCell: UICollectionViewCell {
         contentView.addSubview(colorView)
         
         NSLayoutConstraint.activate([
-                    colorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-                    colorView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                    colorView.widthAnchor.constraint(equalToConstant: 40),
-                    colorView.heightAnchor.constraint(equalToConstant: 40)
-                ])
-        // Настройте внешний вид ячейки
+            colorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            colorView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            colorView.widthAnchor.constraint(equalToConstant: 40),
+            colorView.heightAnchor.constraint(equalToConstant: 40)
+        ])
         backgroundColor = .clear
-        
-        // Добавьте и настройте элементы интерфейса пользователя внутри ячейки
-        // Например, создайте UIView для отображения цвета и добавьте его на contentView
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,15 +35,10 @@ class ColorViewCell: UICollectionViewCell {
 }
 
 class ColorHeaderView: UICollectionReusableView {
-    // Добавьте элементы интерфейса пользователя для отображения заголовка цветов
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // Настройте внешний вид заголовка
         backgroundColor = .blue
-        
-        // Добавьте и настройте элементы интерфейса пользователя внутри заголовка
-        // Например, создайте UILabel для отображения текста "Цвет" и добавьте его на contentView
     }
     
     required init?(coder aDecoder: NSCoder) {

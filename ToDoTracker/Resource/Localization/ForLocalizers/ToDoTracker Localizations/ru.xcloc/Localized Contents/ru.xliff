@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="ToDoTracker/Resource/en.lproj/InfoPlist.strings" source-language="en" target-language="ru" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.3.1" build-num="14E300c"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>To-Do-Tracker</source>
+        <target>Трекер Задач</target>
+        <note>InfoPlist.strings
+  ToDoTracker
+
+  Created by Денис on 29.07.2023.</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ToDoTracker</source>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ToDoTracker/Resource/en.lproj/Localizable.strings" source-language="en" target-language="ru" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.3.1" build-num="14E300c"/>
+    </header>
+    <body>
+      <trans-unit id="numberOfDays" translate="no" xml:space="preserve">
+        <source>numberOfDays</source>
+        <note>No comment provided by engineer. (Key in .stringsdict)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ToDoTracker/Resource/en.lproj/Localizable.stringsdict" source-language="en" target-language="ru" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.3.1" build-num="14E300c"/>
+    </header>
+    <body>
+      <trans-unit id="/numberOfDays:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+        <source>%#@days@</source>
+        <target>%#@days@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/numberOfDays:dict/days:dict/few:dict/:string" xml:space="preserve">
+        <source>days</source>
+        <target>дня</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/numberOfDays:dict/days:dict/many:dict/:string" xml:space="preserve">
+        <source>days</source>
+        <target>дней</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/numberOfDays:dict/days:dict/one:dict/:string" xml:space="preserve">
+        <source>day</source>
+        <target>день</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/numberOfDays:dict/days:dict/other:dict/:string" xml:space="preserve">
+        <source>days</source>
+        <target>дней</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/numberOfDays:dict/days:dict/zero:dict/:string" xml:space="preserve">
+        <source>days</source>
+        <target>дней</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/numberOfTrackers:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+        <source>%#@trackers@</source>
+        <target>%#@trackers@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/numberOfTrackers:dict/trackers:dict/few:dict/:string" xml:space="preserve">
+        <source>%d trackers left</source>
+        <target>%d задачи осталось</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/numberOfTrackers:dict/trackers:dict/many:dict/:string" xml:space="preserve">
+        <source>%d trackers left</source>
+        <target>%d задач осталось</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/numberOfTrackers:dict/trackers:dict/one:dict/:string" xml:space="preserve">
+        <source>1 tracker left</source>
+        <target>%d задача осталась</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/numberOfTrackers:dict/trackers:dict/other:dict/:string" xml:space="preserve">
+        <source>%d trackers left</source>
+        <target>%d задачи осталось</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/numberOfTrackers:dict/trackers:dict/zero:dict/:string" xml:space="preserve">
+        <source>No trackers left</source>
+        <target>Нет Задач</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

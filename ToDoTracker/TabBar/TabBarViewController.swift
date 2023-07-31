@@ -15,30 +15,43 @@ final class TabBarViewController: UITabBarController {
         tabBar.barTintColor = .YPBlue
         
         // Создайте разделительную линию
-          let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
-          separatorLine.backgroundColor = UIColor.lightGray
-          tabBar.addSubview(separatorLine)
+        let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
+        separatorLine.backgroundColor = UIColor.lightGray
+        tabBar.addSubview(separatorLine)
         
         
         let trackerContainer = TrackerPersistentContainer()
+        
         let trackerStore = TrackerStore(context: trackerContainer.context)
-        let trackerCategoryStore = TrackerCategoryStore(context: trackerContainer.context, trackerDataStore: trackerStore)
+        let trackerCategoryStore = TrackerCategoryStore(
+            context: trackerContainer.context,
+            trackerDataStore: trackerStore)
         let trackerRecordStore = TrackerRecordStore(context: trackerContainer.context)
         
-        let trackerDataController = TrackerDataController(trackerCategoryStore: trackerCategoryStore, trackerStore: trackerStore, trackerRecordStore: trackerRecordStore, context: trackerContainer.context)
+        let categoryViewModel = CategoryViewModel(
+            trackerCategoryStore: trackerCategoryStore)
         
-        let trackersViewController = TrackersViewController(trackerDataController: trackerDataController)
+        let trackerDataController = TrackerDataController(
+            trackerCategoryStore: trackerCategoryStore,
+            trackerStore: trackerStore,
+            trackerRecordStore: trackerRecordStore,
+            context: trackerContainer.context)
+        
+        let trackersViewController = TrackersViewController(
+            trackerDataController: trackerDataController,
+            trackerCategoryStore: trackerCategoryStore,
+            categoryViewModel: categoryViewModel)
         
         let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
         trackersViewController.tabBarItem = UITabBarItem(
-            title: "Трекеры",
+            title: NSLocalizedString("trackersTab", comment: ""),
             image: UIImage(named: "Record_circle_fill"),
             selectedImage: nil)
         
         
         let statisticViewController = StatisticViewController()
         statisticViewController.tabBarItem = UITabBarItem(
-            title: "Статистика",
+            title: NSLocalizedString("statistic", comment: ""),
             image: UIImage(named: "Hare_fill"),
             selectedImage: nil)
         

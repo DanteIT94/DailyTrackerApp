@@ -1,0 +1,64 @@
+/* 
+  Localizable.strings
+  ToDoTracker
+
+  Created by Денис on 28.07.2023.
+  
+*/
+
+// OnBoardingView
+"firstOnboardingTitle" = "Track only what you want";
+"secondOnboardingTitle" = "Even if it's not water liters and yoga";
+"onboardingButton" = "That's some technology!";
+
+// TabBar
+"trackersTab" = "Trackers";
+"statistic" = "Statistics";
+
+// MainVC
+"navigTitleMainVC" = "Trackers";
+"searchField" = "Search";
+"cancelSearchButton" = "Cancel";
+"emptyPlaceholderText" = "What will we track?";
+"noTrackersPlaceholderText" = "Nothing found";
+ 
+// TrackerTypeVC
+"trackerTypeVCTitle" = "Create Tracker";
+"habitTypeButton" = "Habit";
+"eventTypeButton" = "Irregular Event";
+
+// NewHabitCreateVC
+"newHabitTitle" = "New Habit";
+"trackerNameTextField" = "Enter tracker name";
+"chooseCategoryButton" = "Categories";
+"chooseScheduleButton" = "Schedule";
+"emojieCollectionTitle" = "Emojis";
+"colorCollectionTitle" = "Color";
+"newTrackerVCCancelButton" = "Cancel";
+"newTrackerVCCreateButton" = "Create";
+"doneButton" = "Done";
+"everyDayText" = "Every day";
+"habitAlertTitle" = "Reminder";
+"habitAlertText" = "Please select Category, Schedule, Emojis, and Color first";
+
+// NewEventCreateVC
+"newEventTitle" = "New Irregular Event";
+"eventAlertTitle" = "Reminder";
+"eventAlertText" = "Please select Category, Emojis, and Color first";
+
+// CategoryVC
+"categoryTitle" = "Categories";
+"addCategoryButton" = "Add Category";
+"emptyCategoryPlaceholderText" = "Habits and events can be \ngrouped by meaning";
+
+// AddCategoryVC
+"newCategoryTitle" = "New Category";
+"newCategoryTextField" = "Category Name (at least 3 characters)";
+
+// ScheduleVC
+"scheduleTitle" = "Schedule";
+
+
+
+
+

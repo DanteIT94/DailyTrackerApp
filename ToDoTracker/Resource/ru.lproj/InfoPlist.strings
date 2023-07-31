@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  ToDoTracker
+
+  Created by Денис on 29.07.2023.
+  
+*/
+
+"CFBundleDisplayName" = "Трекер Задач";

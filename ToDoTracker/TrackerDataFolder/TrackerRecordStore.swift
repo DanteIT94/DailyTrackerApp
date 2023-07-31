@@ -18,7 +18,6 @@ protocol TrackerRecordStoreProtocol: AnyObject {
 
 final class TrackerRecordStore: NSObject {
     let context: NSManagedObjectContext
-    
     init(context: NSManagedObjectContext) {
         self.context = context
     }
@@ -48,7 +47,7 @@ extension TrackerRecordStore: TrackerRecordStoreProtocol {
             format: "%K == %@",
             #keyPath(TrackerRecordCoreData.date), date)
         
-        //Объединяем предикаты через NSCompoundPredicate
+        ///Объединяем предикаты через NSCompoundPredicate
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateID, predicateDate])
         
         do {
@@ -102,10 +101,6 @@ extension TrackerRecordStore: TrackerRecordStoreProtocol {
             return false
         }
     }
-    
-
-    
-    
 }
 
 
