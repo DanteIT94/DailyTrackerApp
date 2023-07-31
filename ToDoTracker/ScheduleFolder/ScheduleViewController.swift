@@ -46,8 +46,8 @@ final class ScheduleViewController: UIViewController {
     // MARK: - Initializer
     init(choosedDays: [Int]) {
         super.init(nibName: nil, bundle: nil)
-        
-        calendar.locale = Locale.current
+//
+//        calendar.locale = Locale.current
         days = calendar.weekdaySymbols
         finalList = choosedDays
         setupInitialSelectedDays()
@@ -114,7 +114,7 @@ final class ScheduleViewController: UIViewController {
     private func configDaysArray() {
         let weekdaySymbols = calendar.weekdaySymbols
         let firstDayIndex = 1 // Index of "Понедельник" in the weekdaySymbols array
-        
+
         // Form a new array with shifted weekdays
         let weekdays = Array(weekdaySymbols[firstDayIndex...]) + Array(weekdaySymbols[..<firstDayIndex])
         days = weekdays.map { $0.capitalizeFirstLetter() }

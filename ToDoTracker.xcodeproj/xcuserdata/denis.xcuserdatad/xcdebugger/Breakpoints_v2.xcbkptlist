@@ -1150,48 +1150,16 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "20B5F8E8-EB1C-4231-A097-53480C9DF2BC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
             landmarkName = "addWeekDays(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "20B5F8E8-EB1C-4231-A097-53480C9DF2BC - 298132601e643bc7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoTracker.NewHabitViewController.addWeekDays(Swift.Array&lt;Swift.Int&gt;) -&gt; ()"
-                  moduleName = "ToDoTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "485"
-                  endingLineNumber = "485"
-                  offsetFromSymbolStart = "1628">
-               </Location>
-               <Location
-                  uuid = "20B5F8E8-EB1C-4231-A097-53480C9DF2BC - 298132601e643bc7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoTracker.NewHabitViewController.addWeekDays(Swift.Array&lt;Swift.Int&gt;) -&gt; ()"
-                  moduleName = "ToDoTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/TrackerCreationViewFolder/NewHabitCreation/NewHabitViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "485"
-                  endingLineNumber = "485"
-                  offsetFromSymbolStart = "1808">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1207,6 +1175,70 @@
             startingLineNumber = "471"
             endingLineNumber = "471"
             landmarkName = "addWeekDays(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D6DA804C-BC1A-41E9-A9AE-6BB541863B8A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/ScheduleFolder/ScheduleViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "ScheduleViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "D6DA804C-BC1A-41E9-A9AE-6BB541863B8A - 985b4f536981c150"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.ScheduleViewController.init(choosedDays: Swift.Array&lt;Swift.Int&gt;) -&gt; ToDoTracker.ScheduleViewController"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/ScheduleFolder/ScheduleViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "480">
+               </Location>
+               <Location
+                  uuid = "D6DA804C-BC1A-41E9-A9AE-6BB541863B8A - e432cd343dfbd0da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoTracker.ScheduleViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ToDoTracker.ScheduleViewController&gt;"
+                  moduleName = "ToDoTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denis/Desktop/6)%20%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D1%8B%2014-17%20(Tracker)/ToDoTracker/ToDoTracker/ScheduleFolder/ScheduleViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "244">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14935A13-CA39-452B-8FEB-18443977D0C6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoTracker/ScheduleFolder/ScheduleViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "init(choosedDays:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

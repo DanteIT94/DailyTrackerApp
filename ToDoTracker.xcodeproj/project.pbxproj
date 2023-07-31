@@ -320,6 +320,8 @@
 			dependencies = (
 			);
 			name = ToDoTracker;
+			packageProductDependencies = (
+			);
 			productName = ToDoTracker;
 			productReference = 923F99262A3C859B00CFCE9E /* ToDoTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -350,6 +352,8 @@
 				de,
 			);
 			mainGroup = 923F991D2A3C859B00CFCE9E;
+			packageReferences = (
+			);
 			productRefGroup = 923F99272A3C859B00CFCE9E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

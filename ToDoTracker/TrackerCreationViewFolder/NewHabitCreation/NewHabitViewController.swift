@@ -474,14 +474,17 @@ extension NewHabitViewController: ScheduleViewControllerDelegate {
             daysView = NSLocalizedString(
                 "everyDayText", comment: "")
         } else {
-            for index in choosedDays {
-                var calendar = Calendar.current
-                calendar.locale = Locale(identifier: "ru_RU")
-                let day = calendar.shortWeekdaySymbols[index]
-                daysView.append(day)
-                daysView.append(", ")
-            }
-            daysView = String(daysView.dropLast(2))
+//            for index in choosedDays {
+//                var calendar = Calendar.current
+//                calendar.locale = Locale(identifier: "ru_RU")
+//                let day = calendar.shortWeekdaySymbols[index]
+//                daysView.append(day)
+//                daysView.append(", ")
+//            }
+            
+            daysView = weekdays
+                .map {Calendar.current.shortWeekdaySymbols[$0]}
+                .joined(separator: ", ")
         }
         let indexPath = IndexPath(row: 1, section: 0)
         if let cell = habitTableView.cellForRow(at: indexPath) as? NewHabitCell {
