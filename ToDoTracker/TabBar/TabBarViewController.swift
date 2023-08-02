@@ -21,7 +21,6 @@ final class TabBarViewController: UITabBarController {
         
         
         let trackerContainer = TrackerPersistentContainer()
-        
         let trackerStore = TrackerStore(context: trackerContainer.context)
         let trackerCategoryStore = TrackerCategoryStore(
             context: trackerContainer.context,

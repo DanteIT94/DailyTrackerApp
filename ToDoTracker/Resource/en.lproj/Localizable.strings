@@ -58,6 +58,12 @@
 // ScheduleVC
 "scheduleTitle" = "Schedule";
 
+// StatisticVC
+"statisticTitle" = "Statistiс";
+"bestStreak" = "Best Streak";
+"perfectDays" = "Perfect Days";
+"doneTrackers" = "Done Trackers";
+"averageValue" = "Average Value";
 
 
 

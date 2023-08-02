@@ -129,6 +129,7 @@ final class ScheduleViewController: UIViewController {
                 guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: section)) as? SwitchCell else { continue }
                 guard cell.switcher.isOn else { continue }
                 guard let text = cell.textLabel?.text else { continue }
+                //ВОТ СЮДА ПЕРЕДАЮТСЯ НЕ КОРРЕКТНЫЕ ДАННЫЕ
                 guard let weekday = getIndexOfWeek(text) else { continue }
                 finalList.append(weekday)
             }
@@ -136,7 +137,7 @@ final class ScheduleViewController: UIViewController {
         delegate?.addWeekDays(finalList)
         navigationController?.popViewController(animated: true)
     }
-    
+    //ВОТ ТУТ ПРОБЛЕМА ДЛЯ ФИКСА
     private func getIndexOfWeek(_ text: String) -> Int? {
         return calendar.weekdaySymbols.firstIndex(of: text.lowercased())
     }

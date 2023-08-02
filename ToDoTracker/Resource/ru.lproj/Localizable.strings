@@ -61,3 +61,10 @@
 
 // ScheduleVC
 "scheduleTitle" = "Расписание";
+
+// StatisticVC
+"statisticTitle" = "Статистика";
+"bestStreak" = "Лучший период";
+"perfectDays" = "Идеальные дни";
+"doneTrackers" = "Трекеров завершено";
+"averageValue" = "Среднее значение";
