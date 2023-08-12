@@ -18,8 +18,7 @@ final class TabBarViewController: UITabBarController {
         let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
         separatorLine.backgroundColor = UIColor.lightGray
         tabBar.addSubview(separatorLine)
-        
-        
+                
         let trackerContainer = TrackerPersistentContainer()
         let trackerStore = TrackerStore(context: trackerContainer.context)
         let trackerCategoryStore = TrackerCategoryStore(
@@ -39,7 +38,9 @@ final class TabBarViewController: UITabBarController {
         let trackersViewController = TrackersViewController(
             trackerDataController: trackerDataController,
             trackerCategoryStore: trackerCategoryStore,
-            categoryViewModel: categoryViewModel)
+            categoryViewModel: categoryViewModel,
+            trackerStore: trackerStore,
+            trackerRecordStore: trackerRecordStore)
         
         let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
         trackersViewController.tabBarItem = UITabBarItem(
@@ -48,7 +49,7 @@ final class TabBarViewController: UITabBarController {
             selectedImage: nil)
         
         
-        let statisticViewController = StatisticViewController()
+        let statisticViewController = StatisticViewController(trackerRecordStore: trackerRecordStore)
         statisticViewController.tabBarItem = UITabBarItem(
             title: NSLocalizedString("statistic", comment: ""),
             image: UIImage(named: "Hare_fill"),

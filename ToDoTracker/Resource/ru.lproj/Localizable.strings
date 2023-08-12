@@ -68,3 +68,7 @@
 "perfectDays" = "Идеальные дни";
 "doneTrackers" = "Трекеров завершено";
 "averageValue" = "Среднее значение";
+
+//EditingVC
+"editingTitle" = "Редактирование привычки";
+"saveButton" = "Сохранить";

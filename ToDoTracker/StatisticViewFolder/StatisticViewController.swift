@@ -44,6 +44,7 @@ final class StatisticViewController: UIViewController {
         stackView.spacing = 12 // Расстояние между CustomInfoView
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
+        stackView.isHidden = false
         return stackView
     }()
     
@@ -54,11 +55,29 @@ final class StatisticViewController: UIViewController {
         "doneTrackers",
         "averageValue"]
     
+    let trackerRecordStore: TrackerRecordStoreProtocol
+    
+    init(trackerRecordStore: TrackerRecordStoreProtocol) {
+        self.trackerRecordStore = trackerRecordStore
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configStatisticLayout()
+        configureCustomInfoViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Удаляем предыдущие CustomInfoView из customInfoViewVStack
+        customInfoViewVStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         configureCustomInfoViews()
     }
     
@@ -85,7 +104,6 @@ final class StatisticViewController: UIViewController {
             customInfoViewVStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             customInfoViewVStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
-        
     }
     
     private func configureCustomInfoViews() {
@@ -101,6 +119,16 @@ final class StatisticViewController: UIViewController {
                 "\(completedTrackers)",
                 "\(averageCompletedTrackers)"
             ]
+            if completedTrackers == "0" {
+            placeholderText.isHidden = false
+            placeholderImage.isHidden = false
+            customInfoViewVStack.isHidden = true
+            return
+            } else {
+            placeholderText.isHidden = true
+            placeholderImage.isHidden = true
+            customInfoViewVStack.isHidden = false
+            }
         
         // Добавляем и настраиваем 4 CustomInfoView в стеке
         for (index, title) in localizationKeysForDetailTitle.enumerated() {
@@ -118,6 +146,7 @@ final class StatisticViewController: UIViewController {
             customInfoView.descriptionLabel.text = NSLocalizedString(title, comment: "")
             customInfoView.numberLabel.text = dataForTitle
         }
+        
     }
     
     //MARK:  -
@@ -134,8 +163,8 @@ final class StatisticViewController: UIViewController {
     }
     
     private func totalCompletedTrackers() -> String {
-        
-        return "0"
+        let totalCompletedTrackers = trackerRecordStore.calculateCompletedTrackers()
+        return String(totalCompletedTrackers)
     }
     
     private func averageCompletedTrackers() -> String {

@@ -65,6 +65,6 @@
 "doneTrackers" = "Done Trackers";
 "averageValue" = "Average Value";
 
-
-
-
+//EditingVC
+"editingTitle" = "Edit Habit";
+"saveButton" = "Save";

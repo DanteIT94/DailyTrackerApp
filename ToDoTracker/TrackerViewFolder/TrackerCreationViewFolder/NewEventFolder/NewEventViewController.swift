@@ -127,6 +127,7 @@ final class NewEventViewController: UIViewController {
     private var choosedDays: [Int] = Array(0...6)
     private var choosedColor: UIColor?
     private var choosedEmoji: String?
+    private var isEvent: Bool = true
     private var selectedColorCellIndexPath: IndexPath?
     private var selectedEmojiCellIndexPath: IndexPath?
     
@@ -261,8 +262,9 @@ final class NewEventViewController: UIViewController {
         let category: String = category ?? ""
         let color: UIColor = choosedColor ?? .gray
         let emoji: String = choosedEmoji ?? ""
+        let isEvent: Bool = isEvent
         if let delegate = delegate {
-            delegate.addNewEvent(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: choosedDays)]))
+            delegate.addNewEvent(TrackerCategory(headerName: category, trackerArray: [Tracker(id: UUID(), name: text, color: color, emoji: emoji, schedule: choosedDays, isEvent: isEvent, isPinned: false, category: category)]))
         } else {
             print("Delegate is not set")
         }

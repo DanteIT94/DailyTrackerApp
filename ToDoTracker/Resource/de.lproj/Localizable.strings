@@ -65,5 +65,7 @@
 "doneTrackers" = "Abgeschlossene Tracker";
 "averageValue" = "Durchschnittswert";
 
-
+//EditingVC
+"editingTitle" = "Gewohnheit bearbeiten";
+"saveButton" = "Speichern";
 

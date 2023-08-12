@@ -14,4 +14,8 @@ struct Tracker {
     let color: UIColor
     let emoji: String
     let schedule: [Int]
+    let isEvent: Bool
+    var isPinned: Bool
+    var category: String
+    var previousCategory: String?
 }
