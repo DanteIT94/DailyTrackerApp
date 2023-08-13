@@ -126,6 +126,7 @@ final class TrackersViewController: UIViewController {
     }()
     
     //MARK: -Variable
+    private let appMetricScreenName = "Main"
     private var visibleCategories: [TrackerCategory] = []
     private var currentDate: Date = Date()
     private let categoryViewModel: CategoryViewModel
@@ -143,15 +144,17 @@ final class TrackersViewController: UIViewController {
     private var trackerCategoryStore: TrackerCategoryStore
     private var trackerStore: TrackerStore
     private var trackerRecordStore: TrackerRecordStore
+    private let appMetrics: AppMetricsProtocol
     
     
     //MARK: -Initializers
-    init(trackerDataController: TrackerDataControllerProtocol, trackerCategoryStore: TrackerCategoryStore, categoryViewModel: CategoryViewModel, trackerStore: TrackerStore, trackerRecordStore: TrackerRecordStore) {
+    init(trackerDataController: TrackerDataControllerProtocol, trackerCategoryStore: TrackerCategoryStore, categoryViewModel: CategoryViewModel, trackerStore: TrackerStore, trackerRecordStore: TrackerRecordStore, appMetrics: AppMetricsProtocol) {
         self.trackerDataController = trackerDataController
         self.trackerCategoryStore = trackerCategoryStore
         self.categoryViewModel = categoryViewModel
         self.trackerStore = trackerStore
         self.trackerRecordStore = trackerRecordStore
+        self.appMetrics = appMetrics
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -173,6 +176,15 @@ final class TrackersViewController: UIViewController {
         reloadVisibleCategories()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        appMetrics.reportEvent(screen: appMetricScreenName, event: .open, item: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        appMetrics.reportEvent(screen: appMetricScreenName, event: .close, item: nil)
+
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.bringSubviewToFront(filtersButton)
@@ -180,7 +192,6 @@ final class TrackersViewController: UIViewController {
     
     //MARK: - Private Methods
     private func configNavigationBar() {
-        //        let formattedDate = dateFormmater.string(from: datePicker.date)
         let leftButton = UIBarButtonItem(image: UIImage(named: "Plus"), style: .done, target: self, action: #selector(addTrackerButtonTapped))
         let rightButton = UIBarButtonItem(customView: datePicker)
         leftButton.tintColor = .YPBlack
@@ -303,6 +314,7 @@ final class TrackersViewController: UIViewController {
     
     //MARK: - @OBJC Methods
     @objc private func addTrackerButtonTapped() {
+        appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .add_track)
         let newHabitViewController = NewHabitViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
         newHabitViewController.delegate = self
         let newEventViewController = NewEventViewController(trackerCategoryStore: trackerCategoryStore, categoryViewModel: categoryViewModel)
@@ -470,6 +482,7 @@ extension TrackersViewController {
     
     
     private func editSelectedTracker(for indexPath: IndexPath) {
+        appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .edit)
         let selectedTracker = self.visibleCategories[indexPath.section].trackerArray[indexPath.row]
         let trackerEditVC = EditingTrackerViewController(trackerStore: self.trackerStore, trackerRecordStore: self.trackerRecordStore, trackerCategoryStore: self.trackerCategoryStore, categoryViewModel: self.categoryViewModel, trackerID: selectedTracker.id)
         trackerEditVC.delegate = self
@@ -478,6 +491,7 @@ extension TrackersViewController {
     }
     
     private func deleteButtonTapped(for indexPath: IndexPath) {
+        appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .delete)
         let deletedTracker = self.visibleCategories[indexPath.section].trackerArray[indexPath.row]
         do {
             try trackerStore.deleteTracker(deletedTracker)

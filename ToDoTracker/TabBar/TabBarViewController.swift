@@ -42,12 +42,15 @@ final class TabBarViewController: UITabBarController {
             trackerRecordStore: trackerRecordStore,
             context: trackerContainer.context)
         
+        let appMetrics = AppMetrics()
+        
         let trackersViewController = TrackersViewController(
             trackerDataController: trackerDataController,
             trackerCategoryStore: trackerCategoryStore,
             categoryViewModel: categoryViewModel,
             trackerStore: trackerStore,
-            trackerRecordStore: trackerRecordStore)
+            trackerRecordStore: trackerRecordStore,
+            appMetrics: appMetrics)
         
         let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
         trackersViewController.tabBarItem = UITabBarItem(
