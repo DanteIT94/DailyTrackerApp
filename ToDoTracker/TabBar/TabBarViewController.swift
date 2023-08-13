@@ -16,7 +16,14 @@ final class TabBarViewController: UITabBarController {
         
         // Создайте разделительную линию
         let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
-        separatorLine.backgroundColor = UIColor.lightGray
+        let separatorColor = UIColor { (traits: UITraitCollection) -> UIColor in
+            if traits.userInterfaceStyle == .light {
+                return UIColor.lightGray
+            } else {
+                return UIColor.black
+            }
+        }
+        separatorLine.backgroundColor = separatorColor
         tabBar.addSubview(separatorLine)
                 
         let trackerContainer = TrackerPersistentContainer()

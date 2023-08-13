@@ -69,3 +69,14 @@
 "editingTitle" = "Gewohnheit bearbeiten";
 "saveButton" = "Speichern";
 
+//Pin
+"pinCategory" = "Pinned";
+
+//ContextMenu
+"pinned" = "Anheften";
+"unpinned" = "Lösen";
+"edit" = "Bearbeiten";
+"delete" = "Löschen";
+
+//Filters
+"filtersButton" = "Filters";

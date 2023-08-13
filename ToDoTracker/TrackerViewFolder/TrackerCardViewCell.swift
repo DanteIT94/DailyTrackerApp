@@ -42,7 +42,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         let taskLabel = UILabel()
         taskLabel.translatesAutoresizingMaskIntoConstraints = false
         taskLabel.font = UIFont.systemFont(ofSize: 12)
-        taskLabel.textColor = .YPWhite
+        taskLabel.textColor = .white
         return taskLabel
     }()
     

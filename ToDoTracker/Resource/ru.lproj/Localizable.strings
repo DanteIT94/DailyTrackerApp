@@ -72,3 +72,15 @@
 //EditingVC
 "editingTitle" = "Редактирование привычки";
 "saveButton" = "Сохранить";
+
+//Pin
+"pinCategory" = "Закрепленное";
+
+//ContextMenu
+"pinned" = "Закрепить";
+"unpinned" = "Открепить";
+"edit" = "Редактирование";
+"delete" = "Удалить";
+
+//Filters
+"filtersButton" = "Фильтры";

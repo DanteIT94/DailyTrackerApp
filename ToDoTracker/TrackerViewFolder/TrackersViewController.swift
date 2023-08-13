@@ -45,8 +45,30 @@ final class TrackersViewController: UIViewController {
     private let searchTextField: UISearchTextField = {
         let searchTextField = UISearchTextField()
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        searchTextField.placeholder = NSLocalizedString(
-            "searchField", comment: "")
+        
+        let searchTextColor = UIColor { (trait: UITraitCollection) -> UIColor in
+            if trait.userInterfaceStyle == .light {
+                return UIColor.gray
+            } else {
+                return UIColor.white
+            }
+        }
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: searchTextColor
+        ]
+        
+        let attributedPlaceholder = NSAttributedString(string: NSLocalizedString(
+            "searchField", comment: ""), attributes: attributes)
+        
+        searchTextField.attributedPlaceholder = attributedPlaceholder 
+        
+        let searchColor = UIColor { (trait: UITraitCollection) -> UIColor in
+            if trait.userInterfaceStyle == .light {
+                return UIColor.YPLightGrey!
+            } else {
+                return UIColor.darkGray
+            }
+        }
         searchTextField.addTarget(nil, action: #selector(searchTextFieldEditingChanged), for: .editingChanged)
         return searchTextField
     }()
@@ -65,6 +87,7 @@ final class TrackersViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.backgroundColor = .YPWhite
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -89,10 +112,10 @@ final class TrackersViewController: UIViewController {
     private let filtersButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Фильтры", for: .normal)
+        button.setTitle(NSLocalizedString("filtersButton", comment: ""), for: .normal)
         button.backgroundColor = .YPBlue
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        button.setTitleColor(.YPWhite, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 16
         //        button.addTarget(nil, action: #selector(filtersButtonTapped), for: .touchUpInside)
         return button
@@ -264,6 +287,15 @@ final class TrackersViewController: UIViewController {
                 trackerArray: trackers
             )
         }
+        
+        // Сортировка, чтобы категория "Закрепленное" всегда была первой
+        let pinnedCategoryName = NSLocalizedString("pinCategory", comment: "")
+        if let pinnedIndex = visibleCategories.firstIndex(where: { $0.headerName == pinnedCategoryName }) {
+            let pinnedCategory = visibleCategories[pinnedIndex]
+            visibleCategories.remove(at: pinnedIndex)
+            visibleCategories.insert(pinnedCategory, at: 0)
+        }
+        
         collectionView.reloadData()
         reloadPlaceholders(for: .noTrackers)
     }
@@ -378,19 +410,19 @@ extension TrackersViewController: UICollectionViewDelegate {
     private func createContextMenuConfiguration(for indexPath: IndexPath) -> UIContextMenuConfiguration  {
         let isPinned = visibleCategories[indexPath.section].trackerArray[indexPath.row].isPinned
         
-        let cellPinButton = UIAction(title: "Закрепить") { [weak self ] _ in
+        let cellPinButton = UIAction(title: NSLocalizedString("pinned", comment: "")) { [weak self ] _ in
             self?.pinButtonTapped(for: indexPath)
         }
-        let cellUnpinButton = UIAction(title: "Открепить") { [weak self] _ in
+        let cellUnpinButton = UIAction(title: NSLocalizedString("unpinned", comment: "")) { [weak self] _ in
             self?.unpinButtonTapped(for: indexPath)
         }
         let firstCellAction = isPinned ? cellUnpinButton : cellPinButton
         
-        let editAction = UIAction(title: "Редактировать") { [weak self ] _  in
+        let editAction = UIAction(title: NSLocalizedString("edit", comment: "")) { [weak self ] _  in
             self?.editSelectedTracker(for: indexPath)
         }
         
-        let deleteAction = UIAction(title: "Удалить", attributes: .destructive) { [ weak self ] _ in
+        let deleteAction = UIAction(title: NSLocalizedString("delete", comment: ""), attributes: .destructive) { [ weak self ] _ in
             self?.presentDeleteAlert(indexPath)
         }
         
@@ -407,7 +439,7 @@ extension TrackersViewController {
     private func pinButtonTapped(for indexPath: IndexPath) {
         var selectedTracker = self.visibleCategories[indexPath.section].trackerArray[indexPath.row]
         selectedTracker.previousCategory = selectedTracker.category
-        selectedTracker.category = "Закрепленное"
+        selectedTracker.category = NSLocalizedString("pinCategory", comment: "")
         selectedTracker.isPinned = true
         do {
             try trackerStore.updateTracker(selectedTracker)
