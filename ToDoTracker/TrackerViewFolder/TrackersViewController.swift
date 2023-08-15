@@ -31,8 +31,6 @@ final class TrackersViewController: UIViewController {
         return datePicker
     }()
     
-    
-    //---------------------------------------------------------------
     //MARK: -Блок поисковой строки
     private let searchStackView: UIStackView = {
         let searchStackView = UIStackView()
@@ -83,7 +81,6 @@ final class TrackersViewController: UIViewController {
         cancelSearchButton.addTarget(nil, action: #selector(cancelSearchButtonTapped), for: .touchUpInside)
         return cancelSearchButton
     }()
-    //----------------------------------------------------------------------
     
     private let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())

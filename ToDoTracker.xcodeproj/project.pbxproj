@@ -44,6 +44,7 @@
 		9253F9852A7527660059472C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9253F9872A7527660059472C /* InfoPlist.strings */; };
 		9261D5CA2A894CE900AAF33E /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9261D5C92A894CE900AAF33E /* AnalyticsService.swift */; };
 		9261D5CC2A896B3B00AAF33E /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9261D5CB2A896B3B00AAF33E /* AppMetrics.swift */; };
+		9266D1F22A8C22760020D766 /* AppMetricsParametrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266D1F12A8C22760020D766 /* AppMetricsParametrs.swift */; };
 		929669C72A62E00200606172 /* ColorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929669C62A62E00200606172 /* ColorViewCell.swift */; };
 		929669C92A62E0FE00606172 /* EmojiViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929669C82A62E0FE00606172 /* EmojiViewCell.swift */; };
 		929C804A2A7AA17900C731A4 /* CustomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C80492A7AA17900C731A4 /* CustomInfoView.swift */; };
@@ -59,7 +60,6 @@
 		92A3C4582A6FEF64003D9452 /* TrackersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C4572A6FEF64003D9452 /* TrackersViewModel.swift */; };
 		92A3C45A2A700A88003D9452 /* ObserverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C4592A700A88003D9452 /* ObserverWrapper.swift */; };
 		92A3C45C2A701728003D9452 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3C45B2A701728003D9452 /* CategoryViewModel.swift */; };
-		92E6D07A2A56F5070003809D /* MockHelpers .swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D0792A56F5070003809D /* MockHelpers .swift */; };
 		92E6D0B52A59B5180003809D /* NewEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D0B42A59B5180003809D /* NewEventCell.swift */; };
 		CED037B21B4A93941DA97B3A /* Pods_ToDoTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD8E50FE2AB72F03EEFFEF0 /* Pods_ToDoTracker.framework */; };
 		FB64EFF2E8DC2873708EEF65 /* Pods_ToDoTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2317C45192CE2C5E40D0C3DF /* Pods_ToDoTrackerTests.framework */; };
@@ -124,6 +124,7 @@
 		9253F98C2A7584DA0059472C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9261D5C92A894CE900AAF33E /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		9261D5CB2A896B3B00AAF33E /* AppMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetrics.swift; sourceTree = "<group>"; };
+		9266D1F12A8C22760020D766 /* AppMetricsParametrs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetricsParametrs.swift; sourceTree = "<group>"; };
 		929669C62A62E00200606172 /* ColorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewCell.swift; sourceTree = "<group>"; };
 		929669C82A62E0FE00606172 /* EmojiViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewCell.swift; sourceTree = "<group>"; };
 		929C80492A7AA17900C731A4 /* CustomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoView.swift; sourceTree = "<group>"; };
@@ -139,7 +140,6 @@
 		92A3C4572A6FEF64003D9452 /* TrackersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewModel.swift; sourceTree = "<group>"; };
 		92A3C4592A700A88003D9452 /* ObserverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverWrapper.swift; sourceTree = "<group>"; };
 		92A3C45B2A701728003D9452 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
-		92E6D0792A56F5070003809D /* MockHelpers .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MockHelpers .swift"; sourceTree = "<group>"; };
 		92E6D0B42A59B5180003809D /* NewEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCell.swift; sourceTree = "<group>"; };
 		B065F088DD3256E6D9FFE31D /* Pods-ToDoTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoTrackerTests.release.xcconfig"; path = "Target Support Files/Pods-ToDoTrackerTests/Pods-ToDoTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		CD0215B0AD4624C905F9CE82 /* Pods-ToDoTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-ToDoTrackerTests/Pods-ToDoTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -212,7 +212,6 @@
 				92A3C4592A700A88003D9452 /* ObserverWrapper.swift */,
 				923F993E2A3CF8F000CFCE9E /* UIColors+Extension.swift */,
 				923F99B32A51AB8B00CFCE9E /* String+Extension.swift */,
-				92E6D0792A56F5070003809D /* MockHelpers .swift */,
 				9253F9662A73F8EA0059472C /* Date Formmator +Extension.swift */,
 				929C804B2A7ABE1500C731A4 /* Array+Subscript.swift */,
 				929C804D2A7ADE8300C731A4 /* Gradient+Extension.swift */,
@@ -351,6 +350,7 @@
 			children = (
 				9261D5C92A894CE900AAF33E /* AnalyticsService.swift */,
 				9261D5CB2A896B3B00AAF33E /* AppMetrics.swift */,
+				9266D1F12A8C22760020D766 /* AppMetricsParametrs.swift */,
 			);
 			path = AnalyticsService;
 			sourceTree = "<group>";
@@ -616,6 +616,7 @@
 				92E6D0B52A59B5180003809D /* NewEventCell.swift in Sources */,
 				929C80512A7C385B00C731A4 /* EditingTrackerViewController.swift in Sources */,
 				923F99972A48D4E700CFCE9E /* TrackerCategory.swift in Sources */,
+				9266D1F22A8C22760020D766 /* AppMetricsParametrs.swift in Sources */,
 				923F99992A48E09100CFCE9E /* TrackerRecord.swift in Sources */,
 				923F99AF2A4E21C200CFCE9E /* SwitchCell.swift in Sources */,
 				92A3C45C2A701728003D9452 /* CategoryViewModel.swift in Sources */,
@@ -639,7 +640,6 @@
 				929669C92A62E0FE00606172 /* EmojiViewCell.swift in Sources */,
 				9250B1692A648822003C0E45 /* TrackerRecordStore.swift in Sources */,
 				923F992C2A3C859B00CFCE9E /* SceneDelegate.swift in Sources */,
-				92E6D07A2A56F5070003809D /* MockHelpers .swift in Sources */,
 				9261D5CC2A896B3B00AAF33E /* AppMetrics.swift in Sources */,
 				923F993F2A3CF8F000CFCE9E /* UIColors+Extension.swift in Sources */,
 				929C80562A7EB21700C731A4 /* FiltersViewController.swift in Sources */,

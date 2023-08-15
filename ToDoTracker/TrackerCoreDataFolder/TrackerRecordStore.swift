@@ -27,7 +27,6 @@ final class TrackerRecordStore: NSObject {
 extension TrackerRecordStore: TrackerRecordStoreProtocol {
     func addTrackerRecordToCoreData(id: UUID, date: String) {
         let newTrackerRecord = TrackerRecordCoreData(context: context)
-        //ВОТ ТУТ МОЖЕТ БЫТЬ ПРОБЛЕМА С ID (проверить в Модели)
         newTrackerRecord.trackerID = id
         newTrackerRecord.date = date
         do {

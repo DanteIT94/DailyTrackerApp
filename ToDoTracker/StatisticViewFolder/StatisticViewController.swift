@@ -11,7 +11,7 @@ final class StatisticViewController: UIViewController {
     
     //MARK: - Private lazy Properties
     private lazy var statisticTitle: UILabel = {
-       let title = UILabel()
+        let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.text = NSLocalizedString("statisticTitle", comment: "")
         title.textAlignment = .left
@@ -20,7 +20,7 @@ final class StatisticViewController: UIViewController {
     }()
     
     private lazy var placeholderText: UILabel = {
-       let text = UILabel()
+        let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.isHidden = true
         text.text = "Анализировать пока нечего"
@@ -30,7 +30,7 @@ final class StatisticViewController: UIViewController {
     }()
     
     private lazy var placeholderImage: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.isHidden = true
         image.image = UIImage(named: "Statistic_placeholder")
@@ -96,7 +96,6 @@ final class StatisticViewController: UIViewController {
             placeholderImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             placeholderImage.heightAnchor.constraint(equalToConstant: 80),
             placeholderImage.widthAnchor.constraint(equalTo: placeholderImage.heightAnchor),
-            //-------------------------------------------
             placeholderText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             placeholderText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             placeholderText.topAnchor.constraint(equalTo: placeholderImage.bottomAnchor, constant: 8),
@@ -108,27 +107,27 @@ final class StatisticViewController: UIViewController {
     
     private func configureCustomInfoViews() {
         // Создаем массив данных с использованием интерполяции строк
-            let bestStreak = calculateLongestPerfectDayStreak()
-            let perfectDays = calculateNumberOfPerfectDays()
-            let completedTrackers = totalCompletedTrackers()
-            let averageCompletedTrackers = averageCompletedTrackers()
-            
-            let data: [String] = [
-                "\(bestStreak)",
-                "\(perfectDays)",
-                "\(completedTrackers)",
-                "\(averageCompletedTrackers)"
-            ]
-            if completedTrackers == "0" {
+        let bestStreak = calculateLongestPerfectDayStreak()
+        let perfectDays = calculateNumberOfPerfectDays()
+        let completedTrackers = totalCompletedTrackers()
+        let averageCompletedTrackers = averageCompletedTrackers()
+        
+        let data: [String] = [
+            "\(bestStreak)",
+            "\(perfectDays)",
+            "\(completedTrackers)",
+            "\(averageCompletedTrackers)"
+        ]
+        if completedTrackers == "0" {
             placeholderText.isHidden = false
             placeholderImage.isHidden = false
             customInfoViewVStack.isHidden = true
             return
-            } else {
+        } else {
             placeholderText.isHidden = true
             placeholderImage.isHidden = true
             customInfoViewVStack.isHidden = false
-            }
+        }
         
         // Добавляем и настраиваем 4 CustomInfoView в стеке
         for (index, title) in localizationKeysForDetailTitle.enumerated() {
@@ -142,24 +141,20 @@ final class StatisticViewController: UIViewController {
             // Находим данные по названию из массива данных
             guard let dataForTitle = data[safe: index] else { return }
             
-            // Здесь вы можете настраивать содержимое каждого CustomInfoView в зависимости от типа ячейки
+            // Настраиваем содержимое каждого CustomInfoView в зависимости от типа ячейки
             customInfoView.descriptionLabel.text = NSLocalizedString(title, comment: "")
             customInfoView.numberLabel.text = dataForTitle
         }
         
     }
     
-    //MARK:  -
-    
     //MARK: - функции по работе с данными для лэйблов View
     private func calculateLongestPerfectDayStreak() -> String {
-        
-        return "0"
+        "0"
     }
     
     private func calculateNumberOfPerfectDays() -> String {
-        
-        return "0"
+        "0"
     }
     
     private func totalCompletedTrackers() -> String {
@@ -168,8 +163,7 @@ final class StatisticViewController: UIViewController {
     }
     
     private func averageCompletedTrackers() -> String {
-        
-        return "0"
+        "0"
     }
     
 }

@@ -21,7 +21,7 @@ protocol TrackerStoreProtocol: AnyObject {
 final class TrackerStore: NSObject {
     private let context: NSManagedObjectContext
     private var fetchedResultsController: NSFetchedResultsController<TrackerCoreData>?
-
+    
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -32,7 +32,6 @@ final class TrackerStore: NSObject {
         if let fetchedResultsController = fetchedResultsController {
             return fetchedResultsController
         } else {
-//            setupFetchedResultsController()
             guard let fetchedResultsController = fetchedResultsController else {
                 assertionFailure("Failed to initialize fetchedResultsController")
                 return .init()
@@ -91,7 +90,7 @@ final class TrackerStore: NSObject {
         tracker.isPinned = updatedTracker.isPinned
         tracker.schedule = convertScheduleToScheduleCoreData(updatedTracker.schedule)
         tracker.previousCategory = updatedTracker.previousCategory
-
+        
         
         // Обновляем отношение категории
         let categoryRequest = NSFetchRequest<TrackerCategoryCoreData>(entityName: "TrackerCategoryCoreData")
@@ -112,10 +111,10 @@ final class TrackerStore: NSObject {
         // Удаление связанных записей
         let recordsRequest = NSFetchRequest<TrackerRecordCoreData>(entityName: "TrackerRecordCoreData")
         recordsRequest.predicate = NSPredicate(format: "trackerID == %@", deleteTracker.id as CVarArg)
-
+        
         let trackersToDelete = try? context.fetch(recordsRequest)
         trackersToDelete?.forEach { context.delete($0) }
-
+        
         // Удаление самого трекера
         let request = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
         request.predicate = NSPredicate(format: "id == %@", deleteTracker.id as CVarArg)
@@ -146,7 +145,7 @@ final class TrackerStore: NSObject {
             return nil
         }
     }
-
+    
 }
 
 extension TrackerStore: TrackerStoreProtocol {
@@ -167,8 +166,8 @@ extension TrackerStore: TrackerStoreProtocol {
               let colorString = entity.color,
               let emoji = entity.emoji,
               let scheduleSet = entity.schedule,
-                let category = entity.trackerCategory?.headerName
-              else {
+              let category = entity.trackerCategory?.headerName
+        else {
             throw TrackerStoreError.decodingError
         }
         let isEvent = entity.isEvent
@@ -184,8 +183,8 @@ extension TrackerStore: TrackerStoreProtocol {
             isPinned: isPinned,
             category: category
         )
-    return tracker
+        return tracker
     }
     
-
+    
 }

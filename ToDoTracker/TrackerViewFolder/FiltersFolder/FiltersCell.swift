@@ -12,14 +12,6 @@ final class FiltersCell: UITableViewCell {
     
     static let reuseIdentifier = "FiltersCell"
     
-    //    private let arrowImageView: UIImageView = {
-    //        let imageView = UIImageView()
-    //        imageView.image = UIImage(systemName: "chevron.right")
-    //        imageView.tintColor = .YPGrey
-    //        imageView.translatesAutoresizingMaskIntoConstraints = false
-    //        return imageView
-    //    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setupCell()

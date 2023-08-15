@@ -8,30 +8,30 @@
 import Foundation
 import YandexMobileMetrica
 
-enum AppMetricsParams {
-    enum Item: String {
-        case add_track
-        case track
-        case filter
-        case edit
-        case delete
-        
-        case habitButton
-        case eventButton
-
-        case saveNewTracker
-        case trackerCategory
-        case trackerSchedule
-        case emoji
-        case color
-    }
-    
-    enum Event: String {
-        case open
-        case close
-        case click
-    }
-}
+//enum AppMetricsParams {
+//    enum Item: String {
+//        case add_track
+//        case track
+//        case filter
+//        case edit
+//        case delete
+//        
+//        case habitButton
+//        case eventButton
+//
+//        case saveNewTracker
+//        case trackerCategory
+//        case trackerSchedule
+//        case emoji
+//        case color
+//    }
+//    
+//    enum Event: String {
+//        case open
+//        case close
+//        case click
+//    }
+//}
 
 protocol AppMetricsProtocol {
     func reportEvent(screen: String, event: AppMetricsParams.Event, item: AppMetricsParams.Item?)

@@ -44,7 +44,6 @@ final class TrackerCategoryStore: NSObject {
     private let trackerDataStore: TrackerStoreProtocol
     private weak var trackerDataController: NSFetchedResultsController<TrackerCoreData>?
     lazy var fetchResultControllerForCategory: NSFetchedResultsController<TrackerCategoryCoreData> = {
-        //MARK: - ДЛЯ 16 СПРИНТА!!
         let fetchRequestForCategory = TrackerCategoryCoreData.fetchRequest()
         fetchRequestForCategory.sortDescriptors = [NSSortDescriptor(keyPath: \TrackerCategoryCoreData.headerName, ascending: true)]
         

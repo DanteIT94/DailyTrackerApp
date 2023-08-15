@@ -35,8 +35,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString(
-            "Фильтры", comment: "")
+        navigationItem.title = NSLocalizedString("Фильтры", comment: "")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "YPBlack") ?? UIColor.black]
         
         createLayout()
@@ -74,16 +73,15 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         switch cellIdentifier {
         case "allTrackers":
             dismiss(animated: true)
-            
             break
         case "todayTrackers":
-            // Выполните действия при выборе ячейки "Трекеры на сегодня"
+            //TODO: - дописать логику
             break
         case "completedTrackers":
-            // Выполните действия при выборе ячейки "Завершенные"
+            //TODO: - дописать логику
             break
         case "incompleteTrackers":
-            // Выполните действия при выборе ячейки "Незавершенные"
+            //TODO: - дописать логику
             break
         default:
             break
