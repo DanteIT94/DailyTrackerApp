@@ -80,8 +80,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "411"
             endingLineNumber = "411"
-            landmarkName = "TrackersViewController"
-            landmarkType = "21">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,8 +112,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "580"
             endingLineNumber = "580"
-            landmarkName = "TrackersViewController"
-            landmarkType = "21">
+            landmarkName = "searchTextFieldEditingChanged()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "2B4D3F50-4646-4BD0-B54A-E5B0091E9304 - ec473552e7aea738"
