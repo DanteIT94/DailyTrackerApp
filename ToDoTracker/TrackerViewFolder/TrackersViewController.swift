@@ -60,7 +60,7 @@ final class TrackersViewController: UIViewController {
         let attributedPlaceholder = NSAttributedString(string: NSLocalizedString(
             "searchField", comment: ""), attributes: attributes)
         
-        searchTextField.attributedPlaceholder = attributedPlaceholder 
+        searchTextField.attributedPlaceholder = attributedPlaceholder
         
         let searchColor = UIColor { (trait: UITraitCollection) -> UIColor in
             if trait.userInterfaceStyle == .light {
@@ -117,7 +117,7 @@ final class TrackersViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 16
-        //        button.addTarget(nil, action: #selector(filtersButtonTapped), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(filtersButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -182,7 +182,7 @@ final class TrackersViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         appMetrics.reportEvent(screen: appMetricScreenName, event: .close, item: nil)
-
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -340,10 +340,11 @@ final class TrackersViewController: UIViewController {
     }
     
     @objc private func filtersButtonTapped() {
-        let filtersVC = FiltersViewController()
-        let modalNavigationController = UINavigationController(rootViewController: filtersVC)
-        
-        self.present(modalNavigationController, animated: true)
+        appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .filter)
+        //        let filtersVC = FiltersViewController()
+        //        let modalNavigationController = UINavigationController(rootViewController: filtersVC)
+        //
+        //        self.present(modalNavigationController, animated: true)
     }
 }
 
@@ -381,8 +382,10 @@ extension TrackersViewController: EditingTrackerViewControllerDelegate {
 extension TrackersViewController: TrackerCardViewCellDelegate {
     func dayCheckButtonTapped(viewModel: CellViewModel) {
         if viewModel.buttonIsChecked {
+            appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .track)
             trackerDataController.addTrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate))
         } else {
+            appMetrics.reportEvent(screen: appMetricScreenName, event: .click, item: .track)
             trackerDataController.deleteTrackerRecord(id: viewModel.tracker.id, date: dateFormmater.string(from: currentDate))
         }
         collectionView.reloadItems(at: [viewModel.indexPath])
