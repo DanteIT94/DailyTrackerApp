@@ -76,8 +76,8 @@ final class OnboardingViewController: UIPageViewController {
         NSLayoutConstraint.activate([
             onboardingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             onboardingLabel.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -130),
-            onboardingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            onboardingLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            onboardingLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            onboardingLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 8),
             pageControl.bottomAnchor.constraint(equalTo: onboardingButton.topAnchor, constant: -24),

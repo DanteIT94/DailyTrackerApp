@@ -16,12 +16,17 @@ final class TabBarViewController: UITabBarController {
         
         // Создайте разделительную линию
         let separatorLine = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 1))
-        separatorLine.backgroundColor = UIColor.lightGray
+        let separatorColor = UIColor { (traits: UITraitCollection) -> UIColor in
+            if traits.userInterfaceStyle == .light {
+                return UIColor.lightGray
+            } else {
+                return UIColor.black
+            }
+        }
+        separatorLine.backgroundColor = separatorColor
         tabBar.addSubview(separatorLine)
-        
-        
+                
         let trackerContainer = TrackerPersistentContainer()
-        
         let trackerStore = TrackerStore(context: trackerContainer.context)
         let trackerCategoryStore = TrackerCategoryStore(
             context: trackerContainer.context,
@@ -37,10 +42,15 @@ final class TabBarViewController: UITabBarController {
             trackerRecordStore: trackerRecordStore,
             context: trackerContainer.context)
         
+        let appMetrics = AppMetrics()
+        
         let trackersViewController = TrackersViewController(
             trackerDataController: trackerDataController,
             trackerCategoryStore: trackerCategoryStore,
-            categoryViewModel: categoryViewModel)
+            categoryViewModel: categoryViewModel,
+            trackerStore: trackerStore,
+            trackerRecordStore: trackerRecordStore,
+            appMetrics: appMetrics)
         
         let trackersNavigationController = UINavigationController(rootViewController: trackersViewController)
         trackersViewController.tabBarItem = UITabBarItem(
@@ -49,7 +59,7 @@ final class TabBarViewController: UITabBarController {
             selectedImage: nil)
         
         
-        let statisticViewController = StatisticViewController()
+        let statisticViewController = StatisticViewController(trackerRecordStore: trackerRecordStore)
         statisticViewController.tabBarItem = UITabBarItem(
             title: NSLocalizedString("statistic", comment: ""),
             image: UIImage(named: "Hare_fill"),

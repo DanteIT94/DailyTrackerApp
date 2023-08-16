@@ -58,7 +58,25 @@
 // ScheduleVC
 "scheduleTitle" = "Zeitplan";
 
+// StatisticVC
+"statisticTitle" = "Statistiken";
+"bestStreak" = "Beste Periode";
+"perfectDays" = "PerfectTage";
+"doneTrackers" = "Abgeschlossene Tracker";
+"averageValue" = "Durchschnittswert";
 
+//EditingVC
+"editingTitle" = "Gewohnheit bearbeiten";
+"saveButton" = "Speichern";
 
+//Pin
+"pinCategory" = "Pinned";
 
+//ContextMenu
+"pinned" = "Anheften";
+"unpinned" = "Lösen";
+"edit" = "Bearbeiten";
+"delete" = "Löschen";
 
+//Filters
+"filtersButton" = "Filters";

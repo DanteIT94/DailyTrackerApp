@@ -21,7 +21,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         let cardBackgroundView = UIView()
         cardBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         cardBackgroundView.layer.masksToBounds = true
-        cardBackgroundView.layer.cornerRadius = 16
+        cardBackgroundView.layer.cornerRadius = 12
         return cardBackgroundView
     }()
     
@@ -42,8 +42,16 @@ final class TrackerCardViewCell: UICollectionViewCell {
         let taskLabel = UILabel()
         taskLabel.translatesAutoresizingMaskIntoConstraints = false
         taskLabel.font = UIFont.systemFont(ofSize: 12)
-        taskLabel.textColor = .YPWhite
+        taskLabel.textColor = .white
         return taskLabel
+    }()
+    
+    private let pinImage: UIImageView = {
+        let pin = UIImageView()
+        pin.image = UIImage(named: "Pin_image")
+        pin.translatesAutoresizingMaskIntoConstraints = false
+        pin.isHidden = false
+        return pin
     }()
     //✅
     private let dayLabel: UILabel = {
@@ -77,6 +85,7 @@ final class TrackerCardViewCell: UICollectionViewCell {
         dayLabel.text = "\(viewModel.dayCounter) \(daysDeclension(for: viewModel.dayCounter))"
         cardBackgroundView.backgroundColor = viewModel.tracker.color
         dayCheckButton.backgroundColor = viewModel.tracker.color
+        pinImage.isHidden = !viewModel.tracker.isPinned
         self.viewModel = viewModel
         dayCheckButtonState()
         dayCheckButtonIsEnabled()
@@ -90,8 +99,10 @@ final class TrackerCardViewCell: UICollectionViewCell {
         addSubview(cardBackgroundView)
         cardBackgroundView.addSubview(emojiLabel)
         cardBackgroundView.addSubview(taskLabel)
+        cardBackgroundView.addSubview(pinImage)
         addSubview(dayLabel)
         addSubview(dayCheckButton)
+
         
         NSLayoutConstraint.activate([
             //Цветная подложка
@@ -104,6 +115,8 @@ final class TrackerCardViewCell: UICollectionViewCell {
             emojiLabel.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 12),
             emojiLabel.heightAnchor.constraint(equalToConstant: 24),
             emojiLabel.widthAnchor.constraint(equalToConstant: 24),
+            pinImage.centerYAnchor.constraint(equalTo: emojiLabel.centerYAnchor),
+            pinImage.trailingAnchor.constraint(equalTo: cardBackgroundView.trailingAnchor, constant: -4),
             //Лэйбл задачи
             taskLabel.bottomAnchor.constraint(equalTo: cardBackgroundView.bottomAnchor, constant: -12),
             taskLabel.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 12),
