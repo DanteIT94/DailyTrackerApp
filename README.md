@@ -36,7 +36,14 @@ CocoaPods: Для управления зависимостями проекта
 
 ## Скриншоты
 Main Screen
+![mainScreen](https://github.com/DanteIT94/DailyTrackerApp/blob/main/trackerMainScreen.png)
+
 Statistics Screen
+![statisticScreen](https://github.com/DanteIT94/DailyTrackerApp/blob/main/trackerStatistic.png)
+
+Onboarding Screen
+![onboardingScreen](https://github.com/DanteIT94/DailyTrackerApp/blob/main/trackerOnboarding.png)
+
 
 ## Лицензия
 MIT
